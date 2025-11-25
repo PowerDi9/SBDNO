@@ -2,7 +2,8 @@
 
 CREATE TABLE IF NOT EXISTS empresas (
     id_empresa INTEGER PRIMARY KEY AUTOINCREMENT,
-    nombre TEXT NOT NULL UNIQUE
+    nombre TEXT NOT NULL UNIQUE,
+    importe REAL NOT NULL
 );
 
 --TABLA TIENDAS
@@ -56,6 +57,7 @@ CREATE TABLE IF NOT EXISTS albaranes (
     id_vendedor INTEGER NOT NULL,
     id_trabajador INTEGER,
     id_camion INTEGER,
+    ruta_pdf TEXT,
     FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente),
     FOREIGN KEY (id_vendedor) REFERENCES vendedores(id_vendedor),
     FOREIGN KEY (id_trabajador) REFERENCES trabajadores(id_trabajador),
