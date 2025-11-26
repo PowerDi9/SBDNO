@@ -3,7 +3,7 @@
 CREATE TABLE IF NOT EXISTS empresas (
     id_empresa INTEGER PRIMARY KEY AUTOINCREMENT,
     nombre TEXT NOT NULL UNIQUE,
-    importe REAL NOT NULL
+    porcentaje REAL NOT NULL
 );
 
 --TABLA TIENDAS
