@@ -5,7 +5,10 @@
 package view.manageBusinessesView;
 
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.util.Vector;
+import javax.swing.JTable;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -43,6 +46,8 @@ public class ManageBusinessesDialog extends javax.swing.JDialog {
         editBusinessesJPanel = new javax.swing.JPanel();
         editBusinessesScrollPane = new javax.swing.JScrollPane();
         editBusinessesTable = new javax.swing.JTable();
+        editBusinessButton = new javax.swing.JButton();
+        deleteBusinessButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -81,13 +86,13 @@ public class ManageBusinessesDialog extends javax.swing.JDialog {
         addBusinessJPanelLayout.setVerticalGroup(
             addBusinessJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addBusinessJPanelLayout.createSequentialGroup()
-                .addGap(13, 13, 13)
+                .addContainerGap()
                 .addGroup(addBusinessJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(businessNameLabel)
                     .addComponent(businessNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(businessNameLabel)
                     .addComponent(percentageCommissionLabel)
                     .addComponent(percentageCommissionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
                 .addGroup(addBusinessJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(clearTextButton)
                     .addComponent(addBusinessButton))
@@ -98,17 +103,16 @@ public class ManageBusinessesDialog extends javax.swing.JDialog {
 
         editBusinessesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Business Name", "Percentage Commission"
+                "Business ID", "Business Name", "Percentage Commission"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Long.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Long.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -116,6 +120,10 @@ public class ManageBusinessesDialog extends javax.swing.JDialog {
             }
         });
         editBusinessesScrollPane.setViewportView(editBusinessesTable);
+
+        editBusinessButton.setText("Edit Business");
+
+        deleteBusinessButton.setText("Delete Business");
 
         javax.swing.GroupLayout editBusinessesJPanelLayout = new javax.swing.GroupLayout(editBusinessesJPanel);
         editBusinessesJPanel.setLayout(editBusinessesJPanelLayout);
@@ -125,12 +133,22 @@ public class ManageBusinessesDialog extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(editBusinessesScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(7, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editBusinessesJPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(deleteBusinessButton)
+                .addGap(18, 18, 18)
+                .addComponent(editBusinessButton)
+                .addContainerGap())
         );
         editBusinessesJPanelLayout.setVerticalGroup(
             editBusinessesJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editBusinessesJPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(editBusinessesJPanelLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(editBusinessesScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addGroup(editBusinessesJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(editBusinessButton)
+                    .addComponent(deleteBusinessButton))
                 .addContainerGap())
         );
 
@@ -143,7 +161,9 @@ public class ManageBusinessesDialog extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(manageBusinessTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(manageBusinessTabbedPane)
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(manageBusinessLabel)
                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -160,13 +180,17 @@ public class ManageBusinessesDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public JTable getEditBusinessesTable() {
+        return editBusinessesTable;
+    }
+    
     public String getBusinessNameTextField() {
         String text = businessNameTextField.getText();
         return text;
     }
 
-    public int getPercentageCommissionTextField() {
-        int num = Integer.parseInt(percentageCommissionTextField.getText());
+    public String getPercentageCommissionTextField() {
+        String num = percentageCommissionTextField.getText();
         return num;
     }
 
@@ -177,6 +201,14 @@ public class ManageBusinessesDialog extends javax.swing.JDialog {
     public void addClearTextButtonAL(ActionListener al) {
         clearTextButton.addActionListener(al);
     }
+    
+    public void addDeleteBusinessButtonAL(ActionListener al) {
+        deleteBusinessButton.addActionListener(al);
+    }
+
+    public void addEditBusinessButtonAL(ActionListener al) {
+        editBusinessButton.addActionListener(al);
+    }
 
     public void setBusinessNameTextField(String text) {
         businessNameTextField.setText(text);
@@ -184,6 +216,23 @@ public class ManageBusinessesDialog extends javax.swing.JDialog {
     
     public void setPercentageCommissionTextField(String text) {
         percentageCommissionTextField.setText(text);
+    }
+    
+    public void addEditBusinessesTableModelListener(TableModelListener l) {
+        DefaultTableModel model = (DefaultTableModel) this.editBusinessesTable.getModel();
+        model.addTableModelListener(l);
+    }
+    
+    public void addEditBusinessesTableMouseListener(MouseListener l) {
+        this.editBusinessesTable.addMouseListener(l);
+    }
+    
+    public String getEditBusinessTableIDAt(int row, int col) {
+        String serialID = "";
+        if (row >= 0 && col >= 0) {
+            serialID = editBusinessesTable.getModel().getValueAt(row, col).toString();
+        }
+        return serialID;
     }
 
     public void clearBusinesses() {
@@ -205,6 +254,8 @@ public class ManageBusinessesDialog extends javax.swing.JDialog {
     private javax.swing.JLabel businessNameLabel;
     private javax.swing.JTextField businessNameTextField;
     private javax.swing.JButton clearTextButton;
+    private javax.swing.JButton deleteBusinessButton;
+    private javax.swing.JButton editBusinessButton;
     private javax.swing.JPanel editBusinessesJPanel;
     private javax.swing.JScrollPane editBusinessesScrollPane;
     private javax.swing.JTable editBusinessesTable;

@@ -13,7 +13,7 @@ public class DBConnection {
     private static final String SCRIPT_PATH = "src/database/script.sql";
     private static Connection conn = null;
 
-    public static Connection getConnection() {
+    public static Connection getConnection() throws SQLException {
         if (conn == null) {
             try {
                 conn = DriverManager.getConnection(DB_URL);
@@ -25,18 +25,16 @@ public class DBConnection {
         return conn;
     }
 
-    public void initDB() {
-        try (Connection conn = DBConnection.getConnection()) {
-            if (conn != null) {
-                String sql = new String(Files.readAllBytes(Paths.get(SCRIPT_PATH)));
-                Statement stmt = conn.createStatement();
-                stmt.executeUpdate(sql);
-                System.out.println("Script ejecutado correctamente, tablas creadas si no existian.");
-
-            }
+    public void initDB() throws SQLException {
+        Connection c = getConnection();
+        try {
+            String sql = new String(Files.readAllBytes(Paths.get(SCRIPT_PATH)));
+            Statement stmt = c.createStatement();
+            stmt.executeUpdate(sql);
+            stmt.close();
+            System.out.println("Script ejecutado correctamente, tablas creadas si no existían.");
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("Ha habido un error");
         }
     }
 

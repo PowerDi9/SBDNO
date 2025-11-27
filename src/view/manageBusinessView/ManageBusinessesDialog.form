@@ -26,7 +26,10 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="manageBusinessTabbedPane" pref="461" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="manageBusinessTabbedPane" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
                   <Group type="102" attributes="0">
                       <Component id="manageBusinessLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -71,7 +74,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="businessNameLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -96,14 +99,14 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="businessNameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="businessNameTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="businessNameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="percentageCommissionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="percentageCommissionTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="86" max="32767" attributes="0"/>
+                      <EmptySpace pref="130" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="clearTextButton" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="addBusinessButton" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -157,13 +160,25 @@
                       <Component id="editBusinessesScrollPane" min="-2" pref="448" max="-2" attributes="0"/>
                       <EmptySpace pref="7" max="32767" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="deleteBusinessButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="editBusinessButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="editBusinessesScrollPane" min="-2" pref="138" max="-2" attributes="0"/>
+                      <EmptySpace pref="14" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="editBusinessButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="deleteBusinessButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -180,7 +195,8 @@
                 <Component class="javax.swing.JTable" name="editBusinessesTable">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="2" rowCount="4">
+                      <Table columnCount="3" rowCount="3">
+                        <Column editable="true" title="Business ID" type="java.lang.Integer"/>
                         <Column editable="true" title="Business Name" type="java.lang.String"/>
                         <Column editable="true" title="Percentage Commission" type="java.lang.Long"/>
                       </Table>
@@ -189,6 +205,16 @@
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JButton" name="editBusinessButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Edit Business"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="deleteBusinessButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Delete Business"/>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
       </SubComponents>
