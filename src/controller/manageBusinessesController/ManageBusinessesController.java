@@ -1,5 +1,6 @@
 package controller.manageBusinessesController;
 
+import controller.manageBusinessesController.editBusinessController.EditBusinessController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -11,12 +12,13 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import model.dao.BusinessDAO;
+import view.manageBusinessView.editBusinessView.EditBusinessDialog;
 import view.manageBusinessesView.ManageBusinessesDialog;
 
 public class ManageBusinessesController {
 
     ManageBusinessesDialog view;
-    String id = "";
+    String id, name, percentage = null;
 
     public ManageBusinessesController(ManageBusinessesDialog view) {
         this.view = view;
@@ -24,7 +26,9 @@ public class ManageBusinessesController {
         this.view.addClearTextButtonAL(this.getClearTextButtonActionListener());
         this.view.addEditBusinessesTableMouseListener(this.getEditBusinessTableMouseListener());
         this.view.addDeleteBusinessButtonAL(this.getDeleteBusinessButtonActionListener());
-        this.updateEditBusinessesModel();
+        this.view.addEditBusinessButtonAL(this.getEditBusinessActionListener());
+        this.view.addEditBusinessesBackButtonAL(this.getBackButtonActionListener());
+        this.view.addAddBusinessBackButtonAL(this.getBackButtonActionListener());
         this.innitcomponents();
     }
 
@@ -34,9 +38,21 @@ public class ManageBusinessesController {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 int row = view.getEditBusinessesTable().rowAtPoint(evt.getPoint());
                 id = view.getEditBusinessTableIDAt(row, 0);
+                name = view.getEditBusinessTableIDAt(row, 1);
+                percentage = view.getEditBusinessTableIDAt(row, 2);
             }
         };
         return ma;
+    }
+    
+    private ActionListener getBackButtonActionListener(){
+        ActionListener al = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                view.dispose();
+            }
+        };
+        return al;
     }
 
     private ActionListener getClearTextButtonActionListener() {
@@ -49,12 +65,16 @@ public class ManageBusinessesController {
         };
         return al;
     }
-    
-    private ActionListener getDeleteBusinessButtonActionListener(){
+
+    private ActionListener getDeleteBusinessButtonActionListener() {
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
+                    if(id == null){
+                    JOptionPane.showMessageDialog(view, "Please select a Business to delete.");
+                    return;
+                }
                     BusinessDAO dao = new BusinessDAO();
                     dao.deleteBusiness(id);
                 } catch (SQLException ex) {
@@ -93,6 +113,23 @@ public class ManageBusinessesController {
         return al;
     }
 
+    private ActionListener getEditBusinessActionListener() {
+        ActionListener al = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(id == null){
+                    JOptionPane.showMessageDialog(view, "Please select a Business to edit.");
+                    return;
+                }
+                EditBusinessDialog ebd = new EditBusinessDialog(view, true);
+                EditBusinessController ebc = new EditBusinessController(ebd, view, id, name, percentage);
+                ebd.setLocationRelativeTo(view);
+                ebd.setVisible(true);
+            }
+        };
+        return al;
+    }
+
     private void updateEditBusinessesModel() {
         view.clearBusinesses();
         try {
@@ -108,7 +145,7 @@ public class ManageBusinessesController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
         for (int i = 0; i < view.getEditBusinessesTable().getColumnCount(); i++) {
@@ -116,7 +153,8 @@ public class ManageBusinessesController {
         }
     }
 
-    public void innitcomponents() {
+    private void innitcomponents() {
         view.setTitle("Manage Businesses");
+        this.updateEditBusinessesModel();
     }
 }

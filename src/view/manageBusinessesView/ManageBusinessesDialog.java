@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 package view.manageBusinessesView;
 
 import java.awt.event.ActionListener;
@@ -15,13 +11,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author EVEN
  */
-public class ManageBusinessesDialog extends javax.swing.JDialog {
+public class ManageBusinessesDialog extends javax.swing.JFrame {
 
     /**
      * Creates new form AddBusinessDialog
      */
     public ManageBusinessesDialog(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
         initComponents();
     }
 
@@ -43,24 +38,35 @@ public class ManageBusinessesDialog extends javax.swing.JDialog {
         percentageCommissionTextField = new javax.swing.JTextField();
         clearTextButton = new javax.swing.JButton();
         addBusinessButton = new javax.swing.JButton();
+        addBusinessBackButton = new javax.swing.JButton();
         editBusinessesJPanel = new javax.swing.JPanel();
         editBusinessesScrollPane = new javax.swing.JScrollPane();
         editBusinessesTable = new javax.swing.JTable();
         editBusinessButton = new javax.swing.JButton();
         deleteBusinessButton = new javax.swing.JButton();
+        editBusinessesBackButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         manageBusinessLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         manageBusinessLabel.setText("Manage Businesses");
 
+        manageBusinessTabbedPane.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        businessNameLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         businessNameLabel.setText("Business Name:");
 
+        percentageCommissionLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         percentageCommissionLabel.setText("Percentage Commission:");
 
+        clearTextButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         clearTextButton.setText("Clear Text");
 
+        addBusinessButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         addBusinessButton.setText("Add Business");
+
+        addBusinessBackButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        addBusinessBackButton.setText("Back");
 
         javax.swing.GroupLayout addBusinessJPanelLayout = new javax.swing.GroupLayout(addBusinessJPanel);
         addBusinessJPanel.setLayout(addBusinessJPanelLayout);
@@ -68,14 +74,18 @@ public class ManageBusinessesDialog extends javax.swing.JDialog {
             addBusinessJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addBusinessJPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(businessNameLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(businessNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(addBusinessJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addBusinessJPanelLayout.createSequentialGroup()
+                        .addComponent(businessNameLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(businessNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(addBusinessBackButton))
                 .addGap(18, 18, 18)
                 .addGroup(addBusinessJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(addBusinessJPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(clearTextButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(addBusinessButton))
                     .addGroup(addBusinessJPanelLayout.createSequentialGroup()
                         .addComponent(percentageCommissionLabel)
@@ -92,15 +102,17 @@ public class ManageBusinessesDialog extends javax.swing.JDialog {
                     .addComponent(businessNameLabel)
                     .addComponent(percentageCommissionLabel)
                     .addComponent(percentageCommissionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
                 .addGroup(addBusinessJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(clearTextButton)
-                    .addComponent(addBusinessButton))
+                    .addComponent(addBusinessButton)
+                    .addComponent(addBusinessBackButton))
                 .addContainerGap())
         );
 
         manageBusinessTabbedPane.addTab("Add Business", addBusinessJPanel);
 
+        editBusinessesTable.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         editBusinessesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -121,9 +133,14 @@ public class ManageBusinessesDialog extends javax.swing.JDialog {
         });
         editBusinessesScrollPane.setViewportView(editBusinessesTable);
 
+        editBusinessButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         editBusinessButton.setText("Edit Business");
 
+        deleteBusinessButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         deleteBusinessButton.setText("Delete Business");
+
+        editBusinessesBackButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        editBusinessesBackButton.setText("Back");
 
         javax.swing.GroupLayout editBusinessesJPanelLayout = new javax.swing.GroupLayout(editBusinessesJPanel);
         editBusinessesJPanel.setLayout(editBusinessesJPanelLayout);
@@ -131,13 +148,14 @@ public class ManageBusinessesDialog extends javax.swing.JDialog {
             editBusinessesJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(editBusinessesJPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(editBusinessesScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(7, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editBusinessesJPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(deleteBusinessButton)
-                .addGap(18, 18, 18)
-                .addComponent(editBusinessButton)
+                .addGroup(editBusinessesJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(editBusinessesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editBusinessesJPanelLayout.createSequentialGroup()
+                        .addComponent(editBusinessesBackButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(deleteBusinessButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(editBusinessButton)))
                 .addContainerGap())
         );
         editBusinessesJPanelLayout.setVerticalGroup(
@@ -145,10 +163,11 @@ public class ManageBusinessesDialog extends javax.swing.JDialog {
             .addGroup(editBusinessesJPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(editBusinessesScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addGroup(editBusinessesJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(editBusinessButton)
-                    .addComponent(deleteBusinessButton))
+                    .addComponent(deleteBusinessButton)
+                    .addComponent(editBusinessesBackButton))
                 .addContainerGap())
         );
 
@@ -202,6 +221,14 @@ public class ManageBusinessesDialog extends javax.swing.JDialog {
         clearTextButton.addActionListener(al);
     }
     
+    public void addAddBusinessBackButtonAL(ActionListener al) {
+        addBusinessBackButton.addActionListener(al);
+    }
+    
+    public void addEditBusinessesBackButtonAL(ActionListener al) {
+        editBusinessesBackButton.addActionListener(al);
+    }
+    
     public void addDeleteBusinessButtonAL(ActionListener al) {
         deleteBusinessButton.addActionListener(al);
     }
@@ -249,6 +276,7 @@ public class ManageBusinessesDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addBusinessBackButton;
     private javax.swing.JButton addBusinessButton;
     private javax.swing.JPanel addBusinessJPanel;
     private javax.swing.JLabel businessNameLabel;
@@ -256,6 +284,7 @@ public class ManageBusinessesDialog extends javax.swing.JDialog {
     private javax.swing.JButton clearTextButton;
     private javax.swing.JButton deleteBusinessButton;
     private javax.swing.JButton editBusinessButton;
+    private javax.swing.JButton editBusinessesBackButton;
     private javax.swing.JPanel editBusinessesJPanel;
     private javax.swing.JScrollPane editBusinessesScrollPane;
     private javax.swing.JTable editBusinessesTable;

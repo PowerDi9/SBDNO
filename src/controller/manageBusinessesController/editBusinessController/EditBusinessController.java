@@ -1,0 +1,91 @@
+package controller.manageBusinessesController.editBusinessController;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
+import model.dao.BusinessDAO;
+import view.manageBusinessView.editBusinessView.EditBusinessDialog;
+import view.manageBusinessesView.ManageBusinessesDialog;
+
+public class EditBusinessController {
+
+    EditBusinessDialog view = null;
+    ManageBusinessesDialog view2 = null;
+    String id, name, percentage = null;
+
+    public EditBusinessController(EditBusinessDialog view, ManageBusinessesDialog view2, String id, String name, String percentage) {
+        this.view = view;
+        this.view2 = view2;
+        this.id = id;
+        this.name = name;
+        this.percentage = percentage;
+        this.view.addAcceptButtonActionListener(this.getAcceptButtonActionListener());
+        this.view.addCancelButtonActionListener(this.getCancelButtonActionListener());
+        this.initComponents();
+    }
+    
+    public ActionListener getAcceptButtonActionListener(){
+        ActionListener al = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try{
+                    BusinessDAO dao = new BusinessDAO();
+                    if(dao.editBusiness(id, view.getBusinessNameTextFieldText(), Double.parseDouble(view.getPercentageCommissionTextFieldText().replaceAll(",", ".")))){
+                        updateEditBusinessesModel();
+                        System.out.println("Editado correctamente");
+                        view.dispose();
+                    }else{
+                        System.out.println("no se");
+                    }
+                }catch(SQLException ex){
+                    ex.printStackTrace();
+                }
+            }
+        };
+        return al;
+    }
+    
+    public ActionListener getCancelButtonActionListener(){
+        ActionListener al = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                view.dispose();
+            }
+        };
+        return al;
+    }
+    
+    public void updateEditBusinessesModel() {
+        view2.clearBusinesses();
+        try {
+            BusinessDAO dao = new BusinessDAO();
+            ResultSet rs = dao.listBusinesses();
+            while (rs.next()) {
+                Vector row = new Vector();
+                row.add(rs.getInt("id_empresa"));
+                row.add(rs.getString("nombre"));
+                row.add(rs.getDouble("porcentaje"));
+                view2.addBusiness(row);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+        for (int i = 0; i < view2.getEditBusinessesTable().getColumnCount(); i++) {
+            view2.getEditBusinessesTable().getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+        }
+    }
+
+    
+    public void initComponents(){
+        view.setBusinessNameTextFieldText(name);
+        view.setPercentageCommissionTextFieldText(percentage);
+        view.setTitle("Edit Business");
+    }
+}

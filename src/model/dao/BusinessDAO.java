@@ -55,5 +55,20 @@ public class BusinessDAO {
         }
         return false;
     }
+    
+    public boolean editBusiness(String newId, String nombre, double porcentaje) throws SQLException{
+        int id = Integer.parseInt(newId);
+        String sql = "UPDATE empresas SET nombre = ?, porcentaje = ? WHERE id_empresa = ?";
+        try (PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql)) {
+        ps.setString(1, nombre);
+        ps.setDouble(2, porcentaje);
+        ps.setInt(3, id);
+
+        return ps.executeUpdate() > 0;
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return false;
+    }
+    }
 
 }

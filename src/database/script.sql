@@ -2,7 +2,7 @@
 
 CREATE TABLE IF NOT EXISTS empresas (
     id_empresa INTEGER PRIMARY KEY AUTOINCREMENT,
-    nombre TEXT NOT NULL UNIQUE,
+    nombre TEXT NOT NULL,
     porcentaje REAL NOT NULL
 );
 
