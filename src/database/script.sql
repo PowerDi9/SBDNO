@@ -1,72 +1,72 @@
--- TABLA EMPRESAS
+-- BUSINESS TABLE
 
-CREATE TABLE IF NOT EXISTS empresas (
-    id_empresa INTEGER PRIMARY KEY AUTOINCREMENT,
-    nombre TEXT NOT NULL UNIQUE,
-    porcentaje REAL NOT NULL
+CREATE TABLE IF NOT EXISTS business (
+    business_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    percentage REAL NOT NULL
 );
 
---TABLA TIENDAS
+-- STORES TABLE
 
-CREATE TABLE IF NOT EXISTS tiendas (
-    id_tienda INTEGER PRIMARY KEY AUTOINCREMENT,
-    id_empresa INTEGER NOT NULL,
-    nombre TEXT NOT NULL,
-    FOREIGN KEY(id_empresa) REFERENCES empresas(id_empresa)
+CREATE TABLE IF NOT EXISTS stores (
+    store_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    business_id INTEGER NOT NULL,
+    name TEXT NOT NULL,
+    FOREIGN KEY(business_id) REFERENCES business(business_id)
 );
 
--- TABLA CLIENTES
+-- CLIENTS TABLE
 
-CREATE TABLE IF NOT EXISTS clientes (
-    id_cliente INTEGER PRIMARY KEY AUTOINCREMENT,
-    nombre TEXT NOT NULL,
-    telefono TEXT,
-    empresa TEXT,
-    tienda TEXT
+CREATE TABLE IF NOT EXISTS clients (
+    client_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    phone TEXT,
+    business TEXT,
+    store TEXT
 );
 
--- TABLA VENDEDORES
+-- SELLERS TABLE
 
-CREATE TABLE IF NOT EXISTS vendedores (
-    id_vendedor INTEGER PRIMARY KEY AUTOINCREMENT,
-    nombre TEXT NOT NULL
+CREATE TABLE IF NOT EXISTS sellers (
+    seller_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL
 );
 
--- TABLA GESTORES
+-- WORKERS TABLE
 
-CREATE TABLE IF NOT EXISTS trabajadores (
-    id_trabajador INTEGER PRIMARY KEY AUTOINCREMENT,
-    nombre TEXT NOT NULL
+CREATE TABLE IF NOT EXISTS workers (
+    worker_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL
 );
 
--- TABLA CAMIONES
+-- TRUCKS TABLE
 
-CREATE TABLE IF NOT EXISTS camiones (
-    id_camion INTEGER PRIMARY KEY AUTOINCREMENT,
-    descripcion TEXT
+CREATE TABLE IF NOT EXISTS trucks (
+    truck_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    description TEXT
 );
 
--- TABLA ALBARANES
+-- DELIVERY NOTES TABLE
 
-CREATE TABLE IF NOT EXISTS albaranes (
-    id_albaran INTEGER PRIMARY KEY AUTOINCREMENT,
-    fecha DATE NOT NULL,
-    fecha_entrega DATE,
-    importe REAL NOT NULL,
-    id_cliente INTEGER NOT NULL,
-    id_vendedor INTEGER NOT NULL,
-    id_trabajador INTEGER,
-    id_camion INTEGER,
-    ruta_pdf TEXT,
-    FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente),
-    FOREIGN KEY (id_vendedor) REFERENCES vendedores(id_vendedor),
-    FOREIGN KEY (id_trabajador) REFERENCES trabajadores(id_trabajador),
-    FOREIGN KEY (id_camion) REFERENCES camiones(id_camion)
+CREATE TABLE IF NOT EXISTS delivery_notes (
+    delivery_note_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    date DATE NOT NULL,
+    delivery_date DATE,
+    amount REAL NOT NULL,
+    client_id INTEGER NOT NULL,
+    seller_id INTEGER NOT NULL,
+    worker_id INTEGER,
+    truck_id INTEGER,
+    pdf_path TEXT,
+    FOREIGN KEY (client_id) REFERENCES clients(client_id),
+    FOREIGN KEY (seller_id) REFERENCES sellers(seller_id),
+    FOREIGN KEY (worker_id) REFERENCES workers(worker_id),
+    FOREIGN KEY (truck_id) REFERENCES trucks(truck_id)
 );
 
--- INDICES para mejorar el rendimiento de las consultas
+-- INDEXES to improve query performance
 
-CREATE INDEX IF NOT EXISTS idx_albaranes_fecha_entrega ON albaranes(fecha_entrega);
-CREATE INDEX IF NOT EXISTS idx_albaranes_cliente ON albaranes(id_cliente);
-CREATE INDEX IF NOT EXISTS idx_albaranes_vendedor ON albaranes(id_vendedor);
-CREATE INDEX IF NOT EXISTS idx_albaranes_camion ON albaranes(id_camion);
+CREATE INDEX IF NOT EXISTS idx_delivery_notes_delivery_date ON delivery_notes(delivery_date);
+CREATE INDEX IF NOT EXISTS idx_delivery_notes_client ON delivery_notes(client_id);
+CREATE INDEX IF NOT EXISTS idx_delivery_notes_seller ON delivery_notes(seller_id);
+CREATE INDEX IF NOT EXISTS idx_delivery_notes_truck ON delivery_notes(truck_id);

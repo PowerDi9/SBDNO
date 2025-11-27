@@ -13,30 +13,28 @@ public class DBConnection {
     private static final String SCRIPT_PATH = "src/database/script.sql";
     private static Connection conn = null;
 
-    public static Connection getConnection() {
+    public static Connection getConnection() throws SQLException {
         if (conn == null) {
             try {
                 conn = DriverManager.getConnection(DB_URL);
-                System.out.println("Conexión establecida correctamente.");
+                System.out.println("Connection stablished correclty.");
             } catch (SQLException e) {
-                System.err.println("Error conectando a la base de datos: " + e.getMessage());
+                System.err.println("Error connecting to database: " + e.getMessage());
             }
         }
         return conn;
     }
 
-    public void initDB() {
-        try (Connection conn = DBConnection.getConnection()) {
-            if (conn != null) {
-                String sql = new String(Files.readAllBytes(Paths.get(SCRIPT_PATH)));
-                Statement stmt = conn.createStatement();
-                stmt.executeUpdate(sql);
-                System.out.println("Script ejecutado correctamente, tablas creadas si no existian.");
-
-            }
+    public void initDB() throws SQLException {
+        Connection c = getConnection();
+        try {
+            String sql = new String(Files.readAllBytes(Paths.get(SCRIPT_PATH)));
+            Statement st = c.createStatement();
+            st.executeUpdate(sql);
+            st.close();
+            System.out.println("Script executed correctly, tables created if nonexistent.");
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("Ha habido un error");
         }
     }
 

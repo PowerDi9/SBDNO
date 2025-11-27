@@ -25,18 +25,23 @@ public class MainJFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         sbdnoMenu.setText("SBDNO");
+        sbdnoMenu.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
 
+        configurationMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         configurationMenuItem.setText("Configuration...");
         sbdnoMenu.add(configurationMenuItem);
 
         quitMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        quitMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         quitMenuItem.setText("Quit");
         sbdnoMenu.add(quitMenuItem);
 
         mainJFrameMenuBar.add(sbdnoMenu);
 
         businessesMenu.setText("Businesses");
+        businessesMenu.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
 
+        manageBusinessesMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         manageBusinessesMenuItem.setText("Manage Businesses...");
         businessesMenu.add(manageBusinessesMenuItem);
 
@@ -52,7 +57,7 @@ public class MainJFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 350, Short.MAX_VALUE)
+            .addGap(0, 344, Short.MAX_VALUE)
         );
 
         pack();

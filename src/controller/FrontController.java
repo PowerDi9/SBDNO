@@ -5,6 +5,7 @@ import view.MainJFrame;
 import database.DBConnection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import view.manageBusinessesView.ManageBusinessesDialog;
 
 public class FrontController {
@@ -13,7 +14,7 @@ public class FrontController {
     private DBConnection dbc;
     
 
-    public FrontController(MainJFrame view) {
+    public FrontController(MainJFrame view) throws SQLException {
         this.view = view;
         this.view.quitMenuItemActionListener(this.getQuitMenuItemActionListener());
         this.view.manageBusinessesMenuItemActionListener(this.getManageBusinessesMenuItemActionListener());
@@ -44,7 +45,7 @@ public class FrontController {
         return al;
     }
     
-    public void initComponents(){
+    public void initComponents() throws SQLException{
         dbc = new DBConnection();
         dbc.initDB();
     }
