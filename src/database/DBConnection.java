@@ -17,9 +17,9 @@ public class DBConnection {
         if (conn == null) {
             try {
                 conn = DriverManager.getConnection(DB_URL);
-                System.out.println("Conexión establecida correctamente.");
+                System.out.println("Connection stablished correclty.");
             } catch (SQLException e) {
-                System.err.println("Error conectando a la base de datos: " + e.getMessage());
+                System.err.println("Error connecting to database: " + e.getMessage());
             }
         }
         return conn;
@@ -29,10 +29,10 @@ public class DBConnection {
         Connection c = getConnection();
         try {
             String sql = new String(Files.readAllBytes(Paths.get(SCRIPT_PATH)));
-            Statement stmt = c.createStatement();
-            stmt.executeUpdate(sql);
-            stmt.close();
-            System.out.println("Script ejecutado correctamente, tablas creadas si no existían.");
+            Statement st = c.createStatement();
+            st.executeUpdate(sql);
+            st.close();
+            System.out.println("Script executed correctly, tables created if nonexistent.");
         } catch (Exception e) {
             e.printStackTrace();
         }

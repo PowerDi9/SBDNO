@@ -97,7 +97,7 @@ public class ManageBusinessesController {
                     if (dao.businessExists(bname)) {
                         int option = JOptionPane.showConfirmDialog(null, "The Bussines \"" + bname + "\" already exists.\n¿Create it anyway?", "Confirm Duplicate", JOptionPane.YES_NO_OPTION);
                         if (option == JOptionPane.NO_OPTION) {
-                            System.out.println("Operación cancelada.");
+                            System.out.println("Operation cancelled.");
                             return;
                         }
                     }
@@ -137,9 +137,9 @@ public class ManageBusinessesController {
             ResultSet rs = dao.listBusinesses();
             while (rs.next()) {
                 Vector row = new Vector();
-                row.add(rs.getInt("id_empresa"));
-                row.add(rs.getString("nombre"));
-                row.add(rs.getDouble("porcentaje"));
+                row.add(rs.getInt("business_id"));
+                row.add(rs.getString("name"));
+                row.add(rs.getDouble("percentage"));
                 view.addBusiness(row);
             }
         } catch (SQLException e) {

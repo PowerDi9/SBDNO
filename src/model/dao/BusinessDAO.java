@@ -15,7 +15,7 @@ public class BusinessDAO {
     }
 
     public boolean businessExists(String businessName) throws SQLException {
-        String sql = "SELECT 1 FROM empresas WHERE LOWER(nombre) = LOWER(?) LIMIT 1";
+        String sql = "SELECT 1 FROM business WHERE LOWER(name) = LOWER(?) LIMIT 1";
         try (PreparedStatement stmt = this.conn.prepareStatement(sql)) {
             stmt.setString(1, businessName);
             ResultSet rs = stmt.executeQuery();
@@ -24,7 +24,7 @@ public class BusinessDAO {
     }
 
     public boolean insertBusiness(String businessName, double percentage) throws SQLException {
-        String sql = "INSERT INTO empresas(nombre, porcentaje) VALUES (?, ?)";
+        String sql = "INSERT INTO business(name, percentage) VALUES (?, ?)";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, businessName);
             ps.setDouble(2, percentage);
@@ -33,7 +33,7 @@ public class BusinessDAO {
     }
 
     public ResultSet listBusinesses() {
-        String query = "SELECT id_empresa, nombre, porcentaje FROM empresas";
+        String query = "SELECT business_id, name, percentage FROM business";
         try {
             PreparedStatement ps = DBConnection.getConnection().prepareStatement(query);
             return ps.executeQuery();
@@ -45,23 +45,23 @@ public class BusinessDAO {
     
     public boolean deleteBusiness(String str) throws SQLException {
         int id = Integer.parseInt(str);
-        String sql = "DELETE FROM empresas WHERE id_empresa = ?";
+        String sql = "DELETE FROM business WHERE business_id = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);
             return ps.executeUpdate() > 0;
         }catch(SQLException e){
             e.printStackTrace();
-            System.out.println("Ha ocurrido un error");
+            System.out.println("An error ocurred");
         }
         return false;
     }
     
-    public boolean editBusiness(String newId, String nombre, double porcentaje) throws SQLException{
+    public boolean editBusiness(String newId, String name, double percentage) throws SQLException{
         int id = Integer.parseInt(newId);
-        String sql = "UPDATE empresas SET nombre = ?, porcentaje = ? WHERE id_empresa = ?";
+        String sql = "UPDATE business SET name = ?, percentage = ? WHERE business_id = ?";
         try (PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql)) {
-        ps.setString(1, nombre);
-        ps.setDouble(2, porcentaje);
+        ps.setString(1, name);
+        ps.setDouble(2, percentage);
         ps.setInt(3, id);
 
         return ps.executeUpdate() > 0;

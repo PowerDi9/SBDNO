@@ -27,29 +27,27 @@ public class EditBusinessController {
         this.view.addCancelButtonActionListener(this.getCancelButtonActionListener());
         this.initComponents();
     }
-    
-    public ActionListener getAcceptButtonActionListener(){
+
+    public ActionListener getAcceptButtonActionListener() {
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try{
+                try {
                     BusinessDAO dao = new BusinessDAO();
-                    if(dao.editBusiness(id, view.getBusinessNameTextFieldText(), Double.parseDouble(view.getPercentageCommissionTextFieldText().replaceAll(",", ".")))){
-                        updateEditBusinessesModel();
-                        System.out.println("Editado correctamente");
-                        view.dispose();
-                    }else{
-                        System.out.println("no se");
-                    }
-                }catch(SQLException ex){
+                    dao.editBusiness(id, view.getBusinessNameTextFieldText(), Double.parseDouble(view.getPercentageCommissionTextFieldText().replaceAll(",", ".")));
+                    updateEditBusinessesModel();
+                    System.out.println("Edited Correctly");
+                    view.dispose();
+
+                } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
             }
         };
         return al;
     }
-    
-    public ActionListener getCancelButtonActionListener(){
+
+    public ActionListener getCancelButtonActionListener() {
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -58,7 +56,7 @@ public class EditBusinessController {
         };
         return al;
     }
-    
+
     public void updateEditBusinessesModel() {
         view2.clearBusinesses();
         try {
@@ -66,9 +64,9 @@ public class EditBusinessController {
             ResultSet rs = dao.listBusinesses();
             while (rs.next()) {
                 Vector row = new Vector();
-                row.add(rs.getInt("id_empresa"));
-                row.add(rs.getString("nombre"));
-                row.add(rs.getDouble("porcentaje"));
+                row.add(rs.getInt("business_id"));
+                row.add(rs.getString("name"));
+                row.add(rs.getDouble("percentage"));
                 view2.addBusiness(row);
             }
         } catch (SQLException e) {
@@ -82,8 +80,7 @@ public class EditBusinessController {
         }
     }
 
-    
-    public void initComponents(){
+    public void initComponents() {
         view.setBusinessNameTextFieldText(name);
         view.setPercentageCommissionTextFieldText(percentage);
         view.setTitle("Edit Business");
