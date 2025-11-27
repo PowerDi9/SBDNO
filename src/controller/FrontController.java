@@ -6,7 +6,7 @@ import database.DBConnection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import view.manageBusinessesView.ManageBusinessesDialog;
+import view.manageBusinessesView.ManageBusinessesFrame;
 
 public class FrontController {
     
@@ -36,10 +36,23 @@ public class FrontController {
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ManageBusinessesDialog mbd = new ManageBusinessesDialog(view, true);
+                ManageBusinessesFrame mbd = new ManageBusinessesFrame(view, true);
                 ManageBusinessesController mbc = new ManageBusinessesController(mbd);
                 mbd.setLocationRelativeTo(view);
                 mbd.setVisible(true);
+            }
+        };
+        return al;
+    }
+    
+    private ActionListener getManageStoresMenuItemActionListener() {
+        ActionListener al = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ManageBusinessesFrame mbf = new ManageBusinessesFrame(view, true);
+                ManageBusinessesController mbc = new ManageBusinessesController(mbf);
+                mbf.setLocationRelativeTo(view);
+                mbf.setVisible(true);
             }
         };
         return al;

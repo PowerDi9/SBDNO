@@ -21,6 +21,7 @@ public class MainJFrame extends javax.swing.JFrame {
         quitMenuItem = new javax.swing.JMenuItem();
         businessesMenu = new javax.swing.JMenu();
         manageBusinessesMenuItem = new javax.swing.JMenuItem();
+        manageStoresMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,6 +46,10 @@ public class MainJFrame extends javax.swing.JFrame {
         manageBusinessesMenuItem.setText("Manage Businesses...");
         businessesMenu.add(manageBusinessesMenuItem);
 
+        manageStoresMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        manageStoresMenuItem.setText("Manage Stores...");
+        businessesMenu.add(manageStoresMenuItem);
+
         mainJFrameMenuBar.add(businessesMenu);
 
         setJMenuBar(mainJFrameMenuBar);
@@ -67,6 +72,10 @@ public class MainJFrame extends javax.swing.JFrame {
         this.manageBusinessesMenuItem.addActionListener(al);
     }
     
+    public void manageStoresMenuItemActionListener(ActionListener al){
+        this.manageStoresMenuItem.addActionListener(al);
+    }
+    
     public void configurationMenuItemActionListener(ActionListener al){
         this.configurationMenuItem.addActionListener(al);
     }
@@ -80,6 +89,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem configurationMenuItem;
     private javax.swing.JMenuBar mainJFrameMenuBar;
     private javax.swing.JMenuItem manageBusinessesMenuItem;
+    private javax.swing.JMenuItem manageStoresMenuItem;
     private javax.swing.JMenuItem quitMenuItem;
     private javax.swing.JMenu sbdnoMenu;
     // End of variables declaration//GEN-END:variables

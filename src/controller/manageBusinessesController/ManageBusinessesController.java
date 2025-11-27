@@ -13,14 +13,14 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import model.dao.BusinessDAO;
 import view.manageBusinessesView.editBusinessView.EditBusinessDialog;
-import view.manageBusinessesView.ManageBusinessesDialog;
+import view.manageBusinessesView.ManageBusinessesFrame;
 
 public class ManageBusinessesController {
 
-    ManageBusinessesDialog view;
+    ManageBusinessesFrame view;
     String id, name, percentage = null;
 
-    public ManageBusinessesController(ManageBusinessesDialog view) {
+    public ManageBusinessesController(ManageBusinessesFrame view) {
         this.view = view;
         this.view.addAddBusinessButtonAL(this.getAddBusinessButtonActionListener());
         this.view.addClearTextButtonAL(this.getClearTextButtonActionListener());

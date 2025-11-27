@@ -11,12 +11,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author EVEN
  */
-public class ManageBusinessesDialog extends javax.swing.JFrame {
+public class ManageBusinessesFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form AddBusinessDialog
      */
-    public ManageBusinessesDialog(java.awt.Frame parent, boolean modal) {
+    public ManageBusinessesFrame(java.awt.Frame parent, boolean modal) {
         initComponents();
     }
 
@@ -106,7 +106,7 @@ public class ManageBusinessesDialog extends javax.swing.JFrame {
                     .addComponent(businessNameLabel)
                     .addComponent(percentageCommissionLabel)
                     .addComponent(percentageCommissionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
                 .addGroup(addBusinessJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(clearTextButton)
                     .addComponent(addBusinessButton)
@@ -167,7 +167,7 @@ public class ManageBusinessesDialog extends javax.swing.JFrame {
             .addGroup(editBusinessesJPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(editBusinessesScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(editBusinessesJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(editBusinessButton)
                     .addComponent(deleteBusinessButton)
@@ -204,17 +204,15 @@ public class ManageBusinessesDialog extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public JTable getEditBusinessesTable() {
-        return editBusinessesTable;
+        return this.editBusinessesTable;
     }
     
     public String getBusinessNameTextField() {
-        String text = businessNameTextField.getText();
-        return text;
+        return this.businessNameTextField.getText();
     }
 
     public String getPercentageCommissionTextField() {
-        String num = percentageCommissionTextField.getText();
-        return num;
+        return this.percentageCommissionTextField.getText();
     }
 
     public void addAddBusinessButtonAL(ActionListener al) {
@@ -259,11 +257,11 @@ public class ManageBusinessesDialog extends javax.swing.JFrame {
     }
     
     public String getEditBusinessTableIDAt(int row, int col) {
-        String serialID = "";
+        String id = "";
         if (row >= 0 && col >= 0) {
-            serialID = editBusinessesTable.getModel().getValueAt(row, col).toString();
+            id = editBusinessesTable.getModel().getValueAt(row, col).toString();
         }
-        return serialID;
+        return id;
     }
 
     public void clearBusinesses() {
