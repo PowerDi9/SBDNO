@@ -8,7 +8,7 @@ import java.util.Vector;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import model.dao.BusinessDAO;
-import view.manageBusinessView.editBusinessView.EditBusinessDialog;
+import view.manageBusinessesView.editBusinessView.EditBusinessDialog;
 import view.manageBusinessesView.ManageBusinessesDialog;
 
 public class EditBusinessController {

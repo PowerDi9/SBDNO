@@ -56,8 +56,12 @@ public class ManageBusinessesDialog extends javax.swing.JFrame {
         businessNameLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         businessNameLabel.setText("Business Name:");
 
+        businessNameTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
         percentageCommissionLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         percentageCommissionLabel.setText("Percentage Commission:");
+
+        percentageCommissionTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         clearTextButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         clearTextButton.setText("Clear Text");
@@ -102,7 +106,7 @@ public class ManageBusinessesDialog extends javax.swing.JFrame {
                     .addComponent(businessNameLabel)
                     .addComponent(percentageCommissionLabel)
                     .addComponent(percentageCommissionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
                 .addGroup(addBusinessJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(clearTextButton)
                     .addComponent(addBusinessButton)

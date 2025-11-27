@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package view.manageBusinessView.editBusinessView;
+package view.manageBusinessesView.editBusinessView;
 
 import java.awt.event.ActionListener;
 
@@ -43,8 +43,12 @@ public class EditBusinessDialog extends javax.swing.JDialog {
         businessNameLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         businessNameLabel.setText("Business Name:");
 
+        businessNameTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
         percentageCommissionLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         percentageCommissionLabel.setText("Percentage Commission:");
+
+        percentageCommissionTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         acceptButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         acceptButton.setText("Accept");
@@ -84,7 +88,7 @@ public class EditBusinessDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(percentageCommissionLabel)
                     .addComponent(percentageCommissionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(acceptButton)
                     .addComponent(cancelButton))

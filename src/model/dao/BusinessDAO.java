@@ -16,9 +16,9 @@ public class BusinessDAO {
 
     public boolean businessExists(String businessName) throws SQLException {
         String sql = "SELECT 1 FROM business WHERE LOWER(name) = LOWER(?) LIMIT 1";
-        try (PreparedStatement stmt = this.conn.prepareStatement(sql)) {
-            stmt.setString(1, businessName);
-            ResultSet rs = stmt.executeQuery();
+        try (PreparedStatement ps = this.conn.prepareStatement(sql)) {
+            ps.setString(1, businessName);
+            ResultSet rs = ps.executeQuery();
             return rs.next();
         }
     }
@@ -55,7 +55,7 @@ public class BusinessDAO {
         }
         return false;
     }
-    
+
     public boolean editBusiness(String newId, String name, double percentage) throws SQLException{
         int id = Integer.parseInt(newId);
         String sql = "UPDATE business SET name = ?, percentage = ? WHERE business_id = ?";
