@@ -1,0 +1,73 @@
+package model.dao;
+
+import database.DBConnection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class TrucksDAO {
+    private Connection conn = null;
+
+    public TrucksDAO() throws SQLException {
+        this.conn = DBConnection.getConnection();
+    }
+
+    public boolean truckExists(String truckName) throws SQLException {
+        String sql = "SELECT 1 FROM trucks WHERE LOWER(name) = LOWER(?) LIMIT 1";
+        try (PreparedStatement ps = this.conn.prepareStatement(sql)) {
+            ps.setString(1, truckName);
+            ResultSet rs = ps.executeQuery();
+            return rs.next();
+        }
+    }
+
+    public boolean insertTruck(String truckName, String description) throws SQLException {
+        String sql = "INSERT INTO trucks(name, description) VALUES (?, ?)";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, truckName);
+            ps.setString(2, description);
+            return ps.executeUpdate() > 0;
+        }
+    }
+
+    public ResultSet listTrucks() {
+        String query = "SELECT * FROM trucks";
+        try {
+            PreparedStatement ps = DBConnection.getConnection().prepareStatement(query);
+            return ps.executeQuery();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    public boolean deleteTrucks(String str) throws SQLException {
+        int id = Integer.parseInt(str);
+        String sql = "DELETE FROM trucks WHERE truck_id = ?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            return ps.executeUpdate() > 0;
+        }catch(SQLException e){
+            e.printStackTrace();
+            System.out.println("An error ocurred");
+        }
+        return false;
+    }
+
+    public boolean editTruck(String newId, String name, String description) throws SQLException{
+        int id = Integer.parseInt(newId);
+        String sql = "UPDATE trucks SET name = ?, description = ? WHERE truck_id = ?";
+        try (PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql)) {
+        ps.setString(1, name);
+        ps.setString(2, description);
+        ps.setInt(3, id);
+
+        return ps.executeUpdate() > 0;
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return false;
+    }
+    }
+
+}

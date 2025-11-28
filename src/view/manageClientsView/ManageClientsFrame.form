@@ -23,40 +23,42 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="manageStoresTabbedPane" pref="488" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="manageStoresLabel" min="-2" max="-2" attributes="0"/>
+                      <Component id="manageClientsTabbedPane" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="manageClientsLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="manageStoresLabel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-              <Component id="manageStoresTabbedPane" max="32767" attributes="0"/>
+              <Component id="manageClientsLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="manageClientsTabbedPane" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="manageStoresLabel">
+    <Component class="javax.swing.JLabel" name="manageClientsLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Manage Stores"/>
+        <Property name="text" type="java.lang.String" value="Manage Clients"/>
       </Properties>
     </Component>
-    <Container class="javax.swing.JTabbedPane" name="manageStoresTabbedPane">
+    <Container class="javax.swing.JTabbedPane" name="manageClientsTabbedPane">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="0"/>
@@ -65,11 +67,11 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="addStoreJPanel">
+        <Container class="javax.swing.JPanel" name="addClientJPanel">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Add Store">
-                <Property name="tabTitle" type="java.lang.String" value="Add Store"/>
+              <JTabbedPaneConstraints tabName="Add Client">
+                <Property name="tabTitle" type="java.lang.String" value="Add Client"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -80,25 +82,25 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="addStoreBackButton" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="selectBusinessNameLabel" min="-2" max="-2" attributes="0"/>
+                              <Component id="clientNameLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="selectBusinessComboBox" min="-2" pref="152" max="-2" attributes="0"/>
+                              <Component id="clientNameTextField" min="-2" pref="140" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="addClientBackButton" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="0" pref="19" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Component id="clearTextButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="addStoreButton" min="-2" max="-2" attributes="0"/>
+                              <Component id="addClientButton" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="storeNameLabel" min="-2" max="-2" attributes="0"/>
+                              <Component id="phoneNumberLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="storeNameTextField" max="32767" attributes="0"/>
+                              <Component id="phoneNumberTextField" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -110,16 +112,16 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="selectBusinessNameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="storeNameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="storeNameTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="selectBusinessComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="clientNameTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="clientNameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="phoneNumberLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="phoneNumberTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="118" max="32767" attributes="0"/>
+                      <EmptySpace pref="123" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="clearTextButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="addStoreButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="addStoreBackButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="addClientButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="addClientBackButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -127,23 +129,30 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="selectBusinessNameLabel">
+            <Component class="javax.swing.JLabel" name="clientNameLabel">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Select Business:"/>
+                <Property name="text" type="java.lang.String" value="Name:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="storeNameLabel">
+            <Component class="javax.swing.JTextField" name="clientNameTextField">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Store Name:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="storeNameTextField">
+            <Component class="javax.swing.JLabel" name="phoneNumberLabel">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Phone Number:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="phoneNumberTextField">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
@@ -158,15 +167,15 @@
                 <Property name="text" type="java.lang.String" value="Clear Text"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="addStoreButton">
+            <Component class="javax.swing.JButton" name="addClientButton">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Add Store"/>
+                <Property name="text" type="java.lang.String" value="Add Client"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="addStoreBackButton">
+            <Component class="javax.swing.JButton" name="addClientBackButton">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
@@ -174,31 +183,13 @@
                 <Property name="text" type="java.lang.String" value="Back"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="selectBusinessComboBox">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="14" style="0"/>
-                </Property>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="Item 1"/>
-                    <StringItem index="1" value="Item 2"/>
-                    <StringItem index="2" value="Item 3"/>
-                    <StringItem index="3" value="Item 4"/>
-                  </StringArray>
-                </Property>
-              </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
-            </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="editStoresJPanel">
+        <Container class="javax.swing.JPanel" name="editClientsJPanel">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Edit Stores">
-                <Property name="tabTitle" type="java.lang.String" value="Edit Stores"/>
+              <JTabbedPaneConstraints tabName="Edit Clients">
+                <Property name="tabTitle" type="java.lang.String" value="Edit Clients"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -209,13 +200,15 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="editStoresScrollPane" alignment="0" pref="476" max="32767" attributes="0"/>
+                          <Component id="editClientsScrollPane" alignment="0" pref="476" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="editStoresBackButton" min="-2" max="-2" attributes="0"/>
+                              <Component id="editClientsBackButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="deleteStoreButton" min="-2" max="-2" attributes="0"/>
+                              <Component id="searchClientsButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="editStoreButton" min="-2" max="-2" attributes="0"/>
+                              <Component id="deleteClientButton" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="editClientButton" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -226,12 +219,13 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="editStoresScrollPane" min="-2" pref="138" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="editClientsScrollPane" min="-2" pref="138" max="-2" attributes="0"/>
+                      <EmptySpace pref="11" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="editStoreButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="deleteStoreButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="editStoresBackButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="editClientButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="deleteClientButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="editClientsBackButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="searchClientsButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -239,52 +233,59 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JScrollPane" name="editStoresScrollPane">
+            <Container class="javax.swing.JScrollPane" name="editClientsScrollPane">
               <AuxValues>
                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
               </AuxValues>
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="editStoresTable">
+                <Component class="javax.swing.JTable" name="editClientsTable">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="14" style="0"/>
                     </Property>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="4" rowCount="3">
-                        <Column editable="true" title="Business ID" type="java.lang.Integer"/>
-                        <Column editable="true" title="Store ID" type="java.lang.Integer"/>
-                        <Column editable="true" title="Business Name" type="java.lang.String"/>
-                        <Column editable="true" title="Store Name" type="java.lang.String"/>
+                      <Table columnCount="3" rowCount="3">
+                        <Column editable="true" title="Client ID" type="java.lang.Integer"/>
+                        <Column editable="true" title="Client Name" type="java.lang.String"/>
+                        <Column editable="true" title="Phone Number" type="java.lang.Integer"/>
                       </Table>
                     </Property>
                   </Properties>
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="editStoreButton">
+            <Component class="javax.swing.JButton" name="editClientButton">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Edit Store"/>
+                <Property name="text" type="java.lang.String" value="Edit Client"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="deleteStoreButton">
+            <Component class="javax.swing.JButton" name="deleteClientButton">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Delete Store"/>
+                <Property name="text" type="java.lang.String" value="Delete Client"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="editStoresBackButton">
+            <Component class="javax.swing.JButton" name="editClientsBackButton">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Back"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="searchClientsButton">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Search"/>
               </Properties>
             </Component>
           </SubComponents>
