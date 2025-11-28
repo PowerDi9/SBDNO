@@ -75,7 +75,7 @@ public class ManageBusinessesController {
                     JOptionPane.showMessageDialog(view, "Please select a Business to delete.");
                     return;
                 }else{
-                        int option = JOptionPane.showConfirmDialog(null, "Are you sure to delete "+name+"?\nDoing this will make all its stores to be deleted as well.", "Confirm deletion", JOptionPane.YES_NO_OPTION);
+                        int option = JOptionPane.showConfirmDialog(null, "Are you sure to delete "+name+"?\nDoing this will make all it's stores to be deleted as well.", "Confirm deletion", JOptionPane.YES_NO_OPTION);
                     }
                     BusinessDAO dao = new BusinessDAO();
                     dao.deleteBusiness(id);

@@ -9,13 +9,11 @@ import java.awt.event.MouseListener;
 import java.util.Vector;
 import javax.swing.ComboBoxModel;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JTable;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author EVEN
- */
 public class ManageStoresFrame extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ManageStoresFrame.class.getName());
@@ -127,16 +125,16 @@ public class ManageStoresFrame extends javax.swing.JFrame {
         editStoresTable.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         editStoresTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Store ID", "Business Name", "Store Name"
+                "Business ID", "Store ID", "Business Name", "Store Name"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -210,6 +208,10 @@ public class ManageStoresFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void setSetDefaultCloseOperation(){
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }
+    
     public void addAddStoreBackButtonAL(ActionListener al){
         this.addStoreBackButton.addActionListener(al);
     }
@@ -242,8 +244,12 @@ public class ManageStoresFrame extends javax.swing.JFrame {
         this.storeNameTextField.setText(text);
     }
     
-    public ComboBoxModel<String> getSelectBusinessComboBoxModel(){
-        return this.selectBusinessComboBox.getModel();
+    public JTable getEditStoresTable() {
+        return this.editStoresTable;
+    }
+    
+    public JComboBox getSelectBusinessComboBox(){
+        return this.selectBusinessComboBox;
     }
     
     public void setSelectBusinessComboBoxModel(ComboBoxModel<String> cbm){

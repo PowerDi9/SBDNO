@@ -43,6 +43,17 @@ public class BusinessDAO {
         return null;
     }
     
+    public ResultSet listBusinessesIdName(){
+        String query = "SELECT business_id, name FROM business";
+        try {
+            PreparedStatement ps = DBConnection.getConnection().prepareStatement(query);
+            return ps.executeQuery();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
     public boolean deleteBusiness(String str) throws SQLException {
         int id = Integer.parseInt(str);
         String sql = "DELETE FROM business WHERE business_id = ?";

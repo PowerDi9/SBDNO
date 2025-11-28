@@ -36,10 +36,10 @@ public class StoresDAO {
         return false;
     }
 
-    public boolean editStore(String newId, String name, String businessId) throws SQLException {
-        int id = Integer.parseInt(newId);
+    public boolean editStore(String storeId, String businessId, String name) throws SQLException {
+        int id = Integer.parseInt(storeId);
         int bsid = Integer.parseInt(businessId);
-        String sql = "UPDATE stores SET name = ?, percentage = ? WHERE business_id = ?";
+        String sql = "UPDATE stores SET name = ?, business_id = ? WHERE store_id = ?";
         try (PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql)) {
             ps.setString(1, name);
             ps.setInt(2, bsid);
@@ -52,7 +52,7 @@ public class StoresDAO {
     }
 
     public ResultSet listStores() {
-        String query = "SELECT s.store_id, b.name AS business_name, s.name AS store_name FROM stores s JOIN business b ON s.business_id = b.business_id ORDER BY s.store_id;";
+        String query = "SELECT s.store_id, s.business_id, b.name AS business_name, s.name AS store_name FROM stores s JOIN business b ON s.business_id = b.business_id ORDER BY s.business_id;";
         try {
             PreparedStatement ps = DBConnection.getConnection().prepareStatement(query);
             return ps.executeQuery();
@@ -63,7 +63,7 @@ public class StoresDAO {
     }
 
     public boolean storeExists(String storeName) throws SQLException {
-        String sql = "SELECT 1 FROM store WHERE LOWER(name) = LOWER(?) LIMIT 1";
+        String sql = "SELECT 1 FROM stores WHERE LOWER(name) = LOWER(?) LIMIT 1";
         try (PreparedStatement ps = this.conn.prepareStatement(sql)) {
             ps.setString(1, storeName);
             ResultSet rs = ps.executeQuery();
