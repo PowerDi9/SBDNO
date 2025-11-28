@@ -24,6 +24,10 @@ public class MainJFrame extends javax.swing.JFrame {
         manageStoresMenuItem = new javax.swing.JMenuItem();
         clientsMenu = new javax.swing.JMenu();
         manageClientsMenuItem = new javax.swing.JMenuItem();
+        employeesMenu = new javax.swing.JMenu();
+        manageEmployeesMenuItem = new javax.swing.JMenuItem();
+        trucksMenu = new javax.swing.JMenu();
+        manageTrucksMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,6 +67,24 @@ public class MainJFrame extends javax.swing.JFrame {
 
         mainJFrameMenuBar.add(clientsMenu);
 
+        employeesMenu.setText("Employees");
+        employeesMenu.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+
+        manageEmployeesMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        manageEmployeesMenuItem.setText("Manage Employees...");
+        employeesMenu.add(manageEmployeesMenuItem);
+
+        mainJFrameMenuBar.add(employeesMenu);
+
+        trucksMenu.setText("Trucks");
+        trucksMenu.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+
+        manageTrucksMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        manageTrucksMenuItem.setText("Manage Trucks");
+        trucksMenu.add(manageTrucksMenuItem);
+
+        mainJFrameMenuBar.add(trucksMenu);
+
         setJMenuBar(mainJFrameMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -91,6 +113,14 @@ public class MainJFrame extends javax.swing.JFrame {
         this.configurationMenuItem.addActionListener(al);
     }
     
+    public void manageEmployeesMenuItemActionListener(ActionListener al){
+        this.manageEmployeesMenuItem.addActionListener(al);
+    }
+    
+    public void manageTrucksMenuItemActionListener(ActionListener al){
+        this.manageTrucksMenuItem.addActionListener(al);
+    }
+    
     public void quitMenuItemActionListener(ActionListener al){
         this.quitMenuItem.addActionListener(al);
     }
@@ -102,11 +132,15 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JMenu businessesMenu;
     private javax.swing.JMenu clientsMenu;
     private javax.swing.JMenuItem configurationMenuItem;
+    private javax.swing.JMenu employeesMenu;
     private javax.swing.JMenuBar mainJFrameMenuBar;
     private javax.swing.JMenuItem manageBusinessesMenuItem;
     private javax.swing.JMenuItem manageClientsMenuItem;
+    private javax.swing.JMenuItem manageEmployeesMenuItem;
     private javax.swing.JMenuItem manageStoresMenuItem;
+    private javax.swing.JMenuItem manageTrucksMenuItem;
     private javax.swing.JMenuItem quitMenuItem;
     private javax.swing.JMenu sbdnoMenu;
+    private javax.swing.JMenu trucksMenu;
     // End of variables declaration//GEN-END:variables
 }
