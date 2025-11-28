@@ -22,6 +22,8 @@ public class MainJFrame extends javax.swing.JFrame {
         businessesMenu = new javax.swing.JMenu();
         manageBusinessesMenuItem = new javax.swing.JMenuItem();
         manageStoresMenuItem = new javax.swing.JMenuItem();
+        clientsMenu = new javax.swing.JMenu();
+        manageClientsMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,6 +53,15 @@ public class MainJFrame extends javax.swing.JFrame {
         businessesMenu.add(manageStoresMenuItem);
 
         mainJFrameMenuBar.add(businessesMenu);
+
+        clientsMenu.setText("Clients");
+        clientsMenu.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+
+        manageClientsMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        manageClientsMenuItem.setText("Manage Clients...");
+        clientsMenu.add(manageClientsMenuItem);
+
+        mainJFrameMenuBar.add(clientsMenu);
 
         setJMenuBar(mainJFrameMenuBar);
 
@@ -83,12 +94,17 @@ public class MainJFrame extends javax.swing.JFrame {
     public void quitMenuItemActionListener(ActionListener al){
         this.quitMenuItem.addActionListener(al);
     }
+    public void manageClientsMenuItemActionListener(ActionListener al){
+        this.manageClientsMenuItem.addActionListener(al);
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu businessesMenu;
+    private javax.swing.JMenu clientsMenu;
     private javax.swing.JMenuItem configurationMenuItem;
     private javax.swing.JMenuBar mainJFrameMenuBar;
     private javax.swing.JMenuItem manageBusinessesMenuItem;
+    private javax.swing.JMenuItem manageClientsMenuItem;
     private javax.swing.JMenuItem manageStoresMenuItem;
     private javax.swing.JMenuItem quitMenuItem;
     private javax.swing.JMenu sbdnoMenu;

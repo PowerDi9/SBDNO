@@ -20,9 +20,7 @@ CREATE TABLE IF NOT EXISTS stores (
 CREATE TABLE IF NOT EXISTS clients (
     client_id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
-    phone TEXT,
-    business TEXT,
-    store TEXT
+    phone TEXT
 );
 
 -- SELLERS TABLE
@@ -43,6 +41,7 @@ CREATE TABLE IF NOT EXISTS workers (
 
 CREATE TABLE IF NOT EXISTS trucks (
     truck_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
     description TEXT
 );
 
@@ -55,6 +54,8 @@ CREATE TABLE IF NOT EXISTS delivery_notes (
     amount REAL NOT NULL,
     client_id INTEGER NOT NULL,
     seller_id INTEGER NOT NULL,
+    business_id INTEGER NOT NULL,
+    store_id INTEGER NOT NULL,
     worker_id INTEGER,
     truck_id INTEGER,
     pdf_path TEXT,
@@ -64,7 +65,7 @@ CREATE TABLE IF NOT EXISTS delivery_notes (
     FOREIGN KEY (truck_id) REFERENCES trucks(truck_id)
 );
 
--- INDEXES to improve query performance
+-- INDEXES
 
 CREATE INDEX IF NOT EXISTS idx_delivery_notes_delivery_date ON delivery_notes(delivery_date);
 CREATE INDEX IF NOT EXISTS idx_delivery_notes_client ON delivery_notes(client_id);

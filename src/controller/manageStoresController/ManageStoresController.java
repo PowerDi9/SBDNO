@@ -139,7 +139,7 @@ public class ManageStoresController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(storeId == null){
-                    JOptionPane.showMessageDialog(view, "Please select a Business to edit.");
+                    JOptionPane.showMessageDialog(view, "Please select a Store to edit.");
                     return;
                 }
                 EditStoreDialog esd = new EditStoreDialog(view, true);
