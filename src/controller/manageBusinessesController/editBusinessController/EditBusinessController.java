@@ -8,16 +8,16 @@ import java.util.Vector;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import model.dao.BusinessDAO;
-import view.manageBusinessView.editBusinessView.EditBusinessDialog;
-import view.manageBusinessesView.ManageBusinessesDialog;
+import view.manageBusinessesView.editBusinessView.EditBusinessDialog;
+import view.manageBusinessesView.ManageBusinessesFrame;
 
 public class EditBusinessController {
 
     EditBusinessDialog view = null;
-    ManageBusinessesDialog view2 = null;
+    ManageBusinessesFrame view2 = null;
     String id, name, percentage = null;
 
-    public EditBusinessController(EditBusinessDialog view, ManageBusinessesDialog view2, String id, String name, String percentage) {
+    public EditBusinessController(EditBusinessDialog view, ManageBusinessesFrame view2, String id, String name, String percentage) {
         this.view = view;
         this.view2 = view2;
         this.id = id;

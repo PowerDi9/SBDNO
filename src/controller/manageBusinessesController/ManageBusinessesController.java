@@ -12,15 +12,15 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import model.dao.BusinessDAO;
-import view.manageBusinessView.editBusinessView.EditBusinessDialog;
-import view.manageBusinessesView.ManageBusinessesDialog;
+import view.manageBusinessesView.editBusinessView.EditBusinessDialog;
+import view.manageBusinessesView.ManageBusinessesFrame;
 
 public class ManageBusinessesController {
 
-    ManageBusinessesDialog view;
+    ManageBusinessesFrame view;
     String id, name, percentage = null;
 
-    public ManageBusinessesController(ManageBusinessesDialog view) {
+    public ManageBusinessesController(ManageBusinessesFrame view) {
         this.view = view;
         this.view.addAddBusinessButtonAL(this.getAddBusinessButtonActionListener());
         this.view.addClearTextButtonAL(this.getClearTextButtonActionListener());
@@ -74,7 +74,9 @@ public class ManageBusinessesController {
                     if(id == null){
                     JOptionPane.showMessageDialog(view, "Please select a Business to delete.");
                     return;
-                }
+                }else{
+                        int option = JOptionPane.showConfirmDialog(null, "Are you sure to delete "+name+"?\nDoing this will make all it's stores to be deleted as well.", "Confirm deletion", JOptionPane.YES_NO_OPTION);
+                    }
                     BusinessDAO dao = new BusinessDAO();
                     dao.deleteBusiness(id);
                 } catch (SQLException ex) {
@@ -95,7 +97,7 @@ public class ManageBusinessesController {
                 try {
                     BusinessDAO dao = new BusinessDAO();
                     if (dao.businessExists(bname)) {
-                        int option = JOptionPane.showConfirmDialog(null, "The Bussines \"" + bname + "\" already exists.\n¿Create it anyway?", "Confirm Duplicate", JOptionPane.YES_NO_OPTION);
+                        int option = JOptionPane.showConfirmDialog(null, "The Bussines \"" + bname + "\" already exists.\nCreate it anyway?", "Confirm Duplicate", JOptionPane.YES_NO_OPTION);
                         if (option == JOptionPane.NO_OPTION) {
                             System.out.println("Operation cancelled.");
                             return;

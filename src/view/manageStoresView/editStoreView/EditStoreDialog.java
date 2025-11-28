@@ -2,22 +2,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package view.manageBusinessView.editBusinessView;
+package view.manageStoresView.editStoreView;
 
 import java.awt.event.ActionListener;
+import javax.swing.JComboBox;
 
 /**
  *
  * @author EVEN
  */
-public class EditBusinessDialog extends javax.swing.JDialog {
+public class EditStoreDialog extends javax.swing.JDialog {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(EditBusinessDialog.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(EditStoreDialog.class.getName());
 
     /**
-     * Creates new form EditBusinessDialog
+     * Creates new form EditStoresDialog
      */
-    public EditBusinessDialog(java.awt.Frame parent, boolean modal) {
+    public EditStoreDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -31,26 +32,30 @@ public class EditBusinessDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        businessNameLabel = new javax.swing.JLabel();
-        businessNameTextField = new javax.swing.JTextField();
-        percentageCommissionLabel = new javax.swing.JLabel();
-        percentageCommissionTextField = new javax.swing.JTextField();
         acceptButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
+        storeNameLabel = new javax.swing.JLabel();
+        storeNameTextField = new javax.swing.JTextField();
+        selectBusinessLabel = new javax.swing.JLabel();
+        selectBusinessComboBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        businessNameLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        businessNameLabel.setText("Business Name:");
-
-        percentageCommissionLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        percentageCommissionLabel.setText("Percentage Commission:");
 
         acceptButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         acceptButton.setText("Accept");
 
         cancelButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cancelButton.setText("Cancel");
+
+        storeNameLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        storeNameLabel.setText("Store Name:");
+
+        storeNameTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        selectBusinessLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        selectBusinessLabel.setText("Select Business:");
+
+        selectBusinessComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -60,17 +65,17 @@ public class EditBusinessDialog extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(businessNameLabel)
+                        .addComponent(storeNameLabel)
                         .addGap(18, 18, 18)
-                        .addComponent(businessNameTextField))
+                        .addComponent(storeNameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(cancelButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(acceptButton))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(percentageCommissionLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                        .addComponent(percentageCommissionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(selectBusinessLabel)
+                        .addGap(18, 18, 18)
+                        .addComponent(selectBusinessComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -78,13 +83,13 @@ public class EditBusinessDialog extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(businessNameLabel)
-                    .addComponent(businessNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(storeNameLabel)
+                    .addComponent(storeNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(percentageCommissionLabel)
-                    .addComponent(percentageCommissionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                    .addComponent(selectBusinessLabel)
+                    .addComponent(selectBusinessComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(acceptButton)
                     .addComponent(cancelButton))
@@ -94,36 +99,32 @@ public class EditBusinessDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public String getBusinessNameTextFieldText(){
-        return this.businessNameTextField.getText();
-    }
-    
-    public String getPercentageCommissionTextFieldText(){
-        return this.percentageCommissionTextField.getText();
-    }
-    
-    public void setBusinessNameTextFieldText(String text){
-        this.businessNameTextField.setText(text);
-    }
-    
-    public void setPercentageCommissionTextFieldText(String text){
-        this.percentageCommissionTextField.setText(text);
-    }
-    
-    public void addAcceptButtonActionListener(ActionListener al){
+    public void addAcceptButtonAL(ActionListener al){
         this.acceptButton.addActionListener(al);
     }
     
-    public void addCancelButtonActionListener(ActionListener al){
+    public void addCancelButtonAL(ActionListener al){
         this.cancelButton.addActionListener(al);
+    }
+    
+    public JComboBox getSelectBusinessComboBox(){
+        return this.selectBusinessComboBox;
+    }
+    
+    public String getStoreNameTextFieldText(){
+        return this.storeNameTextField.getText();
+    }
+    
+    public void setStoreNameTextFieldText(String text){
+        this.storeNameTextField.setText(text);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton acceptButton;
-    private javax.swing.JLabel businessNameLabel;
-    private javax.swing.JTextField businessNameTextField;
     private javax.swing.JButton cancelButton;
-    private javax.swing.JLabel percentageCommissionLabel;
-    private javax.swing.JTextField percentageCommissionTextField;
+    private javax.swing.JComboBox<String> selectBusinessComboBox;
+    private javax.swing.JLabel selectBusinessLabel;
+    private javax.swing.JLabel storeNameLabel;
+    private javax.swing.JTextField storeNameTextField;
     // End of variables declaration//GEN-END:variables
 }

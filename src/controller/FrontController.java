@@ -1,12 +1,14 @@
 package controller;
 
 import controller.manageBusinessesController.ManageBusinessesController;
+import controller.manageStoresController.ManageStoresController;
 import view.MainJFrame;
 import database.DBConnection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import view.manageBusinessesView.ManageBusinessesDialog;
+import view.manageBusinessesView.ManageBusinessesFrame;
+import view.manageStoresView.ManageStoresFrame;
 
 public class FrontController {
     
@@ -18,6 +20,7 @@ public class FrontController {
         this.view = view;
         this.view.quitMenuItemActionListener(this.getQuitMenuItemActionListener());
         this.view.manageBusinessesMenuItemActionListener(this.getManageBusinessesMenuItemActionListener());
+        this.view.manageStoresMenuItemActionListener(this.getManageStoresMenuItemActionListener());
         this.initComponents();
     }
     
@@ -36,10 +39,23 @@ public class FrontController {
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ManageBusinessesDialog mbd = new ManageBusinessesDialog(view, true);
+                ManageBusinessesFrame mbd = new ManageBusinessesFrame(view, true);
                 ManageBusinessesController mbc = new ManageBusinessesController(mbd);
                 mbd.setLocationRelativeTo(view);
                 mbd.setVisible(true);
+            }
+        };
+        return al;
+    }
+    
+    private ActionListener getManageStoresMenuItemActionListener() {
+        ActionListener al = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ManageStoresFrame msf = new ManageStoresFrame();
+                ManageStoresController msc = new ManageStoresController(msf);
+                msf.setLocationRelativeTo(view);
+                msf.setVisible(true);
             }
         };
         return al;
