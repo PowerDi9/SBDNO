@@ -4,6 +4,7 @@ import controller.manageBusinessesController.ManageBusinessesController;
 import controller.manageClientsController.ManageClientsController;
 import controller.manageEmployeesController.ManageEmployeesController;
 import controller.manageStoresController.ManageStoresController;
+import controller.manageTrucksController.ManageTrucksController;
 import view.MainJFrame;
 import database.DBConnection;
 import java.awt.event.ActionEvent;
@@ -13,6 +14,7 @@ import view.manageBusinessesView.ManageBusinessesFrame;
 import view.manageClientsView.ManageClientsFrame;
 import view.manageEmployeesView.ManageEmployeesFrame;
 import view.manageStoresView.ManageStoresFrame;
+import view.manageTrucksView.ManageTrucksFrame;
 
 public class FrontController {
     
@@ -98,7 +100,10 @@ public class FrontController {
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                ManageTrucksFrame mtf = new ManageTrucksFrame();
+                ManageTrucksController mtc = new ManageTrucksController(mtf);
+                mtf.setLocationRelativeTo(view);
+                mtf.setVisible(true);
             }
         };
         return al;

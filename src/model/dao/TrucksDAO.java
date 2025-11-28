@@ -34,7 +34,7 @@ public class TrucksDAO {
     public ResultSet listTrucks() {
         String query = "SELECT * FROM trucks";
         try {
-            PreparedStatement ps = DBConnection.getConnection().prepareStatement(query);
+            PreparedStatement ps = conn.prepareStatement(query);
             return ps.executeQuery();
         }catch(SQLException e){
             e.printStackTrace();
@@ -58,7 +58,7 @@ public class TrucksDAO {
     public boolean editTruck(String newId, String name, String description) throws SQLException{
         int id = Integer.parseInt(newId);
         String sql = "UPDATE trucks SET name = ?, description = ? WHERE truck_id = ?";
-        try (PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql)) {
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
         ps.setString(1, name);
         ps.setString(2, description);
         ps.setInt(3, id);
