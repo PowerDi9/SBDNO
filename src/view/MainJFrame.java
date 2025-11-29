@@ -19,6 +19,8 @@ public class MainJFrame extends javax.swing.JFrame {
         sbdnoMenu = new javax.swing.JMenu();
         configurationMenuItem = new javax.swing.JMenuItem();
         quitMenuItem = new javax.swing.JMenuItem();
+        deliveryNoteMenu = new javax.swing.JMenu();
+        addDeliveryNoteMenuItem = new javax.swing.JMenuItem();
         businessesMenu = new javax.swing.JMenu();
         manageBusinessesMenuItem = new javax.swing.JMenuItem();
         manageStoresMenuItem = new javax.swing.JMenuItem();
@@ -45,6 +47,15 @@ public class MainJFrame extends javax.swing.JFrame {
         sbdnoMenu.add(quitMenuItem);
 
         mainJFrameMenuBar.add(sbdnoMenu);
+
+        deliveryNoteMenu.setText("Delivery Notes");
+        deliveryNoteMenu.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+
+        addDeliveryNoteMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        addDeliveryNoteMenuItem.setText("Add Delivery Note...");
+        deliveryNoteMenu.add(addDeliveryNoteMenuItem);
+
+        mainJFrameMenuBar.add(deliveryNoteMenu);
 
         businessesMenu.setText("Businesses");
         businessesMenu.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -133,14 +144,21 @@ public class MainJFrame extends javax.swing.JFrame {
     public void quitMenuItemActionListener(ActionListener al){
         this.quitMenuItem.addActionListener(al);
     }
+    
     public void manageClientsMenuItemActionListener(ActionListener al){
         this.manageClientsMenuItem.addActionListener(al);
     }
     
+    public void addDeliveryNoteMenuItemActionListener(ActionListener al){
+        this.addDeliveryNoteMenuItem.addActionListener(al);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem addDeliveryNoteMenuItem;
     private javax.swing.JMenu businessesMenu;
     private javax.swing.JMenu clientsMenu;
     private javax.swing.JMenuItem configurationMenuItem;
+    private javax.swing.JMenu deliveryNoteMenu;
     private javax.swing.JMenu employeesMenu;
     private javax.swing.JMenuBar mainJFrameMenuBar;
     private javax.swing.JMenuItem manageBusinessesMenuItem;

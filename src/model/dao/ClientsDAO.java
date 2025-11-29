@@ -2,6 +2,7 @@ package model.dao;
 
 import database.DBConnection;
 import java.sql.Connection;
+import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,6 +31,19 @@ public class ClientsDAO {
             ps.setString(1, clientName);
             ps.setString(2, phoneNumber);
             return ps.executeUpdate() > 0;
+        }
+    }
+    
+    public int returnGeneratedKeyInsertClient(String clientName, String phoneNumber) throws SQLException {
+        String sql = "INSERT INTO clients(name, phone) VALUES (?, ?)";
+        try (PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            ps.setString(1, clientName);
+            ps.setString(2, phoneNumber);
+            ps.executeUpdate();
+            
+            ResultSet rs = ps.getGeneratedKeys();
+            int id = rs.getInt(1);
+            return id;
         }
     }
 

@@ -72,6 +72,18 @@ public class StoresDAO {
         }
         return null;
     }
+    
+    public ResultSet listStoresIdNameByBussinesId(int businessId){
+        String query = "SELECT s.store_id, s.name AS store_name FROM stores s JOIN business b ON s.business_id = b.business_id WHERE s.business_id = ? ORDER BY s.store_id;";
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, businessId);
+            return ps.executeQuery();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public boolean storeExists(String storeName) throws SQLException {
         String sql = "SELECT 1 FROM stores WHERE LOWER(name) = LOWER(?) LIMIT 1";

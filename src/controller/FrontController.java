@@ -1,5 +1,6 @@
 package controller;
 
+import controller.addDeliveryNoteController.AddDeliveryNoteController;
 import controller.manageBusinessesController.ManageBusinessesController;
 import controller.manageClientsController.ManageClientsController;
 import controller.manageEmployeesController.ManageEmployeesController;
@@ -11,6 +12,7 @@ import database.DBConnection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import view.addDeliveryNoteView.AddDeliveryNoteFrame;
 import view.manageBusinessesView.ManageBusinessesFrame;
 import view.manageClientsView.ManageClientsFrame;
 import view.manageEmployeesView.ManageEmployeesFrame;
@@ -33,6 +35,7 @@ public class FrontController {
         this.view.manageEmployeesMenuItemActionListener(this.getManageEmployeesMenuItemActionListener());
         this.view.manageTrucksMenuItemActionListener(this.getManageTrucksMenuItemActionListener());
         this.view.manageSellersMenuItemActionListener(this.getManageSellersMenuItemActionListener());
+        this.view.addDeliveryNoteMenuItemActionListener(this.getAddDeliveryNoteMenuItemActionListener());
         this.initComponents();
     }
     
@@ -120,6 +123,19 @@ public class FrontController {
                 ManageSellersController mtc = new ManageSellersController(msf);
                 msf.setLocationRelativeTo(view);
                 msf.setVisible(true);
+            }
+        };
+        return al;
+    }
+    
+    private ActionListener getAddDeliveryNoteMenuItemActionListener(){
+        ActionListener al = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AddDeliveryNoteFrame adnf = new AddDeliveryNoteFrame();
+                AddDeliveryNoteController adnc = new AddDeliveryNoteController(adnf);
+                adnf.setLocationRelativeTo(view);
+                adnf.setVisible(true);
             }
         };
         return al;

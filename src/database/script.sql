@@ -68,12 +68,10 @@ CREATE TABLE IF NOT EXISTS delivery_notes (
     seller_id INTEGER NOT NULL,
     business_id INTEGER NOT NULL,
     store_id INTEGER NOT NULL,
-    employee_id INTEGER,
     truck_id INTEGER,
     pdf_path TEXT,
     FOREIGN KEY (client_id) REFERENCES clients(client_id),
     FOREIGN KEY (seller_id) REFERENCES sellers(seller_id),
-    FOREIGN KEY (employee_id) REFERENCES employees(employee_id),
     FOREIGN KEY (truck_id) REFERENCES trucks(truck_id)
 );
 
