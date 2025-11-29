@@ -22,6 +22,7 @@ public class MainJFrame extends javax.swing.JFrame {
         businessesMenu = new javax.swing.JMenu();
         manageBusinessesMenuItem = new javax.swing.JMenuItem();
         manageStoresMenuItem = new javax.swing.JMenuItem();
+        manageSellersMenuItem = new javax.swing.JMenuItem();
         clientsMenu = new javax.swing.JMenu();
         manageClientsMenuItem = new javax.swing.JMenuItem();
         employeesMenu = new javax.swing.JMenu();
@@ -56,6 +57,10 @@ public class MainJFrame extends javax.swing.JFrame {
         manageStoresMenuItem.setText("Manage Stores...");
         businessesMenu.add(manageStoresMenuItem);
 
+        manageSellersMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        manageSellersMenuItem.setText("Manage Sellers...");
+        businessesMenu.add(manageSellersMenuItem);
+
         mainJFrameMenuBar.add(businessesMenu);
 
         clientsMenu.setText("Clients");
@@ -80,7 +85,7 @@ public class MainJFrame extends javax.swing.JFrame {
         trucksMenu.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
 
         manageTrucksMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        manageTrucksMenuItem.setText("Manage Trucks");
+        manageTrucksMenuItem.setText("Manage Trucks...");
         trucksMenu.add(manageTrucksMenuItem);
 
         mainJFrameMenuBar.add(trucksMenu);
@@ -121,6 +126,10 @@ public class MainJFrame extends javax.swing.JFrame {
         this.manageTrucksMenuItem.addActionListener(al);
     }
     
+    public void manageSellersMenuItemActionListener(ActionListener al){
+        this.manageSellersMenuItem.addActionListener(al);
+    }
+    
     public void quitMenuItemActionListener(ActionListener al){
         this.quitMenuItem.addActionListener(al);
     }
@@ -137,6 +146,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem manageBusinessesMenuItem;
     private javax.swing.JMenuItem manageClientsMenuItem;
     private javax.swing.JMenuItem manageEmployeesMenuItem;
+    private javax.swing.JMenuItem manageSellersMenuItem;
     private javax.swing.JMenuItem manageStoresMenuItem;
     private javax.swing.JMenuItem manageTrucksMenuItem;
     private javax.swing.JMenuItem quitMenuItem;

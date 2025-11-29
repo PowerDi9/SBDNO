@@ -57,6 +57,14 @@
                 <Property name="text" type="java.lang.String" value="Manage Stores..."/>
               </Properties>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="manageSellersMenuItem">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Manage Sellers..."/>
+              </Properties>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="clientsMenu">
@@ -108,7 +116,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Manage Trucks"/>
+                <Property name="text" type="java.lang.String" value="Manage Trucks..."/>
               </Properties>
             </MenuItem>
           </SubComponents>

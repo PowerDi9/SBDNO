@@ -61,6 +61,17 @@ public class StoresDAO {
         }
         return null;
     }
+    
+    public ResultSet listStoresIdName(){
+        String query = "SELECT store_id, name FROM stores";
+        try {
+            PreparedStatement ps = DBConnection.getConnection().prepareStatement(query);
+            return ps.executeQuery();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public boolean storeExists(String storeName) throws SQLException {
         String sql = "SELECT 1 FROM stores WHERE LOWER(name) = LOWER(?) LIMIT 1";

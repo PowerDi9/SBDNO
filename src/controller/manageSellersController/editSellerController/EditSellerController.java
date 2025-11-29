@@ -1,30 +1,30 @@
-package controller.manageStoresController.editStoreController;
+package controller.manageSellersController.editSellerController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import model.dao.StoresDAO;
+import model.dao.SellersDAO;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
-import model.dao.BusinessDAO;
-import view.manageStoresView.ManageStoresFrame;
-import view.manageStoresView.editStoreView.EditStoreDialog;
+import model.dao.StoresDAO;
+import view.manageSellersView.ManageSellersFrame;
+import view.manageSellersView.editSellerView.EditSellerDialog;
 
-public class EditStoreController {
+public class EditSellerController {
     
-    EditStoreDialog view = null;
-    ManageStoresFrame view2 = null;
-    String storeId, businessId, storeName = null;
+    EditSellerDialog view = null;
+    ManageSellersFrame view2 = null;
+    String sellerId, storeId, sellerName = null;
 
-    public EditStoreController(EditStoreDialog view, ManageStoresFrame view2, String storeId, String businessId, String storeName) {
+    public EditSellerController(EditSellerDialog view, ManageSellersFrame view2, String sellerId, String storeId, String sellerName) {
         this.view = view;
         this.view2 = view2;
+        this.sellerId = sellerId;
         this.storeId = storeId;
-        this.businessId = businessId;
-        this.storeName = storeName;
+        this.sellerName = sellerName;
         this.view.addAcceptButtonAL(this.getAcceptButtonActionListener());
         this.view.addCancelButtonAL(this.getCancelButtonActionListener());
         this.initComponents();
@@ -35,10 +35,10 @@ public class EditStoreController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    businessId = view.getSelectBusinessComboBox().getSelectedItem().toString().split(",")[0];
-                    StoresDAO dao = new StoresDAO();
-                    dao.editStore(storeId, businessId, view.getStoreNameTextFieldText());
-                    updateEditStoresModel();
+                    storeId = view.getSelectStoreComboBox().getSelectedItem().toString().split(",")[0];
+                    SellersDAO dao = new SellersDAO();
+                    dao.editSeller(sellerId, storeId, view.getSellerNameTextFieldText());
+                    updateEditSellersModel();
                     System.out.println("Edited Correctly");
                     view.dispose();
                 } catch (SQLException ex) {
@@ -59,18 +59,18 @@ public class EditStoreController {
         return al;
     }
 
-    public void updateEditStoresModel() {
-        view2.clearStores();
+    public void updateEditSellersModel() {
+        view2.clearSellers();
         try {
-            StoresDAO dao = new StoresDAO();
-            ResultSet rs = dao.listStores();
+            SellersDAO dao = new SellersDAO();
+            ResultSet rs = dao.listSellers();
             while (rs.next()) {
                 Vector row = new Vector();
-                row.add(rs.getInt("business_id"));
                 row.add(rs.getInt("store_id"));
-                row.add(rs.getString("business_name"));
+                row.add(rs.getInt("seller_id"));
                 row.add(rs.getString("store_name"));
-                view2.addBusiness(row);
+                row.add(rs.getString("seller_name"));
+                view2.addSeller(row);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -78,41 +78,38 @@ public class EditStoreController {
 
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-        for (int i = 0; i < view2.getEditStoresTable().getColumnCount(); i++) {
-            view2.getEditStoresTable().getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+        for (int i = 0; i < view2.getEditSellersTable().getColumnCount(); i++) {
+            view2.getEditSellersTable().getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
         }
     }
     
-    private void setSelectBusinessComboBoxModel() {
+    private void setSelectStoreComboBoxModel() {
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
         try {
-            BusinessDAO dao = new BusinessDAO();
-            ResultSet rs = dao.listBusinessesIdName();
+            StoresDAO dao = new StoresDAO();
+            ResultSet rs = dao.listStoresIdName();
             int index = 0;
             int con = 0;
             while (rs.next()) {
-                String businessId = String.valueOf(rs.getInt("business_id"));
+                String storeId = String.valueOf(rs.getInt("store_id"));
                 String name = rs.getString("name");
-                String str = businessId + "," + name;
-                if(Integer.parseInt(this.businessId) == Integer.parseInt(businessId)){
+                String str = storeId + "," + name;
+                if(Integer.parseInt(this.storeId) == Integer.parseInt(storeId)){
                     index = con;
                 }
                 model.addElement(str);
                 con ++;
             }
-            view.getSelectBusinessComboBox().setModel(model);
-            view.getSelectBusinessComboBox().setSelectedIndex(index);
+            view.getSelectStoreComboBox().setModel(model);
+            view.getSelectStoreComboBox().setSelectedIndex(index);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     public void initComponents() {
-        view.setStoreNameTextFieldText(storeName);
-        view.setTitle("Edit Store");
-        this.setSelectBusinessComboBoxModel();
+        view.setSellerNameTextFieldText(sellerName);
+        view.setTitle("Edit Sellers");
+        this.setSelectStoreComboBoxModel();
     }
 }
-
-    
-
