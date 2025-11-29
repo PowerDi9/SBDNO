@@ -7,6 +7,7 @@ package view.manageTrucksView;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.util.Vector;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.event.TableModelListener;
@@ -36,8 +37,6 @@ public class ManageTrucksFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton2 = new javax.swing.JButton();
-        assignEmployeesBackButton2 = new javax.swing.JButton();
         manageTrucksLabel = new javax.swing.JLabel();
         manageTrucksTabbedPane = new javax.swing.JTabbedPane();
         addStoreJPanel = new javax.swing.JPanel();
@@ -70,11 +69,6 @@ public class ManageTrucksFrame extends javax.swing.JFrame {
         showAssignedEmployeesButton = new javax.swing.JButton();
         unassignEmployeeButton = new javax.swing.JButton();
         manageAssignedEmployeesBackButton = new javax.swing.JButton();
-
-        jButton2.setText("jButton2");
-
-        assignEmployeesBackButton2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        assignEmployeesBackButton2.setText("Back");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -275,10 +269,7 @@ public class ManageTrucksFrame extends javax.swing.JFrame {
         manageAssignedEmployeesTable.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         manageAssignedEmployeesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Employee ID", "Employee Name", "Employee State"
@@ -384,6 +375,14 @@ public class ManageTrucksFrame extends javax.swing.JFrame {
         this.editTrucksBackButton.addActionListener(al);
     }
     
+    public void addAssignEmployeesBackButtonAL(ActionListener al){
+        this.assignEmployeesBackButton.addActionListener(al);
+    }
+    
+    public void addManageAssignedEmployeesBackButtonAL(ActionListener al){
+        this.manageAssignedEmployeesBackButton.addActionListener(al);
+    }
+    
     public void addClearTextButtonAL(ActionListener al){
         this.clearTextButton.addActionListener(al);
     }
@@ -400,6 +399,18 @@ public class ManageTrucksFrame extends javax.swing.JFrame {
         this.deleteTruckButton.addActionListener(al);
     }
     
+    public void addAssignEmployeeButtonAL(ActionListener al){
+        this.assignEmployeeButton.addActionListener(al);
+    }
+    
+    public void addShowAssignedEmployeesButtonAL(ActionListener al){
+        this.showAssignedEmployeesButton.addActionListener(al);
+    }
+    
+    public void addUnassignEmployeeButtonAL(ActionListener al){
+        this.unassignEmployeeButton.addActionListener(al);
+    }
+    
     public String getTruckNameTextFieldText(){
         return this.truckNameTextField.getText();
     }
@@ -414,6 +425,18 @@ public class ManageTrucksFrame extends javax.swing.JFrame {
     
     public void setTruckDescriptionTextAreaText(String text){
         this.truckDescriptionTextArea.setText(text);
+    }
+    
+    public JComboBox getSelectTruckComboBox(){
+        return this.selectTruckComboBox;
+    }
+    
+    public JComboBox getSelectEmployeeComboBox(){
+        return this.selectEmployeeComboBox;
+    }
+    
+    public JComboBox getMAESelectTruckComboBox(){
+        return this.maeSelectTruckComboBox;
     }
     
     public JTable getEditTrucksTable() {
@@ -449,6 +472,40 @@ public class ManageTrucksFrame extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) this.editTrucksTable.getModel();
         model.addRow(row);
     }
+    
+    public JTable getManageAssignedEmployeesTableTable() {
+        return this.manageAssignedEmployeesTable;
+    }
+    
+    public void addManageAssignedEmployeesTableModelListener(TableModelListener l) {
+        DefaultTableModel model = (DefaultTableModel) this.manageAssignedEmployeesTable.getModel();
+        model.addTableModelListener(l);
+    }
+    
+    public void addManageAssignedEmployeesTableMouseListener(MouseListener l) {
+        this.manageAssignedEmployeesTable.addMouseListener(l);
+    }
+    
+    public String getManageAssignedEmployeesTableIDAt(int row, int col) {
+        String id = "";
+        if (row >= 0 && col >= 0) {
+            id = manageAssignedEmployeesTable.getModel().getValueAt(row, col).toString();
+        }
+        return id;
+    }
+    
+    public void clearAssignedEmployees() {
+        DefaultTableModel model = (DefaultTableModel) this.manageAssignedEmployeesTable.getModel();
+        model.setRowCount(0);
+        manageAssignedEmployeesTable.clearSelection();
+        manageAssignedEmployeesTable.revalidate();
+        manageAssignedEmployeesTable.repaint();
+    }
+
+    public void addAssignedEmployee(Vector row) {
+        DefaultTableModel model = (DefaultTableModel) this.manageAssignedEmployeesTable.getModel();
+        model.addRow(row);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel addStoreJPanel;
@@ -458,7 +515,6 @@ public class ManageTrucksFrame extends javax.swing.JFrame {
     private javax.swing.JPanel asignEmployeesPanel;
     private javax.swing.JButton assignEmployeeButton;
     private javax.swing.JButton assignEmployeesBackButton;
-    private javax.swing.JButton assignEmployeesBackButton2;
     private javax.swing.JButton clearTextButton;
     private javax.swing.JButton deleteTruckButton;
     private javax.swing.JPanel editStoresJPanel;
@@ -466,7 +522,6 @@ public class ManageTrucksFrame extends javax.swing.JFrame {
     private javax.swing.JButton editTruckButton;
     private javax.swing.JButton editTrucksBackButton;
     private javax.swing.JTable editTrucksTable;
-    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> maeSelectTruckComboBox;
     private javax.swing.JLabel maeSelectTruckLabel;
     private javax.swing.JPanel manageAsignedEmployeesPanel;

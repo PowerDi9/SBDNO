@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS sellers (
     FOREIGN KEY(store_id) REFERENCES stores(store_id)
 );
 
--- WORKERS TABLE
+-- EMPLOYEE TABLE
 
 CREATE TABLE IF NOT EXISTS employees (
     employee_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS employees (
 
 CREATE TABLE IF NOT EXISTS trucks (
     truck_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
+    name TEXT NOT NULL UNIQUE,
     description TEXT
 );
 

@@ -28,7 +28,8 @@ public class TruckEmployeeIntermediateDAO {
 
     public boolean removeEmployeeFromTruck(int truckId, int employeeId) {
         String sql = "DELETE FROM truck_employees WHERE truck_id = ? AND employee_id = ?";
-        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+        try{
+            PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, truckId);
             ps.setInt(2, employeeId);
             return ps.executeUpdate() > 0;
@@ -39,8 +40,9 @@ public class TruckEmployeeIntermediateDAO {
     }
 
     public ResultSet getEmployeesByTruck(int truckId) {
-        String sql = "SELECT e.employee_id, e.nameFROM truck_employees te JOIN employees e ON te.employee_id = e.employee_id WHERE te.truck_id = ?";
-        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+        String sql = "SELECT e.employee_id, e.name, e.state FROM truck_employees te JOIN employees e ON te.employee_id = e.employee_id WHERE te.truck_id = ? ORDER BY e.name ASC";
+        try{
+            PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, truckId);
             return ps.executeQuery();
         } catch (SQLException e) {
