@@ -40,7 +40,7 @@ public class SellersDAO {
         int id = Integer.parseInt(sellerId);
         int sid = Integer.parseInt(storeId);
         String sql = "UPDATE sellers SET name = ?, store_id = ? WHERE seller_id = ?";
-        try (PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql)) {
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, name);
             ps.setInt(2, sid);
             ps.setInt(3, id);
@@ -54,7 +54,7 @@ public class SellersDAO {
     public ResultSet listSellers() {
         String query = "SELECT s.seller_id, s.store_id, st.name AS store_name, s.name AS seller_name FROM sellers s JOIN stores st ON s.store_id = st.store_id ORDER BY s.store_id;";
         try {
-            PreparedStatement ps = DBConnection.getConnection().prepareStatement(query);
+            PreparedStatement ps = conn.prepareStatement(query);
             return ps.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();

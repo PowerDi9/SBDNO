@@ -35,7 +35,7 @@ public class BusinessDAO {
     public ResultSet listBusinesses() {
         String query = "SELECT business_id, name, percentage FROM business";
         try {
-            PreparedStatement ps = DBConnection.getConnection().prepareStatement(query);
+            PreparedStatement ps = conn.prepareStatement(query);
             return ps.executeQuery();
         }catch(SQLException e){
             e.printStackTrace();
@@ -46,7 +46,7 @@ public class BusinessDAO {
     public ResultSet listBusinessesIdName(){
         String query = "SELECT business_id, name FROM business";
         try {
-            PreparedStatement ps = DBConnection.getConnection().prepareStatement(query);
+            PreparedStatement ps = conn.prepareStatement(query);
             return ps.executeQuery();
         }catch(SQLException e){
             e.printStackTrace();
@@ -70,7 +70,7 @@ public class BusinessDAO {
     public boolean editBusiness(String newId, String name, double percentage) throws SQLException{
         int id = Integer.parseInt(newId);
         String sql = "UPDATE business SET name = ?, percentage = ? WHERE business_id = ?";
-        try (PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql)) {
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
         ps.setString(1, name);
         ps.setDouble(2, percentage);
         ps.setInt(3, id);
