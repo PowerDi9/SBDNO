@@ -1,18 +1,24 @@
 package controller;
 
+import controller.addDeliveryNoteController.AddDeliveryNoteController;
 import controller.manageBusinessesController.ManageBusinessesController;
 import controller.manageClientsController.ManageClientsController;
 import controller.manageEmployeesController.ManageEmployeesController;
+import controller.manageSellersController.ManageSellersController;
 import controller.manageStoresController.ManageStoresController;
+import controller.manageTrucksController.ManageTrucksController;
 import view.MainJFrame;
 import database.DBConnection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import view.addDeliveryNoteView.AddDeliveryNoteFrame;
 import view.manageBusinessesView.ManageBusinessesFrame;
 import view.manageClientsView.ManageClientsFrame;
 import view.manageEmployeesView.ManageEmployeesFrame;
+import view.manageSellersView.ManageSellersFrame;
 import view.manageStoresView.ManageStoresFrame;
+import view.manageTrucksView.ManageTrucksFrame;
 
 public class FrontController {
     
@@ -28,6 +34,8 @@ public class FrontController {
         this.view.manageClientsMenuItemActionListener(this.getManageClientsMenuItemActionListener());
         this.view.manageEmployeesMenuItemActionListener(this.getManageEmployeesMenuItemActionListener());
         this.view.manageTrucksMenuItemActionListener(this.getManageTrucksMenuItemActionListener());
+        this.view.manageSellersMenuItemActionListener(this.getManageSellersMenuItemActionListener());
+        this.view.addDeliveryNoteMenuItemActionListener(this.getAddDeliveryNoteMenuItemActionListener());
         this.initComponents();
     }
     
@@ -98,7 +106,36 @@ public class FrontController {
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                ManageTrucksFrame mtf = new ManageTrucksFrame();
+                ManageTrucksController mtc = new ManageTrucksController(mtf);
+                mtf.setLocationRelativeTo(view);
+                mtf.setVisible(true);
+            }
+        };
+        return al;
+    }
+    
+    private ActionListener getManageSellersMenuItemActionListener() {
+        ActionListener al = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ManageSellersFrame msf = new ManageSellersFrame();
+                ManageSellersController mtc = new ManageSellersController(msf);
+                msf.setLocationRelativeTo(view);
+                msf.setVisible(true);
+            }
+        };
+        return al;
+    }
+    
+    private ActionListener getAddDeliveryNoteMenuItemActionListener(){
+        ActionListener al = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AddDeliveryNoteFrame adnf = new AddDeliveryNoteFrame();
+                AddDeliveryNoteController adnc = new AddDeliveryNoteController(adnf);
+                adnf.setLocationRelativeTo(view);
+                adnf.setVisible(true);
             }
         };
         return al;

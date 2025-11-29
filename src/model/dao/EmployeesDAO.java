@@ -39,7 +39,7 @@ public class EmployeesDAO {
     public boolean editEmployee(String employeeId, String employeeName, String state) throws SQLException {
         int id = Integer.parseInt(employeeId);
         String sql = "UPDATE employees SET name = ?, state = ? WHERE employee_id = ?";
-        try (PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql)) {
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, employeeName);
             ps.setString(2, state);
             ps.setInt(3, id);
@@ -53,7 +53,7 @@ public class EmployeesDAO {
     public ResultSet listEmployees() {
         String query = "SELECT * FROM employees ORDER BY employee_id;";
         try {
-            PreparedStatement ps = DBConnection.getConnection().prepareStatement(query);
+            PreparedStatement ps = conn.prepareStatement(query);
             return ps.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();

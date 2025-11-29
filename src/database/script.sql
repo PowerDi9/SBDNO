@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS sellers (
     FOREIGN KEY(store_id) REFERENCES stores(store_id)
 );
 
--- WORKERS TABLE
+-- EMPLOYEE TABLE
 
 CREATE TABLE IF NOT EXISTS employees (
     employee_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -44,11 +44,11 @@ CREATE TABLE IF NOT EXISTS employees (
 
 CREATE TABLE IF NOT EXISTS trucks (
     truck_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
+    name TEXT NOT NULL UNIQUE,
     description TEXT
 );
 
--- ASIGN EMPLOYEE TO TRUCK TABLE (INTERMEDIATE)
+--EMPLOYEE TO TRUCK TABLE (INTERMEDIATE)
 CREATE TABLE IF NOT EXISTS truck_employees (
     truck_id INTEGER NOT NULL,
     employee_id INTEGER NOT NULL,
@@ -68,12 +68,10 @@ CREATE TABLE IF NOT EXISTS delivery_notes (
     seller_id INTEGER NOT NULL,
     business_id INTEGER NOT NULL,
     store_id INTEGER NOT NULL,
-    employee_id INTEGER,
     truck_id INTEGER,
     pdf_path TEXT,
     FOREIGN KEY (client_id) REFERENCES clients(client_id),
     FOREIGN KEY (seller_id) REFERENCES sellers(seller_id),
-    FOREIGN KEY (employee_id) REFERENCES employees(employee_id),
     FOREIGN KEY (truck_id) REFERENCES trucks(truck_id)
 );
 

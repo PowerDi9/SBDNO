@@ -2,6 +2,7 @@ package model.dao;
 
 import database.DBConnection;
 import java.sql.Connection;
+import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,7 +18,7 @@ public class ClientsDAO {
 
     public boolean clientExists(String clientName) throws SQLException {
         String sql = "SELECT 1 FROM clients WHERE LOWER(name) = LOWER(?) LIMIT 1";
-        try (PreparedStatement ps = this.conn.prepareStatement(sql)) {
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, clientName);
             ResultSet rs = ps.executeQuery();
             return rs.next();
@@ -32,11 +33,24 @@ public class ClientsDAO {
             return ps.executeUpdate() > 0;
         }
     }
+    
+    public int returnGeneratedKeyInsertClient(String clientName, String phoneNumber) throws SQLException {
+        String sql = "INSERT INTO clients(name, phone) VALUES (?, ?)";
+        try (PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            ps.setString(1, clientName);
+            ps.setString(2, phoneNumber);
+            ps.executeUpdate();
+            
+            ResultSet rs = ps.getGeneratedKeys();
+            int id = rs.getInt(1);
+            return id;
+        }
+    }
 
     public ResultSet listClients() {
         String query = "SELECT * FROM clients";
         try {
-            PreparedStatement ps = DBConnection.getConnection().prepareStatement(query);
+            PreparedStatement ps = conn.prepareStatement(query);
             return ps.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -55,7 +69,7 @@ public class ClientsDAO {
                 query += " AND phone LIKE ?";
                 parameters.add(phone);
             }
-            PreparedStatement ps = DBConnection.getConnection().prepareStatement(query);
+            PreparedStatement ps = conn.prepareStatement(query);
             for(int i = 0; i < parameters.size(); i++){
                 ps.setObject(i + 1, parameters.get(i));
             }
@@ -82,7 +96,7 @@ public class ClientsDAO {
     public boolean editClient(String newId, String name, String phoneNumber) throws SQLException {
         int id = Integer.parseInt(newId);
         String sql = "UPDATE clients SET name = ?, phone = ? WHERE client_id = ?";
-        try (PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql)) {
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, name);
             ps.setString(2, phoneNumber);
             ps.setInt(3, id);

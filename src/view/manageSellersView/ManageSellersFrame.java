@@ -2,26 +2,29 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package view.manageStoresView;
+package view.manageSellersView;
 
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.util.Vector;
-import javax.swing.ComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
-public class ManageStoresFrame extends javax.swing.JFrame {
+/**
+ *
+ * @author EVEN
+ */
+public class ManageSellersFrame extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ManageStoresFrame.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ManageSellersFrame.class.getName());
 
     /**
-     * Creates new form ManageStoresFrame
+     * Creates new form ManageSellersFrame
      */
-    public ManageStoresFrame() {
+    public ManageSellersFrame() {
         initComponents();
     }
 
@@ -34,49 +37,46 @@ public class ManageStoresFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        manageStoresLabel = new javax.swing.JLabel();
-        manageStoresTabbedPane = new javax.swing.JTabbedPane();
+        manageSellersTabbedPane = new javax.swing.JTabbedPane();
         addStoreJPanel = new javax.swing.JPanel();
-        selectBusinessNameLabel = new javax.swing.JLabel();
+        selectStoreLabel = new javax.swing.JLabel();
         storeNameLabel = new javax.swing.JLabel();
-        storeNameTextField = new javax.swing.JTextField();
+        sellerNameTextField = new javax.swing.JTextField();
         clearTextButton = new javax.swing.JButton();
-        addStoreButton = new javax.swing.JButton();
-        addStoreBackButton = new javax.swing.JButton();
-        selectBusinessComboBox = new javax.swing.JComboBox<>();
+        addSellerButton = new javax.swing.JButton();
+        addSellerBackButton = new javax.swing.JButton();
+        selectStoreComboBox = new javax.swing.JComboBox<>();
         editStoresJPanel = new javax.swing.JPanel();
         editStoresScrollPane = new javax.swing.JScrollPane();
-        editStoresTable = new javax.swing.JTable();
-        editStoreButton = new javax.swing.JButton();
-        deleteStoreButton = new javax.swing.JButton();
-        editStoresBackButton = new javax.swing.JButton();
+        editSellersTable = new javax.swing.JTable();
+        editSellerButton = new javax.swing.JButton();
+        deleteSellerButton = new javax.swing.JButton();
+        editSellersBackButton = new javax.swing.JButton();
+        manageSellersLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        manageStoresLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        manageStoresLabel.setText("Manage Stores");
+        manageSellersTabbedPane.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        manageStoresTabbedPane.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        selectBusinessNameLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        selectBusinessNameLabel.setText("Select Business:");
+        selectStoreLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        selectStoreLabel.setText("Select Store:");
 
         storeNameLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        storeNameLabel.setText("Store Name:");
+        storeNameLabel.setText("Seller Name:");
 
-        storeNameTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        sellerNameTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         clearTextButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         clearTextButton.setText("Clear Text");
 
-        addStoreButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        addStoreButton.setText("Add Store");
+        addSellerButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        addSellerButton.setText("Add Seller");
 
-        addStoreBackButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        addStoreBackButton.setText("Back");
+        addSellerBackButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        addSellerBackButton.setText("Back");
 
-        selectBusinessComboBox.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        selectBusinessComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        selectStoreComboBox.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        selectStoreComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout addStoreJPanelLayout = new javax.swing.GroupLayout(addStoreJPanel);
         addStoreJPanel.setLayout(addStoreJPanelLayout);
@@ -85,22 +85,22 @@ public class ManageStoresFrame extends javax.swing.JFrame {
             .addGroup(addStoreJPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(addStoreJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(addStoreBackButton)
+                    .addComponent(addSellerBackButton)
                     .addGroup(addStoreJPanelLayout.createSequentialGroup()
-                        .addComponent(selectBusinessNameLabel)
+                        .addComponent(selectStoreLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(selectBusinessComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(selectStoreComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(addStoreJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(addStoreJPanelLayout.createSequentialGroup()
-                        .addGap(0, 19, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(clearTextButton)
                         .addGap(18, 18, 18)
-                        .addComponent(addStoreButton))
+                        .addComponent(addSellerButton))
                     .addGroup(addStoreJPanelLayout.createSequentialGroup()
                         .addComponent(storeNameLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(storeNameTextField)))
+                        .addComponent(sellerNameTextField)))
                 .addContainerGap())
         );
         addStoreJPanelLayout.setVerticalGroup(
@@ -108,29 +108,29 @@ public class ManageStoresFrame extends javax.swing.JFrame {
             .addGroup(addStoreJPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(addStoreJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(selectBusinessNameLabel)
+                    .addComponent(selectStoreLabel)
                     .addComponent(storeNameLabel)
-                    .addComponent(storeNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(selectBusinessComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(sellerNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(selectStoreComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
                 .addGroup(addStoreJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(clearTextButton)
-                    .addComponent(addStoreButton)
-                    .addComponent(addStoreBackButton))
+                    .addComponent(addSellerButton)
+                    .addComponent(addSellerBackButton))
                 .addContainerGap())
         );
 
-        manageStoresTabbedPane.addTab("Add Store", addStoreJPanel);
+        manageSellersTabbedPane.addTab("Add Seller", addStoreJPanel);
 
-        editStoresTable.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        editStoresTable.setModel(new javax.swing.table.DefaultTableModel(
+        editSellersTable.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        editSellersTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null}
             },
             new String [] {
-                "Business ID", "Store ID", "Business Name", "Store Name"
+                "Store ID", "Seller ID", "Store Name", "Seller Name"
             }
         ) {
             Class[] types = new Class [] {
@@ -141,16 +141,16 @@ public class ManageStoresFrame extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        editStoresScrollPane.setViewportView(editStoresTable);
+        editStoresScrollPane.setViewportView(editSellersTable);
 
-        editStoreButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        editStoreButton.setText("Edit Store");
+        editSellerButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        editSellerButton.setText("Edit Seller");
 
-        deleteStoreButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        deleteStoreButton.setText("Delete Store");
+        deleteSellerButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        deleteSellerButton.setText("Delete Seller");
 
-        editStoresBackButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        editStoresBackButton.setText("Back");
+        editSellersBackButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        editSellersBackButton.setText("Back");
 
         javax.swing.GroupLayout editStoresJPanelLayout = new javax.swing.GroupLayout(editStoresJPanel);
         editStoresJPanel.setLayout(editStoresJPanelLayout);
@@ -161,11 +161,11 @@ public class ManageStoresFrame extends javax.swing.JFrame {
                 .addGroup(editStoresJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(editStoresScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editStoresJPanelLayout.createSequentialGroup()
-                        .addComponent(editStoresBackButton)
+                        .addComponent(editSellersBackButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(deleteStoreButton)
+                        .addComponent(deleteSellerButton)
                         .addGap(18, 18, 18)
-                        .addComponent(editStoreButton)))
+                        .addComponent(editSellerButton)))
                 .addContainerGap())
         );
         editStoresJPanelLayout.setVerticalGroup(
@@ -175,13 +175,16 @@ public class ManageStoresFrame extends javax.swing.JFrame {
                 .addComponent(editStoresScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(editStoresJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(editStoreButton)
-                    .addComponent(deleteStoreButton)
-                    .addComponent(editStoresBackButton))
+                    .addComponent(editSellerButton)
+                    .addComponent(deleteSellerButton)
+                    .addComponent(editSellersBackButton))
                 .addContainerGap())
         );
 
-        manageStoresTabbedPane.addTab("Edit Stores", editStoresJPanel);
+        manageSellersTabbedPane.addTab("Edit Sellers", editStoresJPanel);
+
+        manageSellersLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        manageSellersLabel.setText("Manage Sellers");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -190,18 +193,18 @@ public class ManageStoresFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(manageStoresTabbedPane)
+                    .addComponent(manageSellersTabbedPane)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(manageStoresLabel)
+                        .addComponent(manageSellersLabel)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(manageStoresLabel)
+                .addComponent(manageSellersLabel)
                 .addGap(12, 12, 12)
-                .addComponent(manageStoresTabbedPane)
+                .addComponent(manageSellersTabbedPane)
                 .addContainerGap())
         );
 
@@ -212,97 +215,92 @@ public class ManageStoresFrame extends javax.swing.JFrame {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
     
-    public void addAddStoreBackButtonAL(ActionListener al){
-        this.addStoreBackButton.addActionListener(al);
+    public void addAddSellerBackButtonAL(ActionListener al){
+        this.addSellerBackButton.addActionListener(al);
     }
     
-    public void addEditStoresBackButtonAL(ActionListener al){
-        this.editStoresBackButton.addActionListener(al);
+    public void addEditSellersBackButtonAL(ActionListener al){
+        this.editSellersBackButton.addActionListener(al);
     }
     
     public void addClearTextButtonAL(ActionListener al){
         this.clearTextButton.addActionListener(al);
     }
     
-    public void addAddStoreButtonAL(ActionListener al){
-        this.addStoreButton.addActionListener(al);
+    public void addAddSellerButtonAL(ActionListener al){
+        this.addSellerButton.addActionListener(al);
     }
     
-    public void addEditStoreButtonAL(ActionListener al){
-        this.editStoreButton.addActionListener(al);
+    public void addEditSellerButtonAL(ActionListener al){
+        this.editSellerButton.addActionListener(al);
     }
     
-    public void addDeleteStoreButtonAL(ActionListener al){
-        this.deleteStoreButton.addActionListener(al);
+    public void addDeleteSellerButtonAL(ActionListener al){
+        this.deleteSellerButton.addActionListener(al);
     }
     
-    public String getStoreNameTextFieldText(){
-        return this.storeNameTextField.getText();
+    public String getSellerNameTextFieldText(){
+        return this.sellerNameTextField.getText();
     }
     
-    public void setStoreNameTextFieldText(String text){
-        this.storeNameTextField.setText(text);
+    public void setSellerNameTextFieldText(String text){
+        this.sellerNameTextField.setText(text);
     }
     
-    public JTable getEditStoresTable() {
-        return this.editStoresTable;
+    public JTable getEditSellersTable() {
+        return this.editSellersTable;
     }
     
-    public JComboBox getSelectBusinessComboBox(){
-        return this.selectBusinessComboBox;
+    public JComboBox getSelectStoreComboBox(){
+        return this.selectStoreComboBox;
     }
     
-    public void setSelectBusinessComboBoxModel(ComboBoxModel<String> cbm){
-        this.selectBusinessComboBox.setModel(cbm);
-    }
-    
-    public void addEditStoresTableModelListener(TableModelListener l) {
-        DefaultTableModel model = (DefaultTableModel) this.editStoresTable.getModel();
+    public void addEditSellersTableModelListener(TableModelListener l) {
+        DefaultTableModel model = (DefaultTableModel) this.editSellersTable.getModel();
         model.addTableModelListener(l);
     }
     
-    public void addEditStoresTableMouseListener(MouseListener l) {
-        this.editStoresTable.addMouseListener(l);
+    public void addEditSellersTableMouseListener(MouseListener l) {
+        this.editSellersTable.addMouseListener(l);
     }
     
-    public String getEditStoresTableIDAt(int row, int col) {
+    public String getEditSellersTableIDAt(int row, int col) {
         String id = "";
         if (row >= 0 && col >= 0) {
-            id = editStoresTable.getModel().getValueAt(row, col).toString();
+            id = editSellersTable.getModel().getValueAt(row, col).toString();
         }
         return id;
     }
     
-    public void clearStores() {
-        DefaultTableModel model = (DefaultTableModel) this.editStoresTable.getModel();
+    public void clearSellers() {
+        DefaultTableModel model = (DefaultTableModel) this.editSellersTable.getModel();
         model.setRowCount(0);
-        editStoresTable.clearSelection();
-        editStoresTable.revalidate();
-        editStoresTable.repaint();
+        editSellersTable.clearSelection();
+        editSellersTable.revalidate();
+        editSellersTable.repaint();
     }
 
-    public void addBusiness(Vector row) {
-        DefaultTableModel model = (DefaultTableModel) this.editStoresTable.getModel();
+    public void addSeller(Vector row) {
+        DefaultTableModel model = (DefaultTableModel) this.editSellersTable.getModel();
         model.addRow(row);
     }
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addStoreBackButton;
-    private javax.swing.JButton addStoreButton;
+    private javax.swing.JButton addSellerBackButton;
+    private javax.swing.JButton addSellerButton;
     private javax.swing.JPanel addStoreJPanel;
     private javax.swing.JButton clearTextButton;
-    private javax.swing.JButton deleteStoreButton;
-    private javax.swing.JButton editStoreButton;
-    private javax.swing.JButton editStoresBackButton;
+    private javax.swing.JButton deleteSellerButton;
+    private javax.swing.JButton editSellerButton;
+    private javax.swing.JButton editSellersBackButton;
+    private javax.swing.JTable editSellersTable;
     private javax.swing.JPanel editStoresJPanel;
     private javax.swing.JScrollPane editStoresScrollPane;
-    private javax.swing.JTable editStoresTable;
-    private javax.swing.JLabel manageStoresLabel;
-    private javax.swing.JTabbedPane manageStoresTabbedPane;
-    private javax.swing.JComboBox<String> selectBusinessComboBox;
-    private javax.swing.JLabel selectBusinessNameLabel;
+    private javax.swing.JLabel manageSellersLabel;
+    private javax.swing.JTabbedPane manageSellersTabbedPane;
+    private javax.swing.JComboBox<String> selectStoreComboBox;
+    private javax.swing.JLabel selectStoreLabel;
+    private javax.swing.JTextField sellerNameTextField;
     private javax.swing.JLabel storeNameLabel;
-    private javax.swing.JTextField storeNameTextField;
     // End of variables declaration//GEN-END:variables
 }

@@ -23,12 +23,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="manageStoresTabbedPane" max="32767" attributes="0"/>
+                  <Component id="manageSellersTabbedPane" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="manageStoresLabel" min="-2" max="-2" attributes="0"/>
+                      <Component id="manageSellersLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -39,24 +39,16 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="manageStoresLabel" min="-2" max="-2" attributes="0"/>
+              <Component id="manageSellersLabel" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-              <Component id="manageStoresTabbedPane" max="32767" attributes="0"/>
+              <Component id="manageSellersTabbedPane" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="manageStoresLabel">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="18" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Manage Stores"/>
-      </Properties>
-    </Component>
-    <Container class="javax.swing.JTabbedPane" name="manageStoresTabbedPane">
+    <Container class="javax.swing.JTabbedPane" name="manageSellersTabbedPane">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="0"/>
@@ -68,8 +60,8 @@
         <Container class="javax.swing.JPanel" name="addStoreJPanel">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Add Store">
-                <Property name="tabTitle" type="java.lang.String" value="Add Store"/>
+              <JTabbedPaneConstraints tabName="Add Seller">
+                <Property name="tabTitle" type="java.lang.String" value="Add Seller"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -80,25 +72,25 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="addStoreBackButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="addSellerBackButton" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="selectBusinessNameLabel" min="-2" max="-2" attributes="0"/>
+                              <Component id="selectStoreLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="selectBusinessComboBox" min="-2" pref="152" max="-2" attributes="0"/>
+                              <Component id="selectStoreComboBox" min="-2" pref="152" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="0" pref="19" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Component id="clearTextButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="addStoreButton" min="-2" max="-2" attributes="0"/>
+                              <Component id="addSellerButton" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="storeNameLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="storeNameTextField" max="32767" attributes="0"/>
+                              <Component id="sellerNameTextField" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -110,16 +102,16 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="selectBusinessNameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="selectStoreLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="storeNameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="storeNameTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="selectBusinessComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="sellerNameTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="selectStoreComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="118" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="clearTextButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="addStoreButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="addStoreBackButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="addSellerButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="addSellerBackButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -127,12 +119,12 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="selectBusinessNameLabel">
+            <Component class="javax.swing.JLabel" name="selectStoreLabel">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Select Business:"/>
+                <Property name="text" type="java.lang.String" value="Select Store:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="storeNameLabel">
@@ -140,10 +132,10 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Store Name:"/>
+                <Property name="text" type="java.lang.String" value="Seller Name:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="storeNameTextField">
+            <Component class="javax.swing.JTextField" name="sellerNameTextField">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
@@ -158,15 +150,15 @@
                 <Property name="text" type="java.lang.String" value="Clear Text"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="addStoreButton">
+            <Component class="javax.swing.JButton" name="addSellerButton">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Add Store"/>
+                <Property name="text" type="java.lang.String" value="Add Seller"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="addStoreBackButton">
+            <Component class="javax.swing.JButton" name="addSellerBackButton">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
@@ -174,7 +166,7 @@
                 <Property name="text" type="java.lang.String" value="Back"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="selectBusinessComboBox">
+            <Component class="javax.swing.JComboBox" name="selectStoreComboBox">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
@@ -197,8 +189,8 @@
         <Container class="javax.swing.JPanel" name="editStoresJPanel">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Edit Stores">
-                <Property name="tabTitle" type="java.lang.String" value="Edit Stores"/>
+              <JTabbedPaneConstraints tabName="Edit Sellers">
+                <Property name="tabTitle" type="java.lang.String" value="Edit Sellers"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -211,11 +203,11 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="editStoresScrollPane" alignment="0" pref="476" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="editStoresBackButton" min="-2" max="-2" attributes="0"/>
+                              <Component id="editSellersBackButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="deleteStoreButton" min="-2" max="-2" attributes="0"/>
+                              <Component id="deleteSellerButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="editStoreButton" min="-2" max="-2" attributes="0"/>
+                              <Component id="editSellerButton" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -229,9 +221,9 @@
                       <Component id="editStoresScrollPane" min="-2" pref="138" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="editStoreButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="deleteStoreButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="editStoresBackButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="editSellerButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="deleteSellerButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="editSellersBackButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -246,40 +238,40 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="editStoresTable">
+                <Component class="javax.swing.JTable" name="editSellersTable">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="14" style="0"/>
                     </Property>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="4" rowCount="3">
-                        <Column editable="true" title="Business ID" type="java.lang.Integer"/>
                         <Column editable="true" title="Store ID" type="java.lang.Integer"/>
-                        <Column editable="true" title="Business Name" type="java.lang.String"/>
+                        <Column editable="true" title="Seller ID" type="java.lang.Integer"/>
                         <Column editable="true" title="Store Name" type="java.lang.String"/>
+                        <Column editable="true" title="Seller Name" type="java.lang.String"/>
                       </Table>
                     </Property>
                   </Properties>
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="editStoreButton">
+            <Component class="javax.swing.JButton" name="editSellerButton">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Edit Store"/>
+                <Property name="text" type="java.lang.String" value="Edit Seller"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="deleteStoreButton">
+            <Component class="javax.swing.JButton" name="deleteSellerButton">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Delete Store"/>
+                <Property name="text" type="java.lang.String" value="Delete Seller"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="editStoresBackButton">
+            <Component class="javax.swing.JButton" name="editSellersBackButton">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
@@ -291,5 +283,13 @@
         </Container>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JLabel" name="manageSellersLabel">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="18" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Manage Sellers"/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>

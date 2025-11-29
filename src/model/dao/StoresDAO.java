@@ -40,7 +40,7 @@ public class StoresDAO {
         int id = Integer.parseInt(storeId);
         int bsid = Integer.parseInt(businessId);
         String sql = "UPDATE stores SET name = ?, business_id = ? WHERE store_id = ?";
-        try (PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql)) {
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, name);
             ps.setInt(2, bsid);
             ps.setInt(3, id);
@@ -54,9 +54,32 @@ public class StoresDAO {
     public ResultSet listStores() {
         String query = "SELECT s.store_id, s.business_id, b.name AS business_name, s.name AS store_name FROM stores s JOIN business b ON s.business_id = b.business_id ORDER BY s.business_id;";
         try {
-            PreparedStatement ps = DBConnection.getConnection().prepareStatement(query);
+            PreparedStatement ps = conn.prepareStatement(query);
             return ps.executeQuery();
         } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    public ResultSet listStoresIdName(){
+        String query = "SELECT store_id, name FROM stores";
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);
+            return ps.executeQuery();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    public ResultSet listStoresIdNameByBussinesId(int businessId){
+        String query = "SELECT s.store_id, s.name AS store_name FROM stores s JOIN business b ON s.business_id = b.business_id WHERE s.business_id = ? ORDER BY s.store_id;";
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, businessId);
+            return ps.executeQuery();
+        }catch(SQLException e){
             e.printStackTrace();
         }
         return null;

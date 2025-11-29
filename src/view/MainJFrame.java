@@ -19,9 +19,12 @@ public class MainJFrame extends javax.swing.JFrame {
         sbdnoMenu = new javax.swing.JMenu();
         configurationMenuItem = new javax.swing.JMenuItem();
         quitMenuItem = new javax.swing.JMenuItem();
+        deliveryNoteMenu = new javax.swing.JMenu();
+        addDeliveryNoteMenuItem = new javax.swing.JMenuItem();
         businessesMenu = new javax.swing.JMenu();
         manageBusinessesMenuItem = new javax.swing.JMenuItem();
         manageStoresMenuItem = new javax.swing.JMenuItem();
+        manageSellersMenuItem = new javax.swing.JMenuItem();
         clientsMenu = new javax.swing.JMenu();
         manageClientsMenuItem = new javax.swing.JMenuItem();
         employeesMenu = new javax.swing.JMenu();
@@ -45,6 +48,15 @@ public class MainJFrame extends javax.swing.JFrame {
 
         mainJFrameMenuBar.add(sbdnoMenu);
 
+        deliveryNoteMenu.setText("Delivery Notes");
+        deliveryNoteMenu.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+
+        addDeliveryNoteMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        addDeliveryNoteMenuItem.setText("Add Delivery Note...");
+        deliveryNoteMenu.add(addDeliveryNoteMenuItem);
+
+        mainJFrameMenuBar.add(deliveryNoteMenu);
+
         businessesMenu.setText("Businesses");
         businessesMenu.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
 
@@ -55,6 +67,10 @@ public class MainJFrame extends javax.swing.JFrame {
         manageStoresMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         manageStoresMenuItem.setText("Manage Stores...");
         businessesMenu.add(manageStoresMenuItem);
+
+        manageSellersMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        manageSellersMenuItem.setText("Manage Sellers...");
+        businessesMenu.add(manageSellersMenuItem);
 
         mainJFrameMenuBar.add(businessesMenu);
 
@@ -80,7 +96,7 @@ public class MainJFrame extends javax.swing.JFrame {
         trucksMenu.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
 
         manageTrucksMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        manageTrucksMenuItem.setText("Manage Trucks");
+        manageTrucksMenuItem.setText("Manage Trucks...");
         trucksMenu.add(manageTrucksMenuItem);
 
         mainJFrameMenuBar.add(trucksMenu);
@@ -121,22 +137,34 @@ public class MainJFrame extends javax.swing.JFrame {
         this.manageTrucksMenuItem.addActionListener(al);
     }
     
+    public void manageSellersMenuItemActionListener(ActionListener al){
+        this.manageSellersMenuItem.addActionListener(al);
+    }
+    
     public void quitMenuItemActionListener(ActionListener al){
         this.quitMenuItem.addActionListener(al);
     }
+    
     public void manageClientsMenuItemActionListener(ActionListener al){
         this.manageClientsMenuItem.addActionListener(al);
     }
     
+    public void addDeliveryNoteMenuItemActionListener(ActionListener al){
+        this.addDeliveryNoteMenuItem.addActionListener(al);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem addDeliveryNoteMenuItem;
     private javax.swing.JMenu businessesMenu;
     private javax.swing.JMenu clientsMenu;
     private javax.swing.JMenuItem configurationMenuItem;
+    private javax.swing.JMenu deliveryNoteMenu;
     private javax.swing.JMenu employeesMenu;
     private javax.swing.JMenuBar mainJFrameMenuBar;
     private javax.swing.JMenuItem manageBusinessesMenuItem;
     private javax.swing.JMenuItem manageClientsMenuItem;
     private javax.swing.JMenuItem manageEmployeesMenuItem;
+    private javax.swing.JMenuItem manageSellersMenuItem;
     private javax.swing.JMenuItem manageStoresMenuItem;
     private javax.swing.JMenuItem manageTrucksMenuItem;
     private javax.swing.JMenuItem quitMenuItem;
