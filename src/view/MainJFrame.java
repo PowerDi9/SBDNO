@@ -21,6 +21,7 @@ public class MainJFrame extends javax.swing.JFrame {
         quitMenuItem = new javax.swing.JMenuItem();
         deliveryNoteMenu = new javax.swing.JMenu();
         addDeliveryNoteMenuItem = new javax.swing.JMenuItem();
+        searchManageDeliveryNotesMenuItem = new javax.swing.JMenuItem();
         businessesMenu = new javax.swing.JMenu();
         manageBusinessesMenuItem = new javax.swing.JMenuItem();
         manageStoresMenuItem = new javax.swing.JMenuItem();
@@ -54,6 +55,10 @@ public class MainJFrame extends javax.swing.JFrame {
         addDeliveryNoteMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         addDeliveryNoteMenuItem.setText("Add Delivery Note...");
         deliveryNoteMenu.add(addDeliveryNoteMenuItem);
+
+        searchManageDeliveryNotesMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        searchManageDeliveryNotesMenuItem.setText("Search/Manage Delivery Notes...");
+        deliveryNoteMenu.add(searchManageDeliveryNotesMenuItem);
 
         mainJFrameMenuBar.add(deliveryNoteMenu);
 
@@ -153,6 +158,10 @@ public class MainJFrame extends javax.swing.JFrame {
         this.addDeliveryNoteMenuItem.addActionListener(al);
     }
     
+    public void searchManageDeliveryNoteMenuItemActionListener(ActionListener al){
+        this.searchManageDeliveryNotesMenuItem.addActionListener(al);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem addDeliveryNoteMenuItem;
     private javax.swing.JMenu businessesMenu;
@@ -169,6 +178,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem manageTrucksMenuItem;
     private javax.swing.JMenuItem quitMenuItem;
     private javax.swing.JMenu sbdnoMenu;
+    private javax.swing.JMenuItem searchManageDeliveryNotesMenuItem;
     private javax.swing.JMenu trucksMenu;
     // End of variables declaration//GEN-END:variables
 }

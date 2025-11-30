@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package view.addDeliveryNoteView;
+package view.searchManageDeliveryNoteView.editDeliveryNoteView;
 
 import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
@@ -12,14 +12,14 @@ import javax.swing.JFrame;
  *
  * @author EVEN
  */
-public class AddDeliveryNoteFrame extends javax.swing.JFrame {
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(AddDeliveryNoteFrame.class.getName());
+public class EditDeliveryNoteFrame extends javax.swing.JFrame {
+
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(EditDeliveryNoteFrame.class.getName());
 
     /**
-     * Creates new form AddDeliveryNoteFrame
+     * Creates new form EditDeliveryNoteFrame
      */
-    public AddDeliveryNoteFrame() {
+    public EditDeliveryNoteFrame() {
         initComponents();
     }
 
@@ -32,93 +32,97 @@ public class AddDeliveryNoteFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        addDeliveryNoteLabel = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
-        selectDeliveryDateLabel = new javax.swing.JLabel();
-        selectDateButton = new javax.swing.JButton();
-        selectBusinessLabel = new javax.swing.JLabel();
-        selectBusinessComboBox = new javax.swing.JComboBox<>();
-        selectStoreLabel = new javax.swing.JLabel();
-        selectStoreComboBox = new javax.swing.JComboBox<>();
-        selectSellerLabel = new javax.swing.JLabel();
-        selectSellerComboBox = new javax.swing.JComboBox<>();
-        clientNameLabel = new javax.swing.JLabel();
-        clientNameTextField = new javax.swing.JTextField();
         clientPhoneNumberTextField = new javax.swing.JTextField();
+        selectDeliveryDateLabel = new javax.swing.JLabel();
         clientPhoneNumberLabel = new javax.swing.JLabel();
+        selectDateButton = new javax.swing.JButton();
         selectTruckComboBox = new javax.swing.JComboBox<>();
+        selectBusinessLabel = new javax.swing.JLabel();
         selectTruckLabel = new javax.swing.JLabel();
+        selectBusinessComboBox = new javax.swing.JComboBox<>();
         amountTextField = new javax.swing.JTextField();
+        selectStoreLabel = new javax.swing.JLabel();
         amountLabel = new javax.swing.JLabel();
+        selectStoreComboBox = new javax.swing.JComboBox<>();
         selectPDFButton = new javax.swing.JButton();
+        selectSellerLabel = new javax.swing.JLabel();
         selectDeliveryNotePDFLabel = new javax.swing.JLabel();
-        addDeliveryNoteButton = new javax.swing.JButton();
-        clearEntriesButton = new javax.swing.JButton();
+        selectSellerComboBox = new javax.swing.JComboBox<>();
+        confirmChangesButton = new javax.swing.JButton();
+        clientNameLabel = new javax.swing.JLabel();
+        resetEntriesButton = new javax.swing.JButton();
+        clientNameTextField = new javax.swing.JTextField();
+        editDeliveryNoteLabel = new javax.swing.JLabel();
+        selectedPDFPathLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        addDeliveryNoteLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        addDeliveryNoteLabel.setText("Add Delivery Note");
 
         backButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         backButton.setText("Back");
 
+        clientPhoneNumberTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
         selectDeliveryDateLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         selectDeliveryDateLabel.setText("Select Delivery Date:");
-
-        selectDateButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        selectDateButton.setText("Select Date");
-
-        selectBusinessLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        selectBusinessLabel.setText("Select Business:");
-
-        selectBusinessComboBox.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        selectBusinessComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        selectStoreLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        selectStoreLabel.setText("Select Store:");
-
-        selectStoreComboBox.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        selectStoreComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        selectSellerLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        selectSellerLabel.setText("Select Seller:");
-
-        selectSellerComboBox.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        selectSellerComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        clientNameLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        clientNameLabel.setText("Client Name:");
-
-        clientNameTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        clientPhoneNumberTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         clientPhoneNumberLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         clientPhoneNumberLabel.setText("Client Phone Number:");
 
+        selectDateButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        selectDateButton.setText("Select Date");
+
         selectTruckComboBox.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         selectTruckComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        selectBusinessLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        selectBusinessLabel.setText("Select Business:");
 
         selectTruckLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         selectTruckLabel.setText("Select Truck:");
 
+        selectBusinessComboBox.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        selectBusinessComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         amountTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        selectStoreLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        selectStoreLabel.setText("Select Store:");
 
         amountLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         amountLabel.setText("Amount:");
 
+        selectStoreComboBox.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        selectStoreComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         selectPDFButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         selectPDFButton.setText("Select PDF");
+
+        selectSellerLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        selectSellerLabel.setText("Select Seller:");
 
         selectDeliveryNotePDFLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         selectDeliveryNotePDFLabel.setText("Select Delivery Note PDF:");
 
-        addDeliveryNoteButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        addDeliveryNoteButton.setText("Add Delivery Note");
+        selectSellerComboBox.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        selectSellerComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        clearEntriesButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        clearEntriesButton.setText("Clear Entries");
+        confirmChangesButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        confirmChangesButton.setText("Confirm Changes");
+
+        clientNameLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        clientNameLabel.setText("Client Name:");
+
+        resetEntriesButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        resetEntriesButton.setText("Reset Entries");
+
+        clientNameTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        editDeliveryNoteLabel.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        editDeliveryNoteLabel.setText("Edit Delivery Note");
+
+        selectedPDFPathLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        selectedPDFPathLabel.setText("Selected PDF path");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -128,33 +132,8 @@ public class AddDeliveryNoteFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(backButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(clearEntriesButton)
-                        .addGap(51, 51, 51)
-                        .addComponent(addDeliveryNoteButton))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(clientNameLabel)
-                            .addComponent(clientNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(clientPhoneNumberLabel)
-                                .addGap(23, 23, 23)
-                                .addComponent(amountLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(selectDeliveryNotePDFLabel))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(clientPhoneNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(amountTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(selectPDFButton)
-                                .addGap(35, 35, 35))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(addDeliveryNoteLabel)
+                            .addComponent(editDeliveryNoteLabel)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -177,15 +156,43 @@ public class AddDeliveryNoteFrame extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(selectTruckLabel)
                                     .addComponent(selectTruckComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(clientNameLabel)
+                            .addComponent(clientNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(clientPhoneNumberLabel)
+                                .addGap(23, 23, 23)
+                                .addComponent(amountLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(selectDeliveryNotePDFLabel))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(clientPhoneNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(amountTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(selectPDFButton)
+                                .addGap(43, 43, 43))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(backButton)
+                        .addGap(422, 422, 422)
+                        .addComponent(resetEntriesButton)
+                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addComponent(confirmChangesButton))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(selectedPDFPathLabel)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(addDeliveryNoteLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addComponent(editDeliveryNoteLabel)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(selectDeliveryDateLabel)
                     .addComponent(selectBusinessLabel)
@@ -211,112 +218,118 @@ public class AddDeliveryNoteFrame extends javax.swing.JFrame {
                     .addComponent(clientPhoneNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(amountTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(selectPDFButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(selectedPDFPathLabel)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backButton)
-                    .addComponent(addDeliveryNoteButton)
-                    .addComponent(clearEntriesButton))
+                    .addComponent(confirmChangesButton)
+                    .addComponent(resetEntriesButton)
+                    .addComponent(backButton))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void setDefaultCloseOperation(){
+    public void setDefaultCloseOperation() {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
-    
-    public void addClearEntriesButtonAL(ActionListener al){
-        this.clearEntriesButton.addActionListener(al);
+
+    public void addResetEntriesButtonAL(ActionListener al) {
+        this.resetEntriesButton.addActionListener(al);
     }
-    
-    public void addAddDeliveryNoteButtonAL(ActionListener al){
-        this.addDeliveryNoteButton.addActionListener(al);
+
+    public void addConfirmChangesButtonAL(ActionListener al) {
+        this.confirmChangesButton.addActionListener(al);
     }
-    
-    public void addBackButtonAL(ActionListener al){
+
+    public void addBackButtonAL(ActionListener al) {
         this.backButton.addActionListener(al);
     }
-    
-    public void addSelectPDFButtonAL(ActionListener al){
+
+    public void addSelectPDFButtonAL(ActionListener al) {
         this.selectPDFButton.addActionListener(al);
     }
-    
-    public void addSelectDateButtonAL(ActionListener al){
+
+    public void addSelectDateButtonAL(ActionListener al) {
         this.selectDateButton.addActionListener(al);
     }
-    
-    public void addSelectBusinesComboBoxAL(ActionListener al){
+
+    public void addSelectBusinesComboBoxAL(ActionListener al) {
         this.selectBusinessComboBox.addActionListener(al);
     }
-    
-    public void addSelectStoreComboBoxAL(ActionListener al){
+
+    public void addSelectStoreComboBoxAL(ActionListener al) {
         this.selectStoreComboBox.addActionListener(al);
     }
-    
-    public void addSelectSellerComboBoxAL(ActionListener al){
+
+    public void addSelectSellerComboBoxAL(ActionListener al) {
         this.selectSellerComboBox.addActionListener(al);
     }
-    
-    public void addSelectTruckComboBoxAL(ActionListener al){
+
+    public void addSelectTruckComboBoxAL(ActionListener al) {
         this.selectTruckComboBox.addActionListener(al);
     }
-    
-    public JComboBox getSelectBusinessComboBox(){
+
+    public JComboBox getSelectBusinessComboBox() {
         return this.selectBusinessComboBox;
     }
-    
-    public JComboBox getSelectStoreComboBox(){
+
+    public JComboBox getSelectStoreComboBox() {
         return this.selectStoreComboBox;
     }
-    
-    public JComboBox getSelectSellerComboBox(){
+
+    public JComboBox getSelectSellerComboBox() {
         return this.selectSellerComboBox;
     }
-    
-    public JComboBox getSelectTruckComboBox(){
+
+    public JComboBox getSelectTruckComboBox() {
         return this.selectTruckComboBox;
     }
-    
-    public String getAmountTextFieldText(){
+
+    public String getAmountTextFieldText() {
         return this.amountTextField.getText();
     }
-    
-    public String getClientNameTextFieldText(){
+
+    public String getClientNameTextFieldText() {
         return this.clientNameTextField.getText();
     }
-    
-    public String getClientPhoneNumberTextFieldText(){
+
+    public String getClientPhoneNumberTextFieldText() {
         return this.clientPhoneNumberTextField.getText();
     }
-    
-    public void setAmountTextFieldText(String text){
+
+    public void setAmountTextFieldText(String text) {
         this.amountTextField.setText(text);
     }
-    
-    public void setClientNameTextFieldText(String text){
+
+    public void setClientNameTextFieldText(String text) {
         this.clientNameTextField.setText(text);
     }
-    
-    public void setClientPhoneNumberTextFieldText(String text){
+
+    public void setClientPhoneNumberTextFieldText(String text) {
         this.clientPhoneNumberTextField.setText(text);
     }
-    
-    public void setSelectDateButtonText(String text){
+
+    public void setSelectDateButtonText(String text) {
         this.selectDateButton.setText(text);
     }
 
+    public void setSelectedPDFPathLabelText(String text) {
+        this.selectedPDFPathLabel.setText(text);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addDeliveryNoteButton;
-    private javax.swing.JLabel addDeliveryNoteLabel;
     private javax.swing.JLabel amountLabel;
     private javax.swing.JTextField amountTextField;
     private javax.swing.JButton backButton;
-    private javax.swing.JButton clearEntriesButton;
     private javax.swing.JLabel clientNameLabel;
     private javax.swing.JTextField clientNameTextField;
     private javax.swing.JLabel clientPhoneNumberLabel;
     private javax.swing.JTextField clientPhoneNumberTextField;
+    private javax.swing.JButton confirmChangesButton;
+    private javax.swing.JLabel editDeliveryNoteLabel;
+    private javax.swing.JButton resetEntriesButton;
     private javax.swing.JComboBox<String> selectBusinessComboBox;
     private javax.swing.JLabel selectBusinessLabel;
     private javax.swing.JButton selectDateButton;
@@ -329,5 +342,6 @@ public class AddDeliveryNoteFrame extends javax.swing.JFrame {
     private javax.swing.JLabel selectStoreLabel;
     private javax.swing.JComboBox<String> selectTruckComboBox;
     private javax.swing.JLabel selectTruckLabel;
+    private javax.swing.JLabel selectedPDFPathLabel;
     // End of variables declaration//GEN-END:variables
 }

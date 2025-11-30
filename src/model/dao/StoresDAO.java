@@ -73,6 +73,18 @@ public class StoresDAO {
         return null;
     }
     
+    public ResultSet getStoreName(int storeId) {
+        String query = "SELECT name FROM stores WHERE store_id = ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, storeId);
+            return ps.executeQuery();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
     public ResultSet listStoresIdNameByBussinesId(int businessId){
         String query = "SELECT s.store_id, s.name AS store_name FROM stores s JOIN business b ON s.business_id = b.business_id WHERE s.business_id = ? ORDER BY s.store_id;";
         try {

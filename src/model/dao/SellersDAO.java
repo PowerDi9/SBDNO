@@ -73,6 +73,18 @@ public class SellersDAO {
         }
         return null;
     }
+    
+    public ResultSet getSellerName(int sellerId) {
+        String query = "SELECT name FROM sellers WHERE seller_id = ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, sellerId);
+            return ps.executeQuery();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public boolean sellerExists(String sellerName) throws SQLException {
         String sql = "SELECT 1 FROM sellers WHERE LOWER(name) = LOWER(?) LIMIT 1";

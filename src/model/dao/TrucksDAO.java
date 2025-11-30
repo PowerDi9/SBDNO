@@ -53,6 +53,18 @@ public class TrucksDAO {
         return null;
     }
     
+    public ResultSet getTruckName(int truckId) {
+        String query = "SELECT name FROM trucks WHERE truck_id = ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, truckId);
+            return ps.executeQuery();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
     public boolean deleteTrucks(String str) throws SQLException {
         int id = Integer.parseInt(str);
         String sql = "DELETE FROM trucks WHERE truck_id = ?";
