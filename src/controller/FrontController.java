@@ -7,6 +7,7 @@ import controller.manageEmployeesController.ManageEmployeesController;
 import controller.manageSellersController.ManageSellersController;
 import controller.manageStoresController.ManageStoresController;
 import controller.manageTrucksController.ManageTrucksController;
+import controller.searchManageDeliveryNoteController.SearchManageDeliveryNoteController;
 import view.MainJFrame;
 import database.DBConnection;
 import java.awt.event.ActionEvent;
@@ -19,6 +20,7 @@ import view.manageEmployeesView.ManageEmployeesFrame;
 import view.manageSellersView.ManageSellersFrame;
 import view.manageStoresView.ManageStoresFrame;
 import view.manageTrucksView.ManageTrucksFrame;
+import view.searchManageDeliveryNoteView.SearchManageDeliveryNoteFrame;
 
 public class FrontController {
     
@@ -36,6 +38,7 @@ public class FrontController {
         this.view.manageTrucksMenuItemActionListener(this.getManageTrucksMenuItemActionListener());
         this.view.manageSellersMenuItemActionListener(this.getManageSellersMenuItemActionListener());
         this.view.addDeliveryNoteMenuItemActionListener(this.getAddDeliveryNoteMenuItemActionListener());
+        this.view.searchManageDeliveryNoteMenuItemActionListener(this.getSearchManageDeliveryNotesMenuItemActionListener());
         this.initComponents();
     }
     
@@ -136,6 +139,19 @@ public class FrontController {
                 AddDeliveryNoteController adnc = new AddDeliveryNoteController(adnf);
                 adnf.setLocationRelativeTo(view);
                 adnf.setVisible(true);
+            }
+        };
+        return al;
+    }
+    
+    private ActionListener getSearchManageDeliveryNotesMenuItemActionListener(){
+        ActionListener al = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SearchManageDeliveryNoteFrame smdnf = new SearchManageDeliveryNoteFrame();
+                SearchManageDeliveryNoteController smdnc = new SearchManageDeliveryNoteController(smdnf);
+                smdnf.setLocationRelativeTo(view);
+                smdnf.setVisible(true);
             }
         };
         return al;

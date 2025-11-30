@@ -33,7 +33,7 @@ public class BusinessDAO {
     }
 
     public ResultSet listBusinesses() {
-        String query = "SELECT business_id, name, percentage FROM business";
+        String query = "SELECT * FROM business";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
             return ps.executeQuery();
@@ -49,6 +49,18 @@ public class BusinessDAO {
             PreparedStatement ps = conn.prepareStatement(query);
             return ps.executeQuery();
         }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    public ResultSet getBusinessName(int businessId) {
+        String query = "SELECT name FROM business WHERE business_id = ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, businessId);
+            return ps.executeQuery();
+        }catch (SQLException e) {
             e.printStackTrace();
         }
         return null;

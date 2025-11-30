@@ -6,6 +6,7 @@ package view.addDeliveryNoteView.selectDateDialog;
 
 import com.toedter.calendar.JCalendar;
 import java.awt.event.ActionListener;
+import view.searchManageDeliveryNoteView.filterDeliveryNotesView.FilterDeliveryNotesDialog;
 
 /**
  *
@@ -20,6 +21,11 @@ public class SelectDateDialog extends javax.swing.JDialog {
      */
     public SelectDateDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        initComponents();
+    }
+
+    public SelectDateDialog(FilterDeliveryNotesDialog view, boolean b) {
+        super(view, b);
         initComponents();
     }
 
