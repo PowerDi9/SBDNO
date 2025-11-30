@@ -301,6 +301,10 @@ public class AddDeliveryNoteFrame extends javax.swing.JFrame {
     public void setClientPhoneNumberTextFieldText(String text){
         this.clientPhoneNumberTextField.setText(text);
     }
+    
+    public void setSelectDateButtonText(String text){
+        this.selectDateButton.setText(text);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addDeliveryNoteButton;

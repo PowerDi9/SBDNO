@@ -44,39 +44,39 @@ public class AddDeliveryNoteController {
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                date = LocalDate.now().toString().replaceAll("-","/");
+                date = LocalDate.now().toString().replaceAll("-", "/");
                 if (businessId == 0) {
-                    JOptionPane.showMessageDialog(view, "Please select a business");
+                    JOptionPane.showMessageDialog(view, "Please select a business.");
                     return;
                 } else if (storeId == 0) {
-                    JOptionPane.showMessageDialog(view, "Please select a store");
+                    JOptionPane.showMessageDialog(view, "Please select a store.");
                     return;
                 } else if (sellerId == 0) {
-                    JOptionPane.showMessageDialog(view, "Please select a seller");
+                    JOptionPane.showMessageDialog(view, "Please select a seller.");
                     return;
                 } else if (truckId == 0) {
-                    JOptionPane.showMessageDialog(view, "Please select a Truck");
+                    JOptionPane.showMessageDialog(view, "Please select a Truck.");
                     return;
                 } else if (deliveryDate == null) {
-                    JOptionPane.showMessageDialog(view, "Please select a Delivery Date");
+                    JOptionPane.showMessageDialog(view, "Please select a Delivery Date.");
                     return;
                 } else if (pdfRoute == null) {
-                    JOptionPane.showMessageDialog(view, "Please select a PDF");
+                    JOptionPane.showMessageDialog(view, "Please select a PDF file.");
                     return;
                 } else if (view.getAmountTextFieldText().isBlank()) {
-                    JOptionPane.showMessageDialog(view, "Please introduce an amount");
+                    JOptionPane.showMessageDialog(view, "Please introduce an amount.");
                     return;
                 } else if (view.getClientNameTextFieldText().isBlank()) {
-                    JOptionPane.showMessageDialog(view, "Please introduce a client name");
+                    JOptionPane.showMessageDialog(view, "Please introduce a client name.");
                     return;
                 } else if (view.getClientPhoneNumberTextFieldText().isBlank()) {
-                    JOptionPane.showMessageDialog(view, "Please introduce a client phone number");
+                    JOptionPane.showMessageDialog(view, "Please introduce a client phone number.");
                     return;
                 }
                 try {
                     amount = Double.parseDouble(view.getAmountTextFieldText().replaceAll(",", "."));
                 } catch (NumberFormatException nfe) {
-                    JOptionPane.showMessageDialog(null, "Introduce un número válido.");
+                    JOptionPane.showMessageDialog(null, "Please introduce a valid number.");
                     return;
                 }
                 String clientName = view.getClientNameTextFieldText();
@@ -94,6 +94,7 @@ public class AddDeliveryNoteController {
                     System.getLogger(AddDeliveryNoteController.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
                 }
                 JOptionPane.showMessageDialog(view, "DeliveryNote added correctly");
+
             }
         };
         return al;
@@ -113,15 +114,7 @@ public class AddDeliveryNoteController {
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                view.setAmountTextFieldText("");
-                view.setClientNameTextFieldText("");
-                view.setClientPhoneNumberTextFieldText("");
-                ignoreComboChange = true;
-                businessId = storeId = sellerId = truckId = 0;
-                deliveryDate = pdfRoute = null;
-                setComboBoxes();
-                ignoreComboChange = false;
+                clearEntries();
             }
         };
         return al;
@@ -136,6 +129,10 @@ public class AddDeliveryNoteController {
                 String newPDFRute = null;
                 if (selection == JFileChooser.APPROVE_OPTION) {
                     newPDFRute = fc.getSelectedFile().getAbsolutePath();
+                    if(!newPDFRute.endsWith(".pdf")){
+                        JOptionPane.showMessageDialog(view, "Please select a PDF file.");
+                        return;
+                    }
                     JOptionPane.showMessageDialog(view, "Selected PDF: " + newPDFRute);
                     System.out.println("Selected PDF: " + newPDFRute);
                 } else {
@@ -163,6 +160,7 @@ public class AddDeliveryNoteController {
 
     public void setDeliveryDate(String str) {
         this.deliveryDate = str;
+        this.view.setSelectDateButtonText(str);
     }
 
     private ActionListener getSelectBusinessComboBoxActionListener() {
@@ -309,6 +307,18 @@ public class AddDeliveryNoteController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    private void clearEntries() {
+        view.setAmountTextFieldText("");
+        view.setClientNameTextFieldText("");
+        view.setClientPhoneNumberTextFieldText("");
+        ignoreComboChange = true;
+        businessId = storeId = sellerId = truckId = 0;
+        deliveryDate = pdfRoute = null;
+        view.setSelectDateButtonText("Select Date");
+        setComboBoxes();
+        ignoreComboChange = false;
     }
 
     private void innitComponents() {
