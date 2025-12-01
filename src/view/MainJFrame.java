@@ -32,6 +32,9 @@ public class MainJFrame extends javax.swing.JFrame {
         manageEmployeesMenuItem = new javax.swing.JMenuItem();
         trucksMenu = new javax.swing.JMenu();
         manageTrucksMenuItem = new javax.swing.JMenuItem();
+        reportsMenu = new javax.swing.JMenu();
+        generateDailyReportMenuItem = new javax.swing.JMenuItem();
+        generateListingMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,6 +109,19 @@ public class MainJFrame extends javax.swing.JFrame {
 
         mainJFrameMenuBar.add(trucksMenu);
 
+        reportsMenu.setText("Reports");
+        reportsMenu.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+
+        generateDailyReportMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        generateDailyReportMenuItem.setText("Generate Daily Report...");
+        reportsMenu.add(generateDailyReportMenuItem);
+
+        generateListingMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        generateListingMenuItem.setText("Generate Listing...");
+        reportsMenu.add(generateListingMenuItem);
+
+        mainJFrameMenuBar.add(reportsMenu);
+
         setJMenuBar(mainJFrameMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -162,6 +178,14 @@ public class MainJFrame extends javax.swing.JFrame {
         this.searchManageDeliveryNotesMenuItem.addActionListener(al);
     }
     
+    public void generateListingMenuItemActionListener(ActionListener al){
+        this.generateListingMenuItem.addActionListener(al);
+    }
+    
+    public void generateDailyReportMenuItemActionListener(ActionListener al){
+        this.generateDailyReportMenuItem.addActionListener(al);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem addDeliveryNoteMenuItem;
     private javax.swing.JMenu businessesMenu;
@@ -169,6 +193,8 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem configurationMenuItem;
     private javax.swing.JMenu deliveryNoteMenu;
     private javax.swing.JMenu employeesMenu;
+    private javax.swing.JMenuItem generateDailyReportMenuItem;
+    private javax.swing.JMenuItem generateListingMenuItem;
     private javax.swing.JMenuBar mainJFrameMenuBar;
     private javax.swing.JMenuItem manageBusinessesMenuItem;
     private javax.swing.JMenuItem manageClientsMenuItem;
@@ -177,6 +203,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem manageStoresMenuItem;
     private javax.swing.JMenuItem manageTrucksMenuItem;
     private javax.swing.JMenuItem quitMenuItem;
+    private javax.swing.JMenu reportsMenu;
     private javax.swing.JMenu sbdnoMenu;
     private javax.swing.JMenuItem searchManageDeliveryNotesMenuItem;
     private javax.swing.JMenu trucksMenu;

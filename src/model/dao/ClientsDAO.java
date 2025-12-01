@@ -58,6 +58,18 @@ public class ClientsDAO {
         }
         return null;
     }
+    
+    public ResultSet getClientName(int clientId) {
+        String query = "SELECT name FROM clients WHERE client_id = ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, clientId);
+            return ps.executeQuery();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public ResultSet listClients() {
         String query = "SELECT * FROM clients";

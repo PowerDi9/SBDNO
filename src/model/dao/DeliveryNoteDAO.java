@@ -91,6 +91,20 @@ public class DeliveryNoteDAO {
         }
         return null;
     }
+    
+    public ResultSet listDeliveryNotesByBusinessIdAndDeliveryDate(String deliveryFrom, String deliveryTo, int business_id) {
+        String query = "SELECT * FROM delivery_notes WHERE business_id = ? AND delivery_date BETWEEN ? AND ? ORDER BY delivery_date;";
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, business_id);
+            ps.setString(2, deliveryFrom);
+            ps.setString(3, deliveryTo);
+            return ps.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public ResultSet filterDeliveryNotes(
             String dateFrom,
@@ -168,4 +182,6 @@ public class DeliveryNoteDAO {
 
         return ps.executeQuery();
     }
+    
+    
 }

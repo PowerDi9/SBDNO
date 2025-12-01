@@ -28,8 +28,8 @@ public class ManageStoresController {
         this.view.addEditStoresBackButtonAL(this.getBackButtonActionListener());
         this.view.addClearTextButtonAL(this.getClearTextButtonActionListener());
         this.view.addEditStoresTableMouseListener(this.getEditStoresTableMouseListener());
-        this.view.addAddStoreButtonAL(this.getAddBusinessButtonActionListener());
-        this.view.addDeleteStoreButtonAL(this.getDeleteBusinessButtonActionListener());
+        this.view.addAddStoreButtonAL(this.getAddStoreButtonActionListener());
+        this.view.addDeleteStoreButtonAL(this.getDeleteStoreButtonActionListener());
         this.view.addEditStoreButtonAL(this.getEditStoreActionListener());
         this.innitcomponents();
     }
@@ -85,7 +85,7 @@ public class ManageStoresController {
         return al;
     }
     
-    private ActionListener getAddBusinessButtonActionListener() {
+    private ActionListener getAddStoreButtonActionListener() {
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -112,7 +112,7 @@ public class ManageStoresController {
         return al;
     }
     
-    private ActionListener getDeleteBusinessButtonActionListener() {
+    private ActionListener getDeleteStoreButtonActionListener() {
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

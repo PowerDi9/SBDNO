@@ -66,6 +66,18 @@ public class BusinessDAO {
         return null;
     }
     
+    public ResultSet getBusinessPercentage(int businessId) {
+        String query = "SELECT percentage FROM business WHERE business_id = ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, businessId);
+            return ps.executeQuery();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
     public boolean deleteBusiness(String str) throws SQLException {
         int id = Integer.parseInt(str);
         String sql = "DELETE FROM business WHERE business_id = ?";
