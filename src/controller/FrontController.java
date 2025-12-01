@@ -1,6 +1,8 @@
 package controller;
 
 import controller.addDeliveryNoteController.AddDeliveryNoteController;
+import controller.configurationController.ConfigurationController;
+import controller.generateListingsController.GenerateListingsController;
 import controller.manageBusinessesController.ManageBusinessesController;
 import controller.manageClientsController.ManageClientsController;
 import controller.manageEmployeesController.ManageEmployeesController;
@@ -14,6 +16,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import view.addDeliveryNoteView.AddDeliveryNoteFrame;
+import view.configurationView.ConfigurationFrame;
+import view.generateListingsView.GenerateListingsFrame;
 import view.manageBusinessesView.ManageBusinessesFrame;
 import view.manageClientsView.ManageClientsFrame;
 import view.manageEmployeesView.ManageEmployeesFrame;
@@ -39,6 +43,8 @@ public class FrontController {
         this.view.manageSellersMenuItemActionListener(this.getManageSellersMenuItemActionListener());
         this.view.addDeliveryNoteMenuItemActionListener(this.getAddDeliveryNoteMenuItemActionListener());
         this.view.searchManageDeliveryNoteMenuItemActionListener(this.getSearchManageDeliveryNotesMenuItemActionListener());
+        this.view.configurationMenuItemActionListener(this.getConfigurationMenuItemActionListener());
+        this.view.generateListingMenuItemActionListener(this.getGenerateListingActionListener());
         this.initComponents();
     }
     
@@ -152,6 +158,42 @@ public class FrontController {
                 SearchManageDeliveryNoteController smdnc = new SearchManageDeliveryNoteController(smdnf);
                 smdnf.setLocationRelativeTo(view);
                 smdnf.setVisible(true);
+            }
+        };
+        return al;
+    }
+    
+    private ActionListener getConfigurationMenuItemActionListener(){
+        ActionListener al = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ConfigurationFrame cf = new ConfigurationFrame();
+                ConfigurationController cc = new ConfigurationController(cf);
+                cf.setLocationRelativeTo(view);
+                cf.setVisible(true);
+            }
+        };
+        return al;
+    }
+    
+    public ActionListener getGenerateListingActionListener(){
+        ActionListener al = new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                GenerateListingsFrame glf = new GenerateListingsFrame();
+                GenerateListingsController glc = new GenerateListingsController(glf);
+                glf.setLocationRelativeTo(view);
+                glf.setVisible(true);
+            }
+        };
+        return al;
+    }
+    
+    public ActionListener getGenerateDailyReportActionListener(){
+        ActionListener al = new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
             }
         };
         return al;

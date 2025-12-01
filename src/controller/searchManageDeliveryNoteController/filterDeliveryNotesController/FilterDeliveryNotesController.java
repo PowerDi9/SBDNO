@@ -151,9 +151,9 @@ public class FilterDeliveryNotesController {
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                FilterDeliveryNotesController controladorActual = FilterDeliveryNotesController.this;
+                FilterDeliveryNotesController ctrl = FilterDeliveryNotesController.this;
                 SelectDateDialog sdd = new SelectDateDialog(view, true);
-                SelectAdditionFromDateController safdc = new SelectAdditionFromDateController(sdd, controladorActual);
+                SelectAdditionFromDateController safdc = new SelectAdditionFromDateController(sdd, ctrl);
                 sdd.setLocationRelativeTo(view);
                 sdd.setVisible(true);
             }
@@ -165,9 +165,9 @@ public class FilterDeliveryNotesController {
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                FilterDeliveryNotesController controladorActual = FilterDeliveryNotesController.this;
+                FilterDeliveryNotesController ctrl = FilterDeliveryNotesController.this;
                 SelectDateDialog sdd = new SelectDateDialog(view, true);
-                SelectAdditionUntilDateController saudc = new SelectAdditionUntilDateController(sdd, controladorActual);
+                SelectAdditionUntilDateController saudc = new SelectAdditionUntilDateController(sdd, ctrl);
                 sdd.setLocationRelativeTo(view);
                 sdd.setVisible(true);
             }
@@ -179,9 +179,9 @@ public class FilterDeliveryNotesController {
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                FilterDeliveryNotesController controladorActual = FilterDeliveryNotesController.this;
+                FilterDeliveryNotesController ctrl = FilterDeliveryNotesController.this;
                 SelectDateDialog sdd = new SelectDateDialog(view, true);
-                SelectDeliveryFromDateController saudc = new SelectDeliveryFromDateController(sdd, controladorActual);
+                SelectDeliveryFromDateController saudc = new SelectDeliveryFromDateController(sdd, ctrl);
                 sdd.setLocationRelativeTo(view);
                 sdd.setVisible(true);
             }
@@ -193,9 +193,9 @@ public class FilterDeliveryNotesController {
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                FilterDeliveryNotesController controladorActual = FilterDeliveryNotesController.this;
+                FilterDeliveryNotesController ctrl = FilterDeliveryNotesController.this;
                 SelectDateDialog sdd = new SelectDateDialog(view, true);
-                SelectDeliveryUntilDateController saudc = new SelectDeliveryUntilDateController(sdd, controladorActual);
+                SelectDeliveryUntilDateController saudc = new SelectDeliveryUntilDateController(sdd, ctrl);
                 sdd.setLocationRelativeTo(view);
                 sdd.setVisible(true);
             }
