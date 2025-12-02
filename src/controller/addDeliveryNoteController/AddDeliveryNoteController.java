@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import model.dao.BusinessDAO;
@@ -320,10 +321,16 @@ public class AddDeliveryNoteController {
         setComboBoxes();
         ignoreComboChange = false;
     }
+    
+    public void setIcon(){
+         ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
+            view.setIconImage(icon.getImage());
+    }
 
     private void innitComponents() {
         this.setComboBoxes();
         this.view.setDefaultCloseOperation();
         this.view.setTitle("Add Delivery Note");
+        setIcon();
     }
 }

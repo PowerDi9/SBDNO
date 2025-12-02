@@ -14,6 +14,7 @@ import model.dao.TrucksDAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
+import javax.swing.ImageIcon;
 import model.dao.ClientsDAO;
 import model.dao.DeliveryNoteDAO;
 import view.addDeliveryNoteView.selectDateDialog.SelectDateDialog;
@@ -351,7 +352,13 @@ public class FilterDeliveryNotesController {
         setComboBoxes();
     }
 
+    public void setIcon() {
+        ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
+        view.setIconImage(icon.getImage());
+    }
+
     private void innitComponents() {
+        this.setIcon();
         this.setComboBoxes();
         this.view.setTitle("Filter Delivery Notes");
     }

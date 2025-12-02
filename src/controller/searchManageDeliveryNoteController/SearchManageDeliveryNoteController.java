@@ -11,6 +11,7 @@ import model.dao.DeliveryNoteDAO;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.Vector;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -142,12 +143,12 @@ public class SearchManageDeliveryNoteController {
         };
         return al;
     }
-    
+
     private ActionListener getFilterDeliveryNotesButtonActionListener() {
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                FilterDeliveryNotesDialog fdnd= new FilterDeliveryNotesDialog(view, true);
+                FilterDeliveryNotesDialog fdnd = new FilterDeliveryNotesDialog(view, true);
                 FilterDeliveryNotesController fdnc = new FilterDeliveryNotesController(fdnd, view);
                 fdnd.setLocationRelativeTo(view);
                 fdnd.setVisible(true);
@@ -218,7 +219,13 @@ public class SearchManageDeliveryNoteController {
         }
     }
 
+    public void setIcon() {
+        ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
+        view.setIconImage(icon.getImage());
+    }
+
     private void innitcomponents() {
+        this.setIcon();
         view.setTitle("Search / Manage Delivery Notes");
         this.updateSearchManageDeliveryNotesModel();
         view.setDefaultCloseOperation();

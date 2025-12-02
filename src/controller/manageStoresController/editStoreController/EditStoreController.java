@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import model.dao.BusinessDAO;
@@ -14,7 +15,7 @@ import view.manageStoresView.ManageStoresFrame;
 import view.manageStoresView.editStoreView.EditStoreDialog;
 
 public class EditStoreController {
-    
+
     EditStoreDialog view = null;
     ManageStoresFrame view2 = null;
     String storeId, businessId, storeName = null;
@@ -82,7 +83,7 @@ public class EditStoreController {
             view2.getEditStoresTable().getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
         }
     }
-    
+
     private void setSelectBusinessComboBoxModel() {
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
         try {
@@ -94,11 +95,11 @@ public class EditStoreController {
                 String businessId = String.valueOf(rs.getInt("business_id"));
                 String name = rs.getString("name");
                 String str = businessId + "," + name;
-                if(Integer.parseInt(this.businessId) == Integer.parseInt(businessId)){
+                if (Integer.parseInt(this.businessId) == Integer.parseInt(businessId)) {
                     index = con;
                 }
                 model.addElement(str);
-                con ++;
+                con++;
             }
             view.getSelectBusinessComboBox().setModel(model);
             view.getSelectBusinessComboBox().setSelectedIndex(index);
@@ -107,12 +108,15 @@ public class EditStoreController {
         }
     }
 
+    public void setIcon() {
+        ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
+        view.setIconImage(icon.getImage());
+    }
+
     public void initComponents() {
+        this.setIcon();
         view.setStoreNameTextFieldText(storeName);
         view.setTitle("Edit Store");
         this.setSelectBusinessComboBoxModel();
     }
 }
-
-    
-

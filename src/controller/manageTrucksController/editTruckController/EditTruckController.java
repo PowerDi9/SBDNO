@@ -6,12 +6,14 @@ import model.dao.TrucksDAO;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.Vector;
+import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import view.manageTrucksView.ManageTrucksFrame;
 import view.manageTrucksView.editTruckView.EditTruckDialog;
 
 public class EditTruckController {
+
     EditTruckDialog view = null;
     ManageTrucksFrame view2 = null;
     String truckId, truckName, truckDescription = null;
@@ -78,9 +80,15 @@ public class EditTruckController {
         }
     }
 
+    public void setIcon() {
+        ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
+        view.setIconImage(icon.getImage());
+    }
+
     public void initComponents() {
+        this.setIcon();
         view.setTruckNameTextFieldText(truckName);
         view.setTruckDescriptionTextAreaText(truckDescription);
-        view.setTitle("Edit Store");
+        view.setTitle("Edit Truck");
     }
 }

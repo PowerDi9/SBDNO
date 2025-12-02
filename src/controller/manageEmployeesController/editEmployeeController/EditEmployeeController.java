@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import view.manageEmployeesView.ManageEmployeesFrame;
@@ -99,7 +100,13 @@ public class EditEmployeeController {
         view.getEmployeeStateComboBox().setSelectedIndex(index);
     }
 
+    public void setIcon() {
+        ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
+        view.setIconImage(icon.getImage());
+    }
+
     public void initComponents() {
+        this.setIcon();
         view.setEmployeeNameTextFieldText(name);
         this.setSelectEmployeeComboBoxModel();
         view.setTitle("Edit Employee");

@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import model.dao.EmployeesDAO;
@@ -116,7 +117,7 @@ public class ManageTrucksController {
             public void actionPerformed(ActionEvent e) {
                 try {
                     TruckEmployeeIntermediateDAO dao = new TruckEmployeeIntermediateDAO();
-                    if(employeeId == null){
+                    if (employeeId == null) {
                         JOptionPane.showMessageDialog(view, "Please select an employee to unassign.");
                         return;
                     }
@@ -204,27 +205,27 @@ public class ManageTrucksController {
         };
         return al;
     }
-    
-    private void updateAssignedEmployeesModel(int truckid){
+
+    private void updateAssignedEmployeesModel(int truckid) {
         view.clearAssignedEmployees();
-                try {
-                    TruckEmployeeIntermediateDAO dao = new TruckEmployeeIntermediateDAO();
-                    ResultSet rs = dao.getEmployeesByTruck(truckid);
-                    while (rs.next()) {
-                        Vector row = new Vector();
-                        row.add(rs.getInt("employee_id"));
-                        row.add(rs.getString("name"));
-                        row.add(rs.getString("state"));
-                        view.addAssignedEmployee(row);
-                    }
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
-                DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-                centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-                for (int i = 0; i < view.getManageAssignedEmployeesTableTable().getColumnCount(); i++) {
-                    view.getManageAssignedEmployeesTableTable().getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
-                }
+        try {
+            TruckEmployeeIntermediateDAO dao = new TruckEmployeeIntermediateDAO();
+            ResultSet rs = dao.getEmployeesByTruck(truckid);
+            while (rs.next()) {
+                Vector row = new Vector();
+                row.add(rs.getInt("employee_id"));
+                row.add(rs.getString("name"));
+                row.add(rs.getString("state"));
+                view.addAssignedEmployee(row);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+        for (int i = 0; i < view.getManageAssignedEmployeesTableTable().getColumnCount(); i++) {
+            view.getManageAssignedEmployeesTableTable().getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+        }
     }
 
     private void updateEditTrucksModel() {
@@ -285,7 +286,13 @@ public class ManageTrucksController {
         }
     }
 
+    public void setIcon() {
+        ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
+        view.setIconImage(icon.getImage());
+    }
+
     private void innitcomponents() {
+        this.setIcon();
         view.setTitle("Manage Trucks");
         this.updateEditTrucksModel();
         view.setSetDefaultCloseOperation();

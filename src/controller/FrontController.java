@@ -16,6 +16,7 @@ import database.DBConnection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import javax.swing.ImageIcon;
 import view.addDeliveryNoteView.AddDeliveryNoteFrame;
 import view.configurationView.ConfigurationFrame;
 import view.generateDailyReportView.GenerateDailyReportFrame;
@@ -205,9 +206,16 @@ public class FrontController {
         return al;
     }
     
+    public void setIcon(){
+         ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
+            view.setIconImage(icon.getImage());
+    }
+    
     public void initComponents() throws SQLException{
         dbc = new DBConnection();
         dbc.initDB();
+        this.setIcon();
+        this.view.setTitle("SBDNO       Small Business Delivery Note Organizer");
     }
     
 }

@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
+import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import model.dao.BusinessDAO;
@@ -80,7 +81,13 @@ public class EditBusinessController {
         }
     }
 
+    public void setIcon() {
+        ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
+        view.setIconImage(icon.getImage());
+    }
+
     public void initComponents() {
+        this.setIcon();
         view.setBusinessNameTextFieldText(name);
         view.setPercentageCommissionTextFieldText(percentage);
         view.setTitle("Edit Business");

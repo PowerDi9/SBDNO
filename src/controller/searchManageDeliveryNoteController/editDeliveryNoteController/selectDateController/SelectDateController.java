@@ -1,11 +1,11 @@
 package controller.searchManageDeliveryNoteController.editDeliveryNoteController.selectDateController;
 
-
 import controller.searchManageDeliveryNoteController.editDeliveryNoteController.EditDeliveryNoteController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.ImageIcon;
 import view.addDeliveryNoteView.selectDateDialog.SelectDateDialog;
 
 public class SelectDateController {
@@ -20,8 +20,9 @@ public class SelectDateController {
         this.view.addCancelButtonAl(this.getCancelButtonActionListener());
         this.view.addAcceptButtonAL(this.getAcceptButtonActionListener());
         this.view.setTitle("Select Delivery Date");
+        this.setIcon();
     }
-    
+
     private ActionListener getCancelButtonActionListener() {
         ActionListener al = new ActionListener() {
             @Override
@@ -31,8 +32,8 @@ public class SelectDateController {
         };
         return al;
     }
-    
-    private ActionListener getAcceptButtonActionListener(){
+
+    private ActionListener getAcceptButtonActionListener() {
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -45,5 +46,9 @@ public class SelectDateController {
         };
         return al;
     }
-    
+
+    public void setIcon() {
+        ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
+        view.setIconImage(icon.getImage());
+    }
 }

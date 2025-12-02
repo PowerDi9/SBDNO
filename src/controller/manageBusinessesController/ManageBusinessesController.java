@@ -8,6 +8,7 @@ import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.Vector;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -44,8 +45,8 @@ public class ManageBusinessesController {
         };
         return ma;
     }
-    
-    private ActionListener getBackButtonActionListener(){
+
+    private ActionListener getBackButtonActionListener() {
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -71,11 +72,11 @@ public class ManageBusinessesController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    if(id == null){
-                    JOptionPane.showMessageDialog(view, "Please select a Business to delete.");
-                    return;
-                }else{
-                        int option = JOptionPane.showConfirmDialog(null, "Are you sure to delete "+name+"?\nDoing this will make all it's stores to be deleted as well.", "Confirm deletion", JOptionPane.YES_NO_OPTION);
+                    if (id == null) {
+                        JOptionPane.showMessageDialog(view, "Please select a Business to delete.");
+                        return;
+                    } else {
+                        int option = JOptionPane.showConfirmDialog(null, "Are you sure to delete " + name + "?\nDoing this will make all it's stores to be deleted as well.", "Confirm deletion", JOptionPane.YES_NO_OPTION);
                     }
                     BusinessDAO dao = new BusinessDAO();
                     dao.deleteBusiness(id);
@@ -119,7 +120,7 @@ public class ManageBusinessesController {
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(id == null){
+                if (id == null) {
                     JOptionPane.showMessageDialog(view, "Please select a Business to edit.");
                     return;
                 }
@@ -155,7 +156,13 @@ public class ManageBusinessesController {
         }
     }
 
+    public void setIcon() {
+        ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
+        view.setIconImage(icon.getImage());
+    }
+
     private void innitcomponents() {
+        this.setIcon();
         view.setTitle("Manage Businesses");
         this.updateEditBusinessesModel();
     }

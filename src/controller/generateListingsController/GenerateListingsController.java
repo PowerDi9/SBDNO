@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import model.dao.BusinessDAO;
 import model.dao.ClientsDAO;
@@ -210,7 +211,7 @@ public class GenerateListingsController {
                 sheet.setColumnWidth(5, 3000);
                 sheet.setColumnWidth(6, 3000);
 
-                try (FileOutputStream outputStream = new FileOutputStream(listingFolderPath+"\\"+businessName+"-"+deliveryFromDate.replaceAll("/",".")+"-"+deliveryUntilDate.replaceAll("/",".")+".xlsx")) {
+                try (FileOutputStream outputStream = new FileOutputStream(listingFolderPath + "\\" + businessName + "-" + deliveryFromDate.replaceAll("/", ".") + "-" + deliveryUntilDate.replaceAll("/", ".") + ".xlsx")) {
                     workbook.write(outputStream);
                     System.out.println("Excel file created correctly on: " + listingFolderPath);
                 } catch (FileNotFoundException ex) {
@@ -321,7 +322,7 @@ public class GenerateListingsController {
         style.setBorderRight(BorderStyle.THIN);
         style.setBorderLeft(BorderStyle.THIN);
         style.setAlignment(HorizontalAlignment.RIGHT);
-        style.setDataFormat(wk.createDataFormat().getFormat("#,##0.00"+currencyType));
+        style.setDataFormat(wk.createDataFormat().getFormat("#,##0.00" + currencyType));
         return style;
     }
 
@@ -333,11 +334,17 @@ public class GenerateListingsController {
         style.setBorderTop(BorderStyle.DOUBLE);
         style.setTopBorderColor(IndexedColors.BLACK.getIndex());
         style.setAlignment(HorizontalAlignment.RIGHT);
-        style.setDataFormat(wk.createDataFormat().getFormat("#,##0.00"+currencyType));
+        style.setDataFormat(wk.createDataFormat().getFormat("#,##0.00" + currencyType));
         return style;
     }
 
+    public void setIcon() {
+        ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
+        view.setIconImage(icon.getImage());
+    }
+
     private void innitComponents() {
+        setIcon();
         view.setTitle("Generate Listings");
         setBusinessComboBox();
         view.setDefaultCloseOperation();

@@ -9,6 +9,7 @@ import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.Vector;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -172,8 +173,14 @@ public class ManageClientsController {
         }
     }
 
+    public void setIcon() {
+        ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
+        view.setIconImage(icon.getImage());
+    }
+
     private void innitcomponents() {
-        view.setTitle("Manage Businesses");
+        this.setIcon();
+        view.setTitle("Manage Clients");
         view.setSetDefaultCloseOperation();
         this.updateEditClientsModel();
     }

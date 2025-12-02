@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import model.dao.StoresDAO;
@@ -14,7 +15,7 @@ import view.manageSellersView.ManageSellersFrame;
 import view.manageSellersView.editSellerView.EditSellerDialog;
 
 public class EditSellerController {
-    
+
     EditSellerDialog view = null;
     ManageSellersFrame view2 = null;
     String sellerId, storeId, sellerName = null;
@@ -82,7 +83,7 @@ public class EditSellerController {
             view2.getEditSellersTable().getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
         }
     }
-    
+
     private void setSelectStoreComboBoxModel() {
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
         try {
@@ -94,11 +95,11 @@ public class EditSellerController {
                 String storeId = String.valueOf(rs.getInt("store_id"));
                 String name = rs.getString("name");
                 String str = storeId + "," + name;
-                if(Integer.parseInt(this.storeId) == Integer.parseInt(storeId)){
+                if (Integer.parseInt(this.storeId) == Integer.parseInt(storeId)) {
                     index = con;
                 }
                 model.addElement(str);
-                con ++;
+                con++;
             }
             view.getSelectStoreComboBox().setModel(model);
             view.getSelectStoreComboBox().setSelectedIndex(index);
@@ -107,7 +108,13 @@ public class EditSellerController {
         }
     }
 
+    public void setIcon() {
+        ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
+        view.setIconImage(icon.getImage());
+    }
+
     public void initComponents() {
+        this.setIcon();
         view.setSellerNameTextFieldText(sellerName);
         view.setTitle("Edit Sellers");
         this.setSelectStoreComboBoxModel();

@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import model.dao.ClientsDAO;
 import model.dao.DeliveryNoteDAO;
@@ -214,7 +215,7 @@ public class GenerateDailyReportController {
                 }
                 setFinalAmount(rowTracker - 1, startDataRow, sheet, totalStyle);
 
-                Row finalRow = sheet.createRow(rowTracker+1);
+                Row finalRow = sheet.createRow(rowTracker + 1);
                 Cell totalLabelCell = finalRow.createCell(3);
                 totalLabelCell.setCellValue("TOTAL");
                 totalLabelCell.setCellStyle(totalStyle);
@@ -316,8 +317,15 @@ public class GenerateDailyReportController {
         return style;
     }
 
+    public void setIcon() {
+        ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
+        view.setIconImage(icon.getImage());
+    }
+
     private void innitComponents() {
+        setIcon();
         this.view.setDefaultCloseOperation();
+        this.view.setTitle("Generate Daily Report");
     }
 
 }

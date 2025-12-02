@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
+import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import model.dao.ClientsDAO;
@@ -15,7 +16,6 @@ public class SearchClientsController {
 
     SearchClientsDialog view = null;
     ManageClientsFrame view2 = null;
-
 
     public SearchClientsController(SearchClientsDialog view, ManageClientsFrame view2) {
         this.view = view;
@@ -67,7 +67,13 @@ public class SearchClientsController {
         return al;
     }
 
+    public void setIcon() {
+        ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
+        view.setIconImage(icon.getImage());
+    }
+
     public void initComponents() {
-        view.setTitle("Search Client");
+        this.setIcon();
+        view.setTitle("Search Clients");
     }
 }

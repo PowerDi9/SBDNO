@@ -9,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import view.configurationView.ConfigurationFrame;
@@ -16,7 +17,7 @@ import view.configurationView.ConfigurationFrame;
 public class ConfigurationController {
 
     ConfigurationFrame view;
-    String dailyReportFolderPath, listingFolderPath, personalBusinessHeaderPath= null;
+    String dailyReportFolderPath, listingFolderPath, personalBusinessHeaderPath = null;
     String currencyType = "€";
 
     public ConfigurationController(ConfigurationFrame view) {
@@ -137,7 +138,7 @@ public class ConfigurationController {
                 listingFolderPath = datos.get(1);
                 dailyReportFolderPath = datos.get(2);
                 personalBusinessHeaderPath = datos.get(3);
-            }catch(Exception ex){
+            } catch (Exception ex) {
                 ex.printStackTrace();
                 JOptionPane.showMessageDialog(view, "There has been a problem getting the configuration, loading default variables.\nTo set a new configuration, select a currency, folders and header.");
                 setDefaultConfiguration();
@@ -161,9 +162,15 @@ public class ConfigurationController {
         saveData(a);
     }
 
+    public void setIcon() {
+        ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
+        this.view.setIconImage(icon.getImage());
+    }
+
     private void innitComponents() {
         setVariables();
         view.setTitle("Configuration");
         view.setDefaultCloseOperation();
+        setIcon();
     }
 }

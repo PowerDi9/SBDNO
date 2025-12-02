@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
@@ -30,8 +31,8 @@ public class EditDeliveryNoteController {
     String deliveryId, deliveryDate, pdfRoute, date, businessId, storeId, sellerId, truckId, amount, clientId = null;
     String newPDFRoute, newDeliveryDate, newBusinessId, newStoreId, newSellerId, newTruckId;
     Double newAmount;
-    
-    public EditDeliveryNoteController(EditDeliveryNoteFrame view,SearchManageDeliveryNoteFrame view2, String deliveryId, String introductionDate, String deliveryDate, String clientId, String businessId, String storeId, String sellerId, String truckId, String amount, String pdfPath) {
+
+    public EditDeliveryNoteController(EditDeliveryNoteFrame view, SearchManageDeliveryNoteFrame view2, String deliveryId, String introductionDate, String deliveryDate, String clientId, String businessId, String storeId, String sellerId, String truckId, String amount, String pdfPath) {
         this.view = view;
         this.view2 = view2;
         this.deliveryId = deliveryId;
@@ -64,9 +65,9 @@ public class EditDeliveryNoteController {
                 newStoreId = view.getSelectStoreComboBox().getSelectedItem().toString().split(",")[0];
                 newSellerId = view.getSelectSellerComboBox().getSelectedItem().toString().split(",")[0];
                 newTruckId = view.getSelectTruckComboBox().getSelectedItem().toString().split(",")[0];
-                if(newDeliveryDate == null){
+                if (newDeliveryDate == null) {
                     newDeliveryDate = deliveryDate;
-                } else if(newPDFRoute == null){
+                } else if (newPDFRoute == null) {
                     newPDFRoute = pdfRoute;
                 }
                 if (Integer.parseInt(newBusinessId) == 0 || newBusinessId == null) {
@@ -159,7 +160,7 @@ public class EditDeliveryNoteController {
                 }
                 view.setSelectedPDFPathLabelText(nPDFRute);
                 newPDFRoute = nPDFRute;
-                
+
             }
         };
         return al;
@@ -255,7 +256,7 @@ public class EditDeliveryNoteController {
         };
         return al;
     }
-    
+
     private void setStoresComboBoxByBussinesId(int bussinesId) {
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
         try {
@@ -299,7 +300,7 @@ public class EditDeliveryNoteController {
                 this.view.setClientNameTextFieldText(rs.getString("name"));
                 this.view.setClientPhoneNumberTextFieldText(rs.getString("phone"));
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -375,8 +376,6 @@ public class EditDeliveryNoteController {
             e.printStackTrace();
         }
     }
-    
-    
 
     private void resetEntries() {
         ignoreComboChange = true;
@@ -385,7 +384,7 @@ public class EditDeliveryNoteController {
         this.view.setSelectDateButtonText(deliveryDate);
         ignoreComboChange = false;
     }
-    
+
     private void updateSearchManageDeliveryNotesModel() {
         view2.clearDeliveryNotes();
         try {
@@ -401,39 +400,39 @@ public class EditDeliveryNoteController {
                 Vector row = new Vector();
                 int cId = rs.getInt("client_id");
                 ResultSet clientRs = clientsDao.getClientNamePhone(cId);
-                while(clientRs.next()){
+                while (clientRs.next()) {
                     cName = clientRs.getString("name");
                     cPhone = clientRs.getString("phone");
                 }
                 int bId = rs.getInt("business_id");
                 ResultSet businessRs = businessDao.getBusinessName(bId);
-                while(businessRs.next()){
+                while (businessRs.next()) {
                     bName = businessRs.getString("name");
                 }
                 int sId = rs.getInt("store_id");
                 ResultSet storesRs = storesDao.getStoreName(sId);
-                while(storesRs.next()){
+                while (storesRs.next()) {
                     sName = storesRs.getString("name");
                 }
                 int seId = rs.getInt("seller_id");
                 ResultSet sellersRs = sellersDao.getSellerName(seId);
-                while(sellersRs.next()){
+                while (sellersRs.next()) {
                     seName = sellersRs.getString("name");
                 }
                 int tId = rs.getInt("truck_id");
                 ResultSet trucksRs = trucksDao.getTruckName(tId);
-                while(trucksRs.next()){
+                while (trucksRs.next()) {
                     tName = trucksRs.getString("name");
                 }
                 row.add(rs.getInt("delivery_note_id"));
                 row.add(rs.getString("date"));
                 row.add(rs.getString("delivery_date"));
-                row.add(cId+","+cName);
+                row.add(cId + "," + cName);
                 row.add(cPhone);
-                row.add(bId+","+bName);
-                row.add(sId+","+sName);
-                row.add(seId+","+seName);
-                row.add(tId+","+tName);
+                row.add(bId + "," + bName);
+                row.add(sId + "," + sName);
+                row.add(seId + "," + seName);
+                row.add(tId + "," + tName);
                 row.add(rs.getDouble("amount"));
                 row.add(rs.getString("pdf_path"));
                 view2.addDeliveryNote(row);
@@ -448,7 +447,13 @@ public class EditDeliveryNoteController {
         }
     }
 
+    public void setIcon() {
+        ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
+        view.setIconImage(icon.getImage());
+    }
+
     private void innitComponents() {
+        this.setIcon();
         this.setComboBoxes();
         this.setTextFields();
         this.view.setSelectDateButtonText(deliveryDate);

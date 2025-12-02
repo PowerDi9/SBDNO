@@ -6,6 +6,7 @@ import model.dao.ClientsDAO;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.Vector;
+import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import view.manageClientsView.ManageClientsFrame;
@@ -78,8 +79,14 @@ public class EditClientController {
             view2.getEditClientsJTable().getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
         }
     }
+    
+    public void setIcon(){
+         ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
+            view.setIconImage(icon.getImage());
+    }
 
     public void initComponents() {
+        this.setIcon();
         view.setClientNameTextFieldText(clientName);
         view.setPhoneNumberTextFieldText(phoneNumber);
         view.setTitle("Edit Client");

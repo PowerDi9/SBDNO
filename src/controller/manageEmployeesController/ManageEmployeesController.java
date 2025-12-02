@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -171,8 +172,14 @@ public class ManageEmployeesController {
         view.getEmployeeStateComboBox().setModel(model);
 
     }
+    
+    public void setIcon(){
+         ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
+            view.setIconImage(icon.getImage());
+    }
 
     private void innitcomponents() {
+        this.setIcon();
         view.setTitle("Manage Employees");
         view.setDefaultCloseOperation();
         this.updateEditEmployeeModel();

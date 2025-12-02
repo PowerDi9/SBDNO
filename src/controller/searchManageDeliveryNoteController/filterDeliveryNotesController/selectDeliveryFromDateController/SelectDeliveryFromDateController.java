@@ -5,9 +5,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.ImageIcon;
 import view.addDeliveryNoteView.selectDateDialog.SelectDateDialog;
 
 public class SelectDeliveryFromDateController {
+
     private SelectDateDialog view;
     private Date date;
     private FilterDeliveryNotesController controller;
@@ -18,8 +20,9 @@ public class SelectDeliveryFromDateController {
         this.view.addCancelButtonAl(this.getCancelButtonActionListener());
         this.view.addAcceptButtonAL(this.getAcceptButtonActionListener());
         this.view.setTitle("Select Delivery Date");
+        this.setIcon();
     }
-    
+
     private ActionListener getCancelButtonActionListener() {
         ActionListener al = new ActionListener() {
             @Override
@@ -29,8 +32,8 @@ public class SelectDeliveryFromDateController {
         };
         return al;
     }
-    
-    private ActionListener getAcceptButtonActionListener(){
+
+    private ActionListener getAcceptButtonActionListener() {
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -43,5 +46,9 @@ public class SelectDeliveryFromDateController {
         };
         return al;
     }
-    
+
+    public void setIcon() {
+        ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
+        view.setIconImage(icon.getImage());
+    }
 }
