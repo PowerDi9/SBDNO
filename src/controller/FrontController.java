@@ -2,6 +2,7 @@ package controller;
 
 import controller.addDeliveryNoteController.AddDeliveryNoteController;
 import controller.configurationController.ConfigurationController;
+import controller.generateDailyReportController.GenerateDailyReportController;
 import controller.generateListingsController.GenerateListingsController;
 import controller.manageBusinessesController.ManageBusinessesController;
 import controller.manageClientsController.ManageClientsController;
@@ -17,6 +18,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import view.addDeliveryNoteView.AddDeliveryNoteFrame;
 import view.configurationView.ConfigurationFrame;
+import view.generateDailyReportView.GenerateDailyReportFrame;
 import view.generateListingsView.GenerateListingsFrame;
 import view.manageBusinessesView.ManageBusinessesFrame;
 import view.manageClientsView.ManageClientsFrame;
@@ -45,6 +47,7 @@ public class FrontController {
         this.view.searchManageDeliveryNoteMenuItemActionListener(this.getSearchManageDeliveryNotesMenuItemActionListener());
         this.view.configurationMenuItemActionListener(this.getConfigurationMenuItemActionListener());
         this.view.generateListingMenuItemActionListener(this.getGenerateListingActionListener());
+        this.view.generateDailyReportMenuItemActionListener(this.getGenerateDailyReportActionListener());
         this.initComponents();
     }
     
@@ -193,7 +196,10 @@ public class FrontController {
         ActionListener al = new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                GenerateDailyReportFrame gdrf = new GenerateDailyReportFrame();
+                GenerateDailyReportController gdrc = new GenerateDailyReportController(gdrf);
+                gdrf.setLocationRelativeTo(view);
+                gdrf.setVisible(true);
             }
         };
         return al;

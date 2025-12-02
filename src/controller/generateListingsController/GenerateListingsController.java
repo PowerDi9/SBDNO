@@ -67,11 +67,12 @@ public class GenerateListingsController {
                     currencyType = datos.get(0);
                     listingFolderPath = datos.get(1);
                     personalBusinessHeaderPath = datos.get(3);
+                    br.close();
                 } catch (IOException ioe) {
                     System.err.println("Error al leer datos: " + ioe.getMessage());
                 }
                 if (listingFolderPath == null || listingFolderPath.isEmpty()) {
-                    JOptionPane.showMessageDialog(view, "Please select a Listing Folder in 'SBDNH' -> 'Configuration'");
+                    JOptionPane.showMessageDialog(view, "Please select a Listing Folder in 'SBDNO' -> 'Configuration'");
                     return;
                 }
                 if (personalBusinessHeaderPath == null || personalBusinessHeaderPath.isEmpty()) {
@@ -155,7 +156,7 @@ public class GenerateListingsController {
                 percentageHeaderCell.setCellValue(businessPercentage + "%");
                 percentageHeaderCell.setCellStyle(titleStyle);
 
-                int startedLoopRpw = 12;
+                int startedLoopRow = 12;
                 int startDataRow = 12;
                 try {
                     DeliveryNoteDAO dnDAO = new DeliveryNoteDAO();
@@ -192,12 +193,12 @@ public class GenerateListingsController {
                 totalLabelCell.setCellStyle(totalStyle);
 
                 Cell totalAmountCell = finalRow.createCell(5);
-                String finalAmountFormula = String.format("SUM(F%d:F%d)", startedLoopRpw + 1, startDataRow);
+                String finalAmountFormula = String.format("SUM(F%d:F%d)", startedLoopRow + 1, startDataRow);
                 totalAmountCell.setCellFormula(finalAmountFormula);
                 totalAmountCell.setCellStyle(totalStyle);
 
                 Cell totalPercentaceCell = finalRow.createCell(6);
-                String finalPercentageFormula = String.format("SUM(G%d:G%d)", startedLoopRpw + 1, startDataRow);
+                String finalPercentageFormula = String.format("SUM(G%d:G%d)", startedLoopRow + 1, startDataRow);
                 totalPercentaceCell.setCellFormula(finalPercentageFormula);
                 totalPercentaceCell.setCellStyle(totalStyle);
 
