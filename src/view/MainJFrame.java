@@ -15,6 +15,7 @@ public class MainJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        imageLabel = new javax.swing.JLabel();
         mainJFrameMenuBar = new javax.swing.JMenuBar();
         sbdnoMenu = new javax.swing.JMenu();
         configurationMenuItem = new javax.swing.JMenuItem();
@@ -37,6 +38,8 @@ public class MainJFrame extends javax.swing.JFrame {
         generateListingMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/SBDNO.png"))); // NOI18N
 
         sbdnoMenu.setText("SBDNO");
         sbdnoMenu.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -128,11 +131,11 @@ public class MainJFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 680, Short.MAX_VALUE)
+            .addComponent(imageLabel, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 371, Short.MAX_VALUE)
+            .addComponent(imageLabel)
         );
 
         pack();
@@ -195,6 +198,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JMenu employeesMenu;
     private javax.swing.JMenuItem generateDailyReportMenuItem;
     private javax.swing.JMenuItem generateListingMenuItem;
+    private javax.swing.JLabel imageLabel;
     private javax.swing.JMenuBar mainJFrameMenuBar;
     private javax.swing.JMenuItem manageBusinessesMenuItem;
     private javax.swing.JMenuItem manageClientsMenuItem;
