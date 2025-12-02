@@ -10,12 +10,14 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import view.configurationView.ConfigurationFrame;
 
 public class ConfigurationController {
 
     ConfigurationFrame view;
-    String dailyReportFolderPath, listingFolderPath, personalBusinessHeaderPath, currencyType = null;
+    String dailyReportFolderPath, listingFolderPath, personalBusinessHeaderPath= null;
+    String currencyType = "€";
 
     public ConfigurationController(ConfigurationFrame view) {
         this.view = view;
@@ -26,23 +28,24 @@ public class ConfigurationController {
         this.view.addConfirmChangesButtonAL(this.getConfirmChangesButtonActionListener());
         innitComponents();
     }
-    
-    private ActionListener getConfirmChangesButtonActionListener(){
+
+    private ActionListener getConfirmChangesButtonActionListener() {
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ArrayList<String> array = new ArrayList<>();
-                if(view.getEuroRadioButton().isSelected()){
-                    array.add(view.getEuroRadioButton().getText());
-                }else if(view.getDollarRadioButton().isSelected()){
-                    array.add(view.getDollarRadioButton().getText());
-                }else if(view.getPoundRadioButton().isSelected()){
-                    array.add(view.getPoundRadioButton().getText());
+                if (view.getEuroRadioButton().isSelected()) {
+                    currencyType = view.getEuroRadioButton().getText();
+                } else if (view.getDollarRadioButton().isSelected()) {
+                    currencyType = view.getDollarRadioButton().getText();
+                } else if (view.getPoundRadioButton().isSelected()) {
+                    currencyType = view.getPoundRadioButton().getText();
                 }
+                array.add(currencyType);
                 array.add(listingFolderPath);
                 array.add(dailyReportFolderPath);
                 array.add(personalBusinessHeaderPath);
-                guardarDatos(array);
+                saveData(array);
                 view.dispose();
             }
         };
@@ -76,7 +79,7 @@ public class ConfigurationController {
         };
         return al;
     }
-    
+
     private ActionListener getSelectListingFolderButtonActionListener() {
         ActionListener al = new ActionListener() {
             @Override
@@ -94,7 +97,7 @@ public class ConfigurationController {
         };
         return al;
     }
-    
+
     private ActionListener getSelectPersonalBusinessHeaderButtonActionListener() {
         ActionListener al = new ActionListener() {
             @Override
@@ -110,10 +113,9 @@ public class ConfigurationController {
         };
         return al;
     }
-    
-    private void guardarDatos(ArrayList<String> data) {
-        try (FileWriter fw = new FileWriter("./data/user_data/config.txt");
-             PrintWriter pw = new PrintWriter(fw)) {
+
+    private void saveData(ArrayList<String> data) {
+        try (FileWriter fw = new FileWriter("./data/user_data/config.txt"); PrintWriter pw = new PrintWriter(fw)) {
             for (String d : data) {
                 pw.println(d);
             }
@@ -122,24 +124,44 @@ public class ConfigurationController {
             System.err.println("Error al guardar datos: " + e.getMessage());
         }
     }
-    
-    private void setVariables(){
+
+    private void setVariables() {
         try (BufferedReader br = new BufferedReader(new FileReader("./data/user_data/config.txt"))) {
             ArrayList<String> datos = new ArrayList<>();
             String linea;
-            while ((linea =br.readLine()) != null) {
+            while ((linea = br.readLine()) != null) {
                 datos.add(linea);
             }
-            currencyType = datos.get(0);
-            listingFolderPath = datos.get(1);
-            dailyReportFolderPath = datos.get(2);
-            personalBusinessHeaderPath = datos.get(3);
+            try {
+                currencyType = datos.get(0);
+                listingFolderPath = datos.get(1);
+                dailyReportFolderPath = datos.get(2);
+                personalBusinessHeaderPath = datos.get(3);
+            }catch(Exception ex){
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(view, "There has been a problem getting the configuration, loading default variables.\nTo set a new configuration, select a currency, folders and header.");
+                setDefaultConfiguration();
+            }
+
         } catch (IOException e) {
             System.err.println("Error al leer datos: " + e.getMessage());
         }
     }
 
-    private void innitComponents(){
+    private void setDefaultConfiguration() {
+        currencyType = "€";
+        listingFolderPath = "./data/default_configuration/ListingsFolder";
+        dailyReportFolderPath = "./data/default_configuration/DailyReportFolder";
+        personalBusinessHeaderPath = "./data/default_configuration/SBDNO_header.png";
+        ArrayList<String> a = new ArrayList<>();
+        a.add(currencyType);
+        a.add(listingFolderPath);
+        a.add(dailyReportFolderPath);
+        a.add(personalBusinessHeaderPath);
+        saveData(a);
+    }
+
+    private void innitComponents() {
         setVariables();
         view.setTitle("Configuration");
         view.setDefaultCloseOperation();
