@@ -105,6 +105,18 @@ public class DeliveryNoteDAO {
         }
         return null;
     }
+    
+    public ResultSet listDeliveryNotesByDeliveryDate(String deliveryDate) {
+        String query = "SELECT * FROM delivery_notes WHERE delivery_date = ? ORDER BY truck_id, store_id;";
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, deliveryDate);
+            return ps.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public ResultSet filterDeliveryNotes(
             String dateFrom,
