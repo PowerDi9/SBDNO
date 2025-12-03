@@ -18,7 +18,7 @@ import model.dao.StoresDAO;
 import view.manageStoresView.ManageStoresFrame;
 import view.manageStoresView.editStoreView.EditStoreDialog;
 
-public class ManageStoresController {
+public class ManageStoresController {                                           //Controller for the manage stores view
 
     ManageStoresFrame view;
     String storeId, businessId, businessName, name = null;
@@ -35,7 +35,7 @@ public class ManageStoresController {
         this.innitcomponents();
     }
     
-    private MouseListener getEditStoresTableMouseListener() {
+    private MouseListener getEditStoresTableMouseListener() {                   //Gives the edit stores table a mouse action
         MouseAdapter ma = new MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -49,7 +49,7 @@ public class ManageStoresController {
         return ma;
     }
 
-    private void setSelectBusinessComboBoxModel() {
+    private void setSelectBusinessComboBoxModel() {                             //Sets the select business combo box model
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
         try {
             BusinessDAO dao = new BusinessDAO();
@@ -66,7 +66,7 @@ public class ManageStoresController {
         }
     }
 
-    private ActionListener getBackButtonActionListener() {
+    private ActionListener getBackButtonActionListener() {                      //Gives the back button an action
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -76,20 +76,20 @@ public class ManageStoresController {
         return al;
     }
     
-    private ActionListener getClearTextButtonActionListener() {
+    private ActionListener getClearTextButtonActionListener() {                 //Gives the clear text button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Sets the store name text field to blank
                 view.setStoreNameTextFieldText("");
             }
         };
         return al;
     }
     
-    private ActionListener getAddStoreButtonActionListener() {
+    private ActionListener getAddStoreButtonActionListener() {                  //Gives the add store button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Adds the store to the store table with the provided information
                 String name = view.getStoreNameTextFieldText();
                 int businessId = Integer.parseInt(view.getSelectBusinessComboBox().getSelectedItem().toString().split(",")[0]);
                 try {
@@ -113,10 +113,10 @@ public class ManageStoresController {
         return al;
     }
     
-    private ActionListener getDeleteStoreButtonActionListener() {
+    private ActionListener getDeleteStoreButtonActionListener() {               //Gives the delete store button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Deletes the selected store in the edit store table
                 try {
                     if(storeId == null){
                     JOptionPane.showMessageDialog(view, "Please select a Store to delete.");
@@ -135,10 +135,10 @@ public class ManageStoresController {
         return al;
     }
     
-    private ActionListener getEditStoreActionListener() {
+    private ActionListener getEditStoreActionListener() {                       //Gives the edit store button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Launches the edit store dialog with the information of the selected store in the edit store table
                 if(storeId == null){
                     JOptionPane.showMessageDialog(view, "Please select a Store to edit.");
                     return;
@@ -152,7 +152,7 @@ public class ManageStoresController {
         return al;
     }
 
-    private void updateEditStoresModel() {
+    private void updateEditStoresModel() {                                      //Updates the edit store table
         view.clearStores();
         try {
             StoresDAO dao = new StoresDAO();
@@ -176,12 +176,12 @@ public class ManageStoresController {
         }
     }
     
-    public void setIcon(){
+    public void setIcon(){                                                      //Sets the application Icon
          ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
             view.setIconImage(icon.getImage());
     }
 
-    private void innitcomponents() {
+    private void innitcomponents() {                                            //Initializes the components
         this.setIcon();
         view.setTitle("Manage Stores");
         view.setSetDefaultCloseOperation();

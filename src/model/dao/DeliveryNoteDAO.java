@@ -15,7 +15,7 @@ public class DeliveryNoteDAO {
         this.conn = DBConnection.getConnection();
     }
 
-    public boolean insertDeliveryNote(String date, 
+    public boolean insertDeliveryNote(String date,                              //Inserts a delivery note
             String deliveryDate, 
             Double amount, 
             int clientId, 
@@ -39,7 +39,7 @@ public class DeliveryNoteDAO {
         }
     }
 
-    public boolean deleteDeliveryNote(int deliveryNoteId) {
+    public boolean deleteDeliveryNote(int deliveryNoteId) {                     //Deletes a delivery note
         String sql = "DELETE FROM delivery_notes WHERE delivery_note_id = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, deliveryNoteId);
@@ -51,7 +51,7 @@ public class DeliveryNoteDAO {
         return false;
     }
 
-    public boolean editDeliveryNote(
+    public boolean editDeliveryNote(                                            //Edits a delivery note
             int newId, 
             String date, 
             String deliveryDate, 
@@ -81,7 +81,7 @@ public class DeliveryNoteDAO {
         }
     }
 
-    public ResultSet listDeliveryNotes() {
+    public ResultSet listDeliveryNotes() {                                      //Lists all delivery notes
         String query = "SELECT * FROM delivery_notes";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
@@ -92,7 +92,7 @@ public class DeliveryNoteDAO {
         return null;
     }
     
-    public ResultSet listDeliveryNotesByBusinessIdAndDeliveryDate(String deliveryFrom, String deliveryTo, int business_id) {
+    public ResultSet listDeliveryNotesByBusinessIdAndDeliveryDate(String deliveryFrom, String deliveryTo, int business_id) {        //Lists delivery notes by business id and delivery date
         String query = "SELECT * FROM delivery_notes WHERE business_id = ? AND delivery_date BETWEEN ? AND ? ORDER BY delivery_date;";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
@@ -106,7 +106,7 @@ public class DeliveryNoteDAO {
         return null;
     }
     
-    public ResultSet listDeliveryNotesByDeliveryDate(String deliveryDate) {
+    public ResultSet listDeliveryNotesByDeliveryDate(String deliveryDate) {     //Lists delivery notes by delivery date
         String query = "SELECT * FROM delivery_notes WHERE delivery_date = ? ORDER BY truck_id, store_id;";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
@@ -118,7 +118,7 @@ public class DeliveryNoteDAO {
         return null;
     }
 
-    public ResultSet filterDeliveryNotes(
+    public ResultSet filterDeliveryNotes(                                       //Filters delivery notes by the introduced data
             String dateFrom,
             String dateTo,
             String deliveryFrom,

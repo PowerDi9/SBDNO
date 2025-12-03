@@ -18,7 +18,7 @@ import model.dao.StoresDAO;
 import view.manageSellersView.ManageSellersFrame;
 import view.manageSellersView.editSellerView.EditSellerDialog;
 
-public class ManageSellersController {
+public class ManageSellersController {                                          //Controller for the manage sellers view
     
     ManageSellersFrame view;
     String sellerId, storeId, storeName, name = null;
@@ -35,10 +35,10 @@ public class ManageSellersController {
         this.innitcomponents();
     }
     
-    private MouseListener getEditSellersTableMouseListener() {
-        MouseAdapter ma = new MouseAdapter() {
+    private MouseListener getEditSellersTableMouseListener() {                  //Gives the edit sellers table a mouse action
+        MouseAdapter ma = new MouseAdapter() {  
             @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {           //Gets the selected seller data and stores it on the variables
                 int row = view.getEditSellersTable().rowAtPoint(evt.getPoint());
                 storeId = view.getEditSellersTableIDAt(row, 0);
                 sellerId = view.getEditSellersTableIDAt(row, 1);
@@ -49,7 +49,7 @@ public class ManageSellersController {
         return ma;
     }
 
-    private void setSelectStoreComboBoxModel() {
+    private void setSelectStoreComboBoxModel() {                                //Sets the select store combo box model
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
         try {
             StoresDAO dao = new StoresDAO();
@@ -66,7 +66,7 @@ public class ManageSellersController {
         }
     }
 
-    private ActionListener getBackButtonActionListener() {
+    private ActionListener getBackButtonActionListener() {                      //Gives the back button an action
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -76,20 +76,20 @@ public class ManageSellersController {
         return al;
     }
     
-    private ActionListener getClearTextButtonActionListener() {
+    private ActionListener getClearTextButtonActionListener() {                 //Gives the clear text button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Sets the sellers name to blank
                 view.setSellerNameTextFieldText("");
             }
         };
         return al;
     }
     
-    private ActionListener getAddSellerButtonActionListener() {
+    private ActionListener getAddSellerButtonActionListener() {                 //Gives the add seller button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Adds the seller to the sellers table with the provided data
                 String name = view.getSellerNameTextFieldText();
                 int storeId = Integer.parseInt(view.getSelectStoreComboBox().getSelectedItem().toString().split(",")[0]);
                 try {
@@ -97,12 +97,10 @@ public class ManageSellersController {
                     if (dao.sellerExists(name)) {
                         int option = JOptionPane.showConfirmDialog(null, "The seller \"" + name + "\" already exists.\nCreate it anyway?", "Confirm Duplicate", JOptionPane.YES_NO_OPTION);
                         if (option == JOptionPane.NO_OPTION) {
-                            System.out.println("Operation cancelled.");
                             return;
                         }
                     }
                     if (dao.insertSeller(storeId, name)) {
-                        System.out.println("Seller added successfully");
                     }
                 } catch (SQLException ex) {
                     ex.printStackTrace();
@@ -113,10 +111,10 @@ public class ManageSellersController {
         return al;
     }
     
-    private ActionListener getDeleteSellerButtonActionListener() {
+    private ActionListener getDeleteSellerButtonActionListener() {              //Gives the delete seller button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Deletes the selected seller on the edit sellers table
                 try {
                     if(sellerId == null){
                     JOptionPane.showMessageDialog(view, "Please select a seller to delete.");
@@ -135,10 +133,10 @@ public class ManageSellersController {
         return al;
     }
     
-    private ActionListener getEditSellerActionListener() {
+    private ActionListener getEditSellerActionListener() {                      //Gives the edit seller button an action listener
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Launches the edit seller dialog with the information provided
                 if(storeId == null){
                     JOptionPane.showMessageDialog(view, "Please select a seller to edit.");
                     return;
@@ -152,7 +150,7 @@ public class ManageSellersController {
         return al;
     }
 
-    private void updateEditSellersModel() {
+    private void updateEditSellersModel() {                                     //Updates the edit seller table
         view.clearSellers();
         try {
             SellersDAO dao = new SellersDAO();
@@ -176,12 +174,12 @@ public class ManageSellersController {
         }
     }
     
-    public void setIcon(){
+    public void setIcon(){                                                      //Sets the application Icon
          ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
             view.setIconImage(icon.getImage());
     }
 
-    private void innitcomponents() {
+    private void innitcomponents() {                                            //Initializes the components
         this.setIcon();
         view.setTitle("Manage Sellers");
         view.setSetDefaultCloseOperation();

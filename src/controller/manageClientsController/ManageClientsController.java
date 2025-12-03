@@ -19,7 +19,7 @@ import view.manageClientsView.ManageClientsFrame;
 import view.manageClientsView.editClientView.EditClientDialog;
 import view.manageClientsView.searchClientsDialog.SearchClientsDialog;
 
-public class ManageClientsController {
+public class ManageClientsController {                                          //Controller for the manage clients view
 
     ManageClientsFrame view;
     String clientId, clientName, phoneNumber = null;
@@ -37,10 +37,10 @@ public class ManageClientsController {
         this.innitcomponents();
     }
 
-    private MouseListener getEditClientsTableMouseListener() {
+    private MouseListener getEditClientsTableMouseListener() {                  //Gives the edit clients table a mouse action
         MouseAdapter ma = new MouseAdapter() {
             @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {           //Gets the selected client data and sets the variables
                 int row = view.getEditClientsJTable().rowAtPoint(evt.getPoint());
                 clientId = view.getEditClientsTableIDAt(row, 0);
                 clientName = view.getEditClientsTableIDAt(row, 1);
@@ -50,7 +50,7 @@ public class ManageClientsController {
         return ma;
     }
 
-    private ActionListener getBackButtonActionListener() {
+    private ActionListener getBackButtonActionListener() {                      //Gives the back button an action
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -60,10 +60,10 @@ public class ManageClientsController {
         return al;
     }
 
-    private ActionListener getClearTextButtonActionListener() {
+    private ActionListener getClearTextButtonActionListener() {                 //Gives the clear text button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Sets the text fields to blank
                 view.setClientNameTextFieldText("");
                 view.setPhoneNumberTextFieldText("");
             }
@@ -71,10 +71,10 @@ public class ManageClientsController {
         return al;
     }
 
-    private ActionListener getAddClientsButtonActionListener() {
+    private ActionListener getAddClientsButtonActionListener() {                //Gives the add client button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Adds the client to the DB with the provided data
                 String name = view.getClientNameTextFieldText();
                 String phoneNumber = view.getPhoneNumberTextFieldText();
                 try {
@@ -82,12 +82,10 @@ public class ManageClientsController {
                     if (dao.clientExists(name)) {
                         int option = JOptionPane.showConfirmDialog(null, "The Client \"" + name + "\" already exists.\nCreate it anyway?", "Confirm Duplicate", JOptionPane.YES_NO_OPTION);
                         if (option == JOptionPane.NO_OPTION) {
-                            System.out.println("Operation cancelled.");
                             return;
                         }
                     }
                     if (dao.insertClient(name, phoneNumber)) {
-                        System.out.println("Client added successfully");
                     }
                 } catch (SQLException ex) {
                     ex.printStackTrace();
@@ -98,10 +96,10 @@ public class ManageClientsController {
         return al;
     }
 
-    private ActionListener getDeleteClientButtonActionListener() {
+    private ActionListener getDeleteClientButtonActionListener() {              //Gives the delete client an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Deletes the selected client on the table
                 try {
                     if (clientId == null) {
                         JOptionPane.showMessageDialog(view, "Please select a client to delete.");
@@ -120,10 +118,10 @@ public class ManageClientsController {
         return al;
     }
 
-    private ActionListener getSearchButtonActionListener() {
+    private ActionListener getSearchButtonActionListener() {                    //Gives the search button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Launches the search clients dialog
                 SearchClientsDialog scd = new SearchClientsDialog(view, true);
                 SearchClientsController ecc = new SearchClientsController(scd, view);
                 scd.setLocationRelativeTo(view);
@@ -133,10 +131,10 @@ public class ManageClientsController {
         return al;
     }
 
-    private ActionListener getEditClientButtonActionListener() {
+    private ActionListener getEditClientButtonActionListener() {                //Gives the edit button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Launches the edit client dialog
                 if (clientId == null) {
                     JOptionPane.showMessageDialog(view, "Please select a client to edit.");
                     return;
@@ -150,7 +148,7 @@ public class ManageClientsController {
         return al;
     }
 
-    private void updateEditClientsModel() {
+    private void updateEditClientsModel() {                                     //Updates the edit client table
         view.clearClients();
         try {
             ClientsDAO dao = new ClientsDAO();
@@ -173,12 +171,12 @@ public class ManageClientsController {
         }
     }
 
-    public void setIcon() {
+    public void setIcon() {                                                     //Sets the application icon
         ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
         view.setIconImage(icon.getImage());
     }
 
-    private void innitcomponents() {
+    private void innitcomponents() {                                            //Initializes the component
         this.setIcon();
         view.setTitle("Manage Clients");
         view.setSetDefaultCloseOperation();

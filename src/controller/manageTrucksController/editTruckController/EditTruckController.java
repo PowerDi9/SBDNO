@@ -12,7 +12,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import view.manageTrucksView.ManageTrucksFrame;
 import view.manageTrucksView.editTruckView.EditTruckDialog;
 
-public class EditTruckController {
+public class EditTruckController {                                              //Controller for the edit truck dialog
 
     EditTruckDialog view = null;
     ManageTrucksFrame view2 = null;
@@ -29,15 +29,15 @@ public class EditTruckController {
         this.initComponents();
     }
 
-    public ActionListener getAcceptButtonActionListener() {
+    private ActionListener getAcceptButtonActionListener() {                     //Gives the accept button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Updates the information of the selected truck in the trucks table with the provided information
                 try {
                     TrucksDAO dao = new TrucksDAO();
                     dao.editTruck(truckId, view.getTruckNameTextFieldText(), view.getTruckDescriptionTextAreaText());
                     System.out.println("Edited Correctly");
-                    updateEditBusinessesModel();
+                    updateEditTrucksModel();
                     view.dispose();
                 } catch (SQLException ex) {
                     ex.printStackTrace();
@@ -47,7 +47,7 @@ public class EditTruckController {
         return al;
     }
 
-    public ActionListener getCancelButtonActionListener() {
+    private ActionListener getCancelButtonActionListener() {                     //Gives the cancel button an action
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -57,7 +57,7 @@ public class EditTruckController {
         return al;
     }
 
-    public void updateEditBusinessesModel() {
+    private void updateEditTrucksModel() {                                  //Updates the edit trucks model 
         view2.clearTrucks();
         try {
             TrucksDAO dao = new TrucksDAO();
@@ -80,12 +80,12 @@ public class EditTruckController {
         }
     }
 
-    public void setIcon() {
+    private void setIcon() {                                                    //Sets the application icon
         ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
         view.setIconImage(icon.getImage());
     }
 
-    public void initComponents() {
+    private void initComponents() {                                             //initializes the components
         this.setIcon();
         view.setTruckNameTextFieldText(truckName);
         view.setTruckDescriptionTextAreaText(truckDescription);

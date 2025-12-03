@@ -12,7 +12,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import view.manageClientsView.ManageClientsFrame;
 import view.manageClientsView.editClientView.EditClientDialog;
 
-public class EditClientController {
+public class EditClientController {                                             //Controller for the edit client view
     EditClientDialog view = null;
     ManageClientsFrame view2 = null;
     String id, clientName, phoneNumber = null;
@@ -28,10 +28,10 @@ public class EditClientController {
         this.initComponents();
     }
 
-    public ActionListener getAcceptButtonActionListener() {
+    private ActionListener getAcceptButtonActionListener() {                     //Gives the accept button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Updates the information of the client with the new data
                 try {
                     ClientsDAO dao = new ClientsDAO();
                     dao.editClient(id, view.getClientNameTextFieldText(), view.getPhoneNumberTextFieldText());
@@ -47,7 +47,7 @@ public class EditClientController {
         return al;
     }
 
-    public ActionListener getCancelButtonActionListener() {
+    private ActionListener getCancelButtonActionListener() {                     //gives the cancel button an action
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -57,7 +57,7 @@ public class EditClientController {
         return al;
     }
 
-    public void updateEditClientsModel() {
+    private void updateEditClientsModel() {                                     //Updates the manage clients table 
         view2.clearClients();
         try {
             ClientsDAO dao = new ClientsDAO();
@@ -80,12 +80,12 @@ public class EditClientController {
         }
     }
     
-    public void setIcon(){
+    public void setIcon(){                                                      //Sets the icon for the application
          ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
             view.setIconImage(icon.getImage());
     }
 
-    public void initComponents() {
+    public void initComponents() {                                              //Initialazes the components
         this.setIcon();
         view.setClientNameTextFieldText(clientName);
         view.setPhoneNumberTextFieldText(phoneNumber);

@@ -23,7 +23,7 @@ import view.addDeliveryNoteView.selectDateDialog.SelectDateDialog;
 import view.searchManageDeliveryNoteView.SearchManageDeliveryNoteFrame;
 import view.searchManageDeliveryNoteView.editDeliveryNoteView.EditDeliveryNoteFrame;
 
-public class EditDeliveryNoteController {
+public class EditDeliveryNoteController {                                       //Controller for the edit delivery note dialog
 
     EditDeliveryNoteFrame view;
     SearchManageDeliveryNoteFrame view2;
@@ -57,10 +57,10 @@ public class EditDeliveryNoteController {
         this.view.addConfirmChangesButtonAL(this.getConfirmChangesActionListener());
     }
 
-    private ActionListener getConfirmChangesActionListener() {
+    private ActionListener getConfirmChangesActionListener() {                  //Gives the confirm changes action a 
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Edits the delivery note with the new provided.
                 newBusinessId = view.getSelectBusinessComboBox().getSelectedItem().toString().split(",")[0];
                 newStoreId = view.getSelectStoreComboBox().getSelectedItem().toString().split(",")[0];
                 newSellerId = view.getSelectSellerComboBox().getSelectedItem().toString().split(",")[0];
@@ -120,7 +120,7 @@ public class EditDeliveryNoteController {
         return al;
     }
 
-    private ActionListener getBackButtonActionListener() {
+    private ActionListener getBackButtonActionListener() {                      //Gives the back button an action
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -129,21 +129,21 @@ public class EditDeliveryNoteController {
         };
         return al;
     }
-
-    private ActionListener getResetEntriesButtonActionListener() {
+    
+    private ActionListener getResetEntriesButtonActionListener() {              //Gives the reset entries button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Resets the entries
                 resetEntries();
             }
         };
         return al;
     }
 
-    private ActionListener getSelectPDFBUttonActionListener() {
+    private ActionListener getSelectPDFBUttonActionListener() {                 //Gives the select PDF button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Takes the PDF path the user gives and stores it in the variable
                 JFileChooser fc = new JFileChooser();
                 int selection = fc.showOpenDialog(view);
                 String nPDFRute = null;
@@ -166,10 +166,10 @@ public class EditDeliveryNoteController {
         return al;
     }
 
-    private ActionListener getSelectDateButtonActionListener() {
+    private ActionListener getSelectDateButtonActionListener() {                //Gives the select date button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Takes the date the user gives and stores it in the variable
                 EditDeliveryNoteController actualController = EditDeliveryNoteController.this;
                 SelectDateDialog sdd = new SelectDateDialog(view, true);
                 SelectDateController sdc = new SelectDateController(sdd, actualController);
@@ -180,15 +180,15 @@ public class EditDeliveryNoteController {
         return al;
     }
 
-    public void setDeliveryDate(String str) {
+    public void setDeliveryDate(String str) {                                   //Mathod for setting the date from 
         this.newDeliveryDate = str;
         this.view.setSelectDateButtonText(str);
     }
 
-    private ActionListener getSelectBusinessComboBoxActionListener() {
+    private ActionListener getSelectBusinessComboBoxActionListener() {          //Gives the select business combo box an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //When selecting an item gets the id and stores it
                 if (ignoreComboChange) {
                     return;
                 }
@@ -196,18 +196,22 @@ public class EditDeliveryNoteController {
                     JOptionPane.showMessageDialog(view, "Please select a Business.");
                     return;
                 }
+                DefaultComboBoxModel<String> emptyModel = new DefaultComboBoxModel<>();
+                emptyModel.addElement(null);
                 newBusinessId = view.getSelectBusinessComboBox().getSelectedItem().toString().split(",")[0];
                 setStoresComboBoxByBussinesId(Integer.parseInt(newBusinessId));
+                view.getSelectStoreComboBox().setEnabled(true);
+                view.getSelectSellerComboBox().setModel(emptyModel);
                 view.getSelectSellerComboBox().setEnabled(false);
             }
         };
         return al;
     }
 
-    private ActionListener getSelectStoreComboBoxActionListener() {
+    private ActionListener getSelectStoreComboBoxActionListener() {             //Gives the select store combo box an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //When selecting an item gets the id and stores it
                 if (ignoreComboChange) {
                     return;
                 }
@@ -223,10 +227,10 @@ public class EditDeliveryNoteController {
         return al;
     }
 
-    private ActionListener getSelectSellerComboBoxActionListener() {
+    private ActionListener getSelectSellerComboBoxActionListener() {            //Gives the select seller combo box an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //When selecting an item gets the id and stores it
                 if (ignoreComboChange) {
                     return;
                 }
@@ -240,10 +244,10 @@ public class EditDeliveryNoteController {
         return al;
     }
 
-    private ActionListener getSelectTruckComboBoxActionListener() {
+    private ActionListener getSelectTruckComboBoxActionListener() {             //Gives the select truck combo box an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //When selecting an item gets the id and stores it
                 if (ignoreComboChange) {
                     return;
                 }
@@ -257,7 +261,7 @@ public class EditDeliveryNoteController {
         return al;
     }
 
-    private void setStoresComboBoxByBussinesId(int bussinesId) {
+    private void setStoresComboBoxByBussinesId(int bussinesId) {                //Sets the store combo box by business id
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
         try {
             StoresDAO dao = new StoresDAO();
@@ -274,7 +278,7 @@ public class EditDeliveryNoteController {
         }
     }
 
-    private void setSellersComboBoxByStoreId(int storeId) {
+    private void setSellersComboBoxByStoreId(int storeId) {                     //Sets the seller combo box by store id
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
         try {
             SellersDAO dao = new SellersDAO();
@@ -291,7 +295,7 @@ public class EditDeliveryNoteController {
         }
     }
 
-    private void setTextFields() {
+    private void setTextFields() {                                              //Sets the text field
         this.view.setAmountTextFieldText(amount);
         try {
             ClientsDAO dao = new ClientsDAO();
@@ -305,7 +309,7 @@ public class EditDeliveryNoteController {
         }
     }
 
-    private void setComboBoxes() {
+    private void setComboBoxes() {                                              //Sets the combo boxes
         DefaultComboBoxModel<String> businessModel = new DefaultComboBoxModel<>();
         DefaultComboBoxModel<String> truckModel = new DefaultComboBoxModel<>();
         DefaultComboBoxModel<String> storeModel = new DefaultComboBoxModel<>();
@@ -377,7 +381,7 @@ public class EditDeliveryNoteController {
         }
     }
 
-    private void resetEntries() {
+    private void resetEntries() {                                               //Resets the entries
         ignoreComboChange = true;
         this.setComboBoxes();
         this.setTextFields();
@@ -385,7 +389,7 @@ public class EditDeliveryNoteController {
         ignoreComboChange = false;
     }
 
-    private void updateSearchManageDeliveryNotesModel() {
+    private void updateSearchManageDeliveryNotesModel() {                       //Updates the search manage delivery notes table
         view2.clearDeliveryNotes();
         try {
             DeliveryNoteDAO deliveryNoteDao = new DeliveryNoteDAO();
@@ -447,12 +451,12 @@ public class EditDeliveryNoteController {
         }
     }
 
-    public void setIcon() {
+    public void setIcon() {                                                     //Sets the application icon
         ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
         view.setIconImage(icon.getImage());
     }
 
-    private void innitComponents() {
+    private void innitComponents() {                                            //Initializes the components
         this.setIcon();
         this.setComboBoxes();
         this.setTextFields();

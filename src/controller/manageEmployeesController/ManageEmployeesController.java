@@ -18,10 +18,10 @@ import model.dao.EmployeesDAO;
 import view.manageEmployeesView.ManageEmployeesFrame;
 import view.manageEmployeesView.editEmployeeView.EditEmployeeDialog;
 
-public class ManageEmployeesController {
+public class ManageEmployeesController {                                        //Controller for the manage employees view
 
     ManageEmployeesFrame view;
-    String id, name, state = null;
+    String id, name, status = null;
     ArrayList<String> array = new ArrayList<String>();
 
     public ManageEmployeesController(ManageEmployeesFrame view) {
@@ -36,20 +36,20 @@ public class ManageEmployeesController {
         this.innitcomponents();
     }
 
-    private MouseListener getEditEmployeesTableMouseListener() {
+    private MouseListener getEditEmployeesTableMouseListener() {                //Gives the the edit employees table a mouse action
         MouseAdapter ma = new MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 int row = view.getEditEmployeeTable().rowAtPoint(evt.getPoint());
                 id = view.getEditEmployeeTableIDAt(row, 0);
                 name = view.getEditEmployeeTableIDAt(row, 1);
-                state = view.getEditEmployeeTableIDAt(row, 2);
+                status = view.getEditEmployeeTableIDAt(row, 2);
             }
         };
         return ma;
     }
 
-    private ActionListener getBackButtonActionListener() {
+    private ActionListener getBackButtonActionListener() {                      //Gives the back button an action
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -59,20 +59,20 @@ public class ManageEmployeesController {
         return al;
     }
 
-    private ActionListener getClearTextButtonActionListener() {
+    private ActionListener getClearTextButtonActionListener() {                 //Gives the clear text an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Sets the employee name texfield to blank
                 view.setEmployeeNameTextField("");
             }
         };
         return al;
     }
 
-    private ActionListener getDeleteEmployeesButtonActionListener() {
+    private ActionListener getDeleteEmployeesButtonActionListener() {           //Gives the delete button employee an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Deletes the employee selected on the table
                 try {
                     if (id == null) {
                         JOptionPane.showMessageDialog(view, "Please select a Employee to delete.");
@@ -91,12 +91,12 @@ public class ManageEmployeesController {
         return al;
     }
 
-    private ActionListener getAddEmployeeButtonActionListener() {
+    private ActionListener getAddEmployeeButtonActionListener() {               //Gives the add employee button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Adds the employee to the employee table with the information provided
                 String employeeName = view.getEmployeeNameTextField();
-                String state = view.getEmployeeStateComboBox().getSelectedItem().toString();
+                String state = view.getEmployeeStatusComboBox().getSelectedItem().toString();
                 try {
                     EmployeesDAO dao = new EmployeesDAO();
                     if (dao.employeeExists(employeeName)) {
@@ -107,7 +107,7 @@ public class ManageEmployeesController {
                         }
                     }
                     if (dao.insertEmployee(employeeName, state)) {
-                        System.out.println("Employee added successfully");
+                        JOptionPane.showMessageDialog(view, "Employee added succesfully");
                     }
                 } catch (SQLException ex) {
                     ex.printStackTrace();
@@ -118,16 +118,16 @@ public class ManageEmployeesController {
         return al;
     }
 
-    private ActionListener getEditEmployeeActionListener() {
+    private ActionListener getEditEmployeeActionListener() {                    //Gives the edit employee button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Launches the edit employee dialog with the data of the selected employee on the table
                 if (id == null) {
                     JOptionPane.showMessageDialog(view, "Please select a employee to edit.");
                     return;
                 }
                 EditEmployeeDialog eed = new EditEmployeeDialog(view, true);
-                EditEmployeeController eec = new EditEmployeeController(eed, view, id, name, state, array);
+                EditEmployeeController eec = new EditEmployeeController(eed, view, id, name, status, array);
                 eed.setLocationRelativeTo(view);
                 eed.setVisible(true);
             }
@@ -135,7 +135,7 @@ public class ManageEmployeesController {
         return al;
     }
 
-    private void updateEditEmployeeModel() {
+    private void updateEditEmployeeModel() {                                    //Updates the edit employee table
         view.clearEmployees();
         try {
             EmployeesDAO dao = new EmployeesDAO();
@@ -144,7 +144,7 @@ public class ManageEmployeesController {
                 Vector row = new Vector();
                 row.add(rs.getInt("employee_id"));
                 row.add(rs.getString("name"));
-                row.add(rs.getString("state"));
+                row.add(rs.getString("status"));
                 view.addEmployee(row);
             }
         } catch (SQLException e) {
@@ -158,7 +158,7 @@ public class ManageEmployeesController {
         }
     }
 
-    private void setEmployeeComboBoxModel() {
+    private void setEmployeeStatusComboBoxModel() {                             //Sets up the employee status combo box
         array.add("Active");
         array.add("Inactive");
         array.add("On leave");
@@ -166,23 +166,23 @@ public class ManageEmployeesController {
         array.add("Retired");
         array.add("In training");
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
-        for (int i = 0; i < array.size(); i++){
+        for (int i = 0; i < array.size(); i++) {
             model.addElement(array.get(i));
         }
-        view.getEmployeeStateComboBox().setModel(model);
+        view.getEmployeeStatusComboBox().setModel(model);
 
     }
-    
-    public void setIcon(){
-         ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
-            view.setIconImage(icon.getImage());
+
+    public void setIcon() {                                                      //Sets the application icon
+        ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
+        view.setIconImage(icon.getImage());
     }
 
-    private void innitcomponents() {
+    private void innitcomponents() {                                            //Initializes the components
         this.setIcon();
         view.setTitle("Manage Employees");
         view.setDefaultCloseOperation();
         this.updateEditEmployeeModel();
-        this.setEmployeeComboBoxModel();
+        this.setEmployeeStatusComboBoxModel();
     }
 }

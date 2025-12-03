@@ -14,7 +14,7 @@ public class TruckEmployeeIntermediateDAO {
         this.conn = DBConnection.getConnection();
     }
 
-    public boolean assignEmployeeToTruck(int truckId, int employeeId) {
+    public boolean assignEmployeeToTruck(int truckId, int employeeId) {         //Assigns an employee to a truck
         String sql = "INSERT INTO truck_employees (truck_id, employee_id) VALUES (?, ?)";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, truckId);
@@ -26,7 +26,7 @@ public class TruckEmployeeIntermediateDAO {
         }
     }
 
-    public boolean removeEmployeeFromTruck(int truckId, int employeeId) {
+    public boolean removeEmployeeFromTruck(int truckId, int employeeId) {       //Removes an employee from a truck
         String sql = "DELETE FROM truck_employees WHERE truck_id = ? AND employee_id = ?";
         try{
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -39,7 +39,7 @@ public class TruckEmployeeIntermediateDAO {
         }
     }
 
-    public ResultSet getEmployeesByTruck(int truckId) {
+    public ResultSet getEmployeesByTruck(int truckId) {                         //Gets all employees of a truck
         String sql = "SELECT e.employee_id, e.name, e.state FROM truck_employees te JOIN employees e ON te.employee_id = e.employee_id WHERE te.truck_id = ? ORDER BY e.name ASC";
         try{
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -51,7 +51,7 @@ public class TruckEmployeeIntermediateDAO {
         return null;
     }
     
-    public ResultSet getTruckByEmployee(int employeeId) {
+    public ResultSet getTruckByEmployee(int employeeId) {                       //Getrs the truck an employee is assigned to 
         String sql = "SELECT t.truck_id, t.description FROM truck_employees te JOIN trucks t ON te.truck_id = t.truck_id WHERE te.employee_id = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, employeeId);

@@ -98,9 +98,9 @@
                               <Component id="addEmployeeButton" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="employeeStateLabel" min="-2" max="-2" attributes="0"/>
+                              <Component id="employeeStatusLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="employeeStateComboBox" max="32767" attributes="0"/>
+                              <Component id="employeeStatusComboBox" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -114,8 +114,8 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="employeeNameTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="employeeNameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="employeeStateLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="employeeStateComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="employeeStatusLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="employeeStatusComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="124" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -144,12 +144,12 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="employeeStateLabel">
+            <Component class="javax.swing.JLabel" name="employeeStatusLabel">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Employee State:"/>
+                <Property name="text" type="java.lang.String" value="Employee Status:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="clearTextButton">
@@ -176,7 +176,7 @@
                 <Property name="text" type="java.lang.String" value="Back"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="employeeStateComboBox">
+            <Component class="javax.swing.JComboBox" name="employeeStatusComboBox">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="4">

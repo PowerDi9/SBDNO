@@ -7,13 +7,13 @@ import java.sql.SQLException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class DBConnection {
+public class DBConnection {                             //Class for initializing the DB and getting the connection
 
-    private static final String DB_URL = "jdbc:sqlite:src/database/database.db";
-    private static final String SCRIPT_PATH = "src/database/script.sql";
+    private static final String DB_URL = "jdbc:sqlite:src/database/database.db";            //Sets the location of the DB
+    private static final String SCRIPT_PATH = "src/database/script.sql";                    //Sets the location of the creation script of the DB
     private static Connection conn = null;
 
-    public static Connection getConnection() throws SQLException {
+    public static Connection getConnection() throws SQLException {                          //Singleton architecture for the DB connection
         if (conn == null) {
             try {
                 conn = DriverManager.getConnection(DB_URL);
@@ -25,7 +25,7 @@ public class DBConnection {
         return conn;
     }
 
-    public void initDB() throws SQLException {
+    public void initDB() throws SQLException {                                              //Initializes the DB
         Connection c = getConnection();
         try {
             String sql = new String(Files.readAllBytes(Paths.get(SCRIPT_PATH)));

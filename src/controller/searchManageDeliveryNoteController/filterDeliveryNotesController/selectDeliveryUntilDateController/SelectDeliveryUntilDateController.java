@@ -8,7 +8,7 @@ import java.util.Date;
 import javax.swing.ImageIcon;
 import view.addDeliveryNoteView.selectDateDialog.SelectDateDialog;
 
-public class SelectDeliveryUntilDateController {
+public class SelectDeliveryUntilDateController {                                //Controller for the select delivery until date
 
     private SelectDateDialog view;
     private Date date;
@@ -23,7 +23,7 @@ public class SelectDeliveryUntilDateController {
         this.setIcon();
     }
 
-    private ActionListener getCancelButtonActionListener() {
+    private ActionListener getCancelButtonActionListener() {                    //Gives the cancel button an action
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -33,10 +33,10 @@ public class SelectDeliveryUntilDateController {
         return al;
     }
 
-    private ActionListener getAcceptButtonActionListener() {
+    private ActionListener getAcceptButtonActionListener() {                    //Gives the accept button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Gets the date selected and gives it to the controller
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
                 date = view.getDeliveryDateJCalendar().getDate();
                 String simpleDate = sdf.format(date);
@@ -47,7 +47,7 @@ public class SelectDeliveryUntilDateController {
         return al;
     }
 
-    public void setIcon() {
+    public void setIcon() {                                                     //Sets the application icon
         ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
         view.setIconImage(icon.getImage());
     }

@@ -10,11 +10,11 @@ public class BusinessDAO {
 
     private Connection conn = null;
 
-    public BusinessDAO() throws SQLException {
+    public BusinessDAO() throws SQLException {                                  //Gets the connection
         this.conn = DBConnection.getConnection();
     }
 
-    public boolean businessExists(String businessName) throws SQLException {
+    public boolean businessExists(String businessName) throws SQLException {    //Gets the existance of a business
         String sql = "SELECT 1 FROM business WHERE LOWER(name) = LOWER(?) LIMIT 1";
         try (PreparedStatement ps = this.conn.prepareStatement(sql)) {
             ps.setString(1, businessName);
@@ -23,7 +23,7 @@ public class BusinessDAO {
         }
     }
 
-    public boolean insertBusiness(String businessName, double percentage) throws SQLException {
+    public boolean insertBusiness(String businessName, double percentage) throws SQLException {     //Inserts a business
         String sql = "INSERT INTO business(name, percentage) VALUES (?, ?)";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, businessName);
@@ -32,7 +32,7 @@ public class BusinessDAO {
         }
     }
 
-    public ResultSet listBusinesses() {
+    public ResultSet listBusinesses() {                                         //Lists the businesses
         String query = "SELECT * FROM business";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
@@ -43,7 +43,7 @@ public class BusinessDAO {
         return null;
     }
     
-    public ResultSet listBusinessesIdName(){
+    public ResultSet listBusinessesIdName(){                                    //Lists the businesses id and name
         String query = "SELECT business_id, name FROM business";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
@@ -54,7 +54,7 @@ public class BusinessDAO {
         return null;
     }
     
-    public ResultSet getBusinessName(int businessId) {
+    public ResultSet getBusinessName(int businessId) {                          //Gets the business name by id
         String query = "SELECT name FROM business WHERE business_id = ?";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
@@ -66,7 +66,7 @@ public class BusinessDAO {
         return null;
     }
     
-    public ResultSet getBusinessPercentage(int businessId) {
+    public ResultSet getBusinessPercentage(int businessId) {                    //Gets the business percentage by id
         String query = "SELECT percentage FROM business WHERE business_id = ?";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
@@ -78,7 +78,7 @@ public class BusinessDAO {
         return null;
     }
     
-    public boolean deleteBusiness(String str) throws SQLException {
+    public boolean deleteBusiness(String str) throws SQLException {             //Deletes the business by id
         int id = Integer.parseInt(str);
         String sql = "DELETE FROM business WHERE business_id = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -91,7 +91,7 @@ public class BusinessDAO {
         return false;
     }
 
-    public boolean editBusiness(String newId, String name, double percentage) throws SQLException{
+    public boolean editBusiness(String newId, String name, double percentage) throws SQLException{              //Edits the business 
         int id = Integer.parseInt(newId);
         String sql = "UPDATE business SET name = ?, percentage = ? WHERE business_id = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {

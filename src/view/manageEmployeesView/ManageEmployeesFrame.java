@@ -42,11 +42,11 @@ public class ManageEmployeesFrame extends javax.swing.JFrame {
         addBusinessJPanel = new javax.swing.JPanel();
         employeeNameLabel = new javax.swing.JLabel();
         employeeNameTextField = new javax.swing.JTextField();
-        employeeStateLabel = new javax.swing.JLabel();
+        employeeStatusLabel = new javax.swing.JLabel();
         clearTextButton = new javax.swing.JButton();
         addEmployeeButton = new javax.swing.JButton();
         addEmployeeBackButton = new javax.swing.JButton();
-        employeeStateComboBox = new javax.swing.JComboBox<>();
+        employeeStatusComboBox = new javax.swing.JComboBox<>();
         editBusinessesJPanel = new javax.swing.JPanel();
         editBusinessesScrollPane = new javax.swing.JScrollPane();
         editEmployeeTable = new javax.swing.JTable();
@@ -66,8 +66,8 @@ public class ManageEmployeesFrame extends javax.swing.JFrame {
 
         employeeNameTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        employeeStateLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        employeeStateLabel.setText("Employee State:");
+        employeeStatusLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        employeeStatusLabel.setText("Employee Status:");
 
         clearTextButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         clearTextButton.setText("Clear Text");
@@ -78,7 +78,7 @@ public class ManageEmployeesFrame extends javax.swing.JFrame {
         addEmployeeBackButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         addEmployeeBackButton.setText("Back");
 
-        employeeStateComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        employeeStatusComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout addBusinessJPanelLayout = new javax.swing.GroupLayout(addBusinessJPanel);
         addBusinessJPanel.setLayout(addBusinessJPanelLayout);
@@ -100,9 +100,9 @@ public class ManageEmployeesFrame extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(addEmployeeButton))
                     .addGroup(addBusinessJPanelLayout.createSequentialGroup()
-                        .addComponent(employeeStateLabel)
+                        .addComponent(employeeStatusLabel)
                         .addGap(18, 18, 18)
-                        .addComponent(employeeStateComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(employeeStatusComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         addBusinessJPanelLayout.setVerticalGroup(
@@ -112,8 +112,8 @@ public class ManageEmployeesFrame extends javax.swing.JFrame {
                 .addGroup(addBusinessJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(employeeNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(employeeNameLabel)
-                    .addComponent(employeeStateLabel)
-                    .addComponent(employeeStateComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(employeeStatusLabel)
+                    .addComponent(employeeStatusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
                 .addGroup(addBusinessJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(clearTextButton)
@@ -223,8 +223,8 @@ public class ManageEmployeesFrame extends javax.swing.JFrame {
         return this.employeeNameTextField.getText();
     }
     
-    public JComboBox getEmployeeStateComboBox(){
-        return this.employeeStateComboBox;
+    public JComboBox getEmployeeStatusComboBox(){
+        return this.employeeStatusComboBox;
     }
 
     public void addAddEmployeeButtonAL(ActionListener al) {
@@ -298,8 +298,8 @@ public class ManageEmployeesFrame extends javax.swing.JFrame {
     private javax.swing.JTable editEmployeeTable;
     private javax.swing.JLabel employeeNameLabel;
     private javax.swing.JTextField employeeNameTextField;
-    private javax.swing.JComboBox<String> employeeStateComboBox;
-    private javax.swing.JLabel employeeStateLabel;
+    private javax.swing.JComboBox<String> employeeStatusComboBox;
+    private javax.swing.JLabel employeeStatusLabel;
     private javax.swing.JTabbedPane manageEmployeeTabbedPane;
     private javax.swing.JLabel manageEmployeesLabel;
     // End of variables declaration//GEN-END:variables

@@ -14,7 +14,7 @@ public class SellersDAO {
         this.conn = DBConnection.getConnection();
     }
 
-    public boolean insertSeller(int storeId, String sellerName) throws SQLException {
+    public boolean insertSeller(int storeId, String sellerName) throws SQLException {           //Inserts a seller
         String sql = "INSERT INTO sellers(store_id, name) VALUES (?, ?)";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, storeId);
@@ -23,7 +23,7 @@ public class SellersDAO {
         }
     }
 
-    public boolean deleteSeller(String str) throws SQLException {
+    public boolean deleteSeller(String str) throws SQLException {               //Deletes a seller
         int id = Integer.parseInt(str);
         String sql = "DELETE FROM sellers WHERE seller_id = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -36,7 +36,7 @@ public class SellersDAO {
         return false;
     }
 
-    public boolean editSeller(String sellerId, String storeId, String name) throws SQLException {
+    public boolean editSeller(String sellerId, String storeId, String name) throws SQLException {       //Edits a seller
         int id = Integer.parseInt(sellerId);
         int sid = Integer.parseInt(storeId);
         String sql = "UPDATE sellers SET name = ?, store_id = ? WHERE seller_id = ?";
@@ -51,7 +51,7 @@ public class SellersDAO {
         }
     }
 
-    public ResultSet listSellers() {
+    public ResultSet listSellers() {                                            //Lists all sellers
         String query = "SELECT s.seller_id, s.store_id, st.name AS store_name, s.name AS seller_name FROM sellers s JOIN stores st ON s.store_id = st.store_id ORDER BY s.store_id;";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
@@ -62,7 +62,7 @@ public class SellersDAO {
         return null;
     }
     
-    public ResultSet listSellersIdNameByStoreId(int storeId){
+    public ResultSet listSellersIdNameByStoreId(int storeId){                   //List sellers id and name by store id
         String query = "SELECT s.seller_id, s.name AS seller_name FROM sellers s JOIN stores st ON s.store_id = st.store_id WHERE s.store_id = ? ORDER BY s.seller_id;";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
@@ -74,7 +74,7 @@ public class SellersDAO {
         return null;
     }
     
-    public ResultSet getSellerName(int sellerId) {
+    public ResultSet getSellerName(int sellerId) {                              //Gets a seller name
         String query = "SELECT name FROM sellers WHERE seller_id = ?";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
@@ -86,7 +86,7 @@ public class SellersDAO {
         return null;
     }
 
-    public boolean sellerExists(String sellerName) throws SQLException {
+    public boolean sellerExists(String sellerName) throws SQLException {        //Gets the existance of a seller
         String sql = "SELECT 1 FROM sellers WHERE LOWER(name) = LOWER(?) LIMIT 1";
         try (PreparedStatement ps = this.conn.prepareStatement(sql)) {
             ps.setString(1, sellerName);

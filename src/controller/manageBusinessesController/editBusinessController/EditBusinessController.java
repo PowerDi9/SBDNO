@@ -12,7 +12,7 @@ import model.dao.BusinessDAO;
 import view.manageBusinessesView.editBusinessView.EditBusinessDialog;
 import view.manageBusinessesView.ManageBusinessesFrame;
 
-public class EditBusinessController {
+public class EditBusinessController {                                           //Controller for editing businesses
 
     EditBusinessDialog view = null;
     ManageBusinessesFrame view2 = null;
@@ -29,10 +29,10 @@ public class EditBusinessController {
         this.initComponents();
     }
 
-    public ActionListener getAcceptButtonActionListener() {
+    public ActionListener getAcceptButtonActionListener() {                     //Gives the accept button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Performes an u`date of the selected business with the new data
                 try {
                     BusinessDAO dao = new BusinessDAO();
                     dao.editBusiness(id, view.getBusinessNameTextFieldText(), Double.parseDouble(view.getPercentageCommissionTextFieldText().replaceAll(",", ".")));
@@ -48,7 +48,7 @@ public class EditBusinessController {
         return al;
     }
 
-    public ActionListener getCancelButtonActionListener() {
+    public ActionListener getCancelButtonActionListener() {                     //Gives the cancel button an action
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -58,7 +58,7 @@ public class EditBusinessController {
         return al;
     }
 
-    public void updateEditBusinessesModel() {
+    public void updateEditBusinessesModel() {                                   //Updates the edit business table
         view2.clearBusinesses();
         try {
             BusinessDAO dao = new BusinessDAO();
@@ -81,12 +81,12 @@ public class EditBusinessController {
         }
     }
 
-    public void setIcon() {
+    public void setIcon() {                                                     //Sets the application icon
         ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
         view.setIconImage(icon.getImage());
     }
 
-    public void initComponents() {
+    public void initComponents() {                                              //Initialazes the components
         this.setIcon();
         view.setBusinessNameTextFieldText(name);
         view.setPercentageCommissionTextFieldText(percentage);

@@ -14,7 +14,7 @@ import model.dao.BusinessDAO;
 import view.manageStoresView.ManageStoresFrame;
 import view.manageStoresView.editStoreView.EditStoreDialog;
 
-public class EditStoreController {
+public class EditStoreController {                                              //Controller for the edit store dialog
 
     EditStoreDialog view = null;
     ManageStoresFrame view2 = null;
@@ -31,10 +31,10 @@ public class EditStoreController {
         this.initComponents();
     }
 
-    public ActionListener getAcceptButtonActionListener() {
+    private ActionListener getAcceptButtonActionListener() {                     //Gives the accept button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Updates the information of the selected store with the provided information
                 try {
                     businessId = view.getSelectBusinessComboBox().getSelectedItem().toString().split(",")[0];
                     StoresDAO dao = new StoresDAO();
@@ -50,8 +50,8 @@ public class EditStoreController {
         return al;
     }
 
-    public ActionListener getCancelButtonActionListener() {
-        ActionListener al = new ActionListener() {
+    private ActionListener getCancelButtonActionListener() {                     //Gives the cancel button an action
+        ActionListener al = new ActionListener() {  
             @Override
             public void actionPerformed(ActionEvent e) {
                 view.dispose();
@@ -60,7 +60,7 @@ public class EditStoreController {
         return al;
     }
 
-    public void updateEditStoresModel() {
+    private void updateEditStoresModel() {                                       //Updates the edit stores table
         view2.clearStores();
         try {
             StoresDAO dao = new StoresDAO();
@@ -84,7 +84,7 @@ public class EditStoreController {
         }
     }
 
-    private void setSelectBusinessComboBoxModel() {
+    private void setSelectBusinessComboBoxModel() {                             //Sets the select business combo box 
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
         try {
             BusinessDAO dao = new BusinessDAO();
@@ -108,12 +108,12 @@ public class EditStoreController {
         }
     }
 
-    public void setIcon() {
+    private void setIcon() {                                                     //Sets the application Icon
         ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
         view.setIconImage(icon.getImage());
     }
 
-    public void initComponents() {
+    private void initComponents() {                                             //Initializes the components
         this.setIcon();
         view.setStoreNameTextFieldText(storeName);
         view.setTitle("Edit Store");

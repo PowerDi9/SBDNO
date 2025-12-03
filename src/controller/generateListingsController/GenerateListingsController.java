@@ -39,7 +39,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import view.addDeliveryNoteView.selectDateDialog.SelectDateDialog;
 import view.generateListingsView.GenerateListingsFrame;
 
-public class GenerateListingsController {
+public class GenerateListingsController {                                                                                           //Controller for generate listings view
 
     GenerateListingsFrame view;
     String currencyType, listingFolderPath, personalBusinessHeaderPath, deliveryFromDate, deliveryUntilDate, businessName = null;
@@ -55,11 +55,11 @@ public class GenerateListingsController {
         innitComponents();
     }
 
-    private ActionListener getGenerateListingActionListener() {
+    private ActionListener getGenerateListingActionListener() {                                                                     //Gives the generate Listing an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                try (BufferedReader br = new BufferedReader(new FileReader("./data/user_data/config.txt"))) {
+            public void actionPerformed(ActionEvent e) {                                                                            //Generates the Listing
+                try (BufferedReader br = new BufferedReader(new FileReader("./data/user_data/config.txt"))) {                       //Reads the config and sets the variables
                     ArrayList<String> datos = new ArrayList<>();
                     String linea;
                     while ((linea = br.readLine()) != null) {
@@ -87,24 +87,24 @@ public class GenerateListingsController {
                     JOptionPane.showConfirmDialog(view, "Please select an ending delivery date");
                     return;
                 }
-                businessId = Integer.parseInt(view.getSelectBusinessComboBox().getSelectedItem().toString().split(",")[0]);
+                businessId = Integer.parseInt(view.getSelectBusinessComboBox().getSelectedItem().toString().split(",")[0]);         //Gets the business id and name
                 businessName = view.getSelectBusinessComboBox().getSelectedItem().toString().split(",")[1];
                 try {
-                    BusinessDAO bDAO = new BusinessDAO();
-                    ResultSet rs = bDAO.getBusinessPercentage(businessId);
+                    BusinessDAO bDAO = new BusinessDAO();                                                                           //Gets a connection to te business table
+                    ResultSet rs = bDAO.getBusinessPercentage(businessId);                                                          //Gets the percentage
                     businessPercentage = rs.getDouble("percentage");
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
 
-                Workbook workbook = new XSSFWorkbook();
-                Sheet sheet = workbook.createSheet("Sheet1");
-                CellStyle titleStyle = titleStyle(workbook);
+                Workbook workbook = new XSSFWorkbook();                                                                             //Creates the workbook for the Excel
+                Sheet sheet = workbook.createSheet("Sheet1");                                                                       //Creates a sheet for the excel
+                CellStyle titleStyle = titleStyle(workbook);                                                                        //Generates the styles that are going to be used
                 CellStyle dateClientStyle = dateClientStyle(workbook);
                 CellStyle amountStyle = amountStyle(workbook);
                 CellStyle totalStyle = totalStyle(workbook);
 
-                if (personalBusinessHeaderPath != null && !personalBusinessHeaderPath.isEmpty()) {
+                if (personalBusinessHeaderPath != null && !personalBusinessHeaderPath.isEmpty()) {                                  //Checks and generates the Business header in case it finds one
                     try (InputStream is = new FileInputStream(personalBusinessHeaderPath)) {
                         byte[] bytes = IOUtils.toByteArray(is);
                         int pictureIdx = workbook.addPicture(bytes, Workbook.PICTURE_TYPE_PNG);
@@ -121,12 +121,12 @@ public class GenerateListingsController {
                         System.err.println("Error al cargar la imagen: " + ex.getMessage());
                     }
                 }
-                sheet.addMergedRegion(new CellRangeAddress(9, 9, 1, 6));
+                sheet.addMergedRegion(new CellRangeAddress(9, 9, 1, 6));                                                            //Merges the cells for the title, busines title, business name, date and client name titles
                 sheet.addMergedRegion(new CellRangeAddress(11, 11, 2, 4));
                 sheet.addMergedRegion(new CellRangeAddress(10, 10, 1, 2));
                 sheet.addMergedRegion(new CellRangeAddress(10, 10, 3, 6));
 
-                Row deliveredGoodsRow = sheet.createRow(9);
+                Row deliveredGoodsRow = sheet.createRow(9);                                                                         //Creates the rows and Cells for all the headers
                 Cell deliveredGoodsCell = deliveredGoodsRow.createCell(1);
                 deliveredGoodsCell.setCellValue("DELIVERED GOODS");
                 deliveredGoodsCell.setCellStyle(titleStyle);
@@ -157,30 +157,30 @@ public class GenerateListingsController {
                 percentageHeaderCell.setCellValue(businessPercentage + "%");
                 percentageHeaderCell.setCellStyle(titleStyle);
 
-                int startedLoopRow = 12;
-                int startDataRow = 12;
+                int startedLoopRow = 12;                                                                                                    //Tracks the start of the loop
+                int startDataRow = 12;                                                                                                      //Tracks the start of the data row
                 try {
-                    DeliveryNoteDAO dnDAO = new DeliveryNoteDAO();
-                    ResultSet dnRS = dnDAO.listDeliveryNotesByBusinessIdAndDeliveryDate(deliveryFromDate, deliveryUntilDate, businessId);
+                    DeliveryNoteDAO dnDAO = new DeliveryNoteDAO();                                                                          //Gets a connection to the delivery notes table
+                    ResultSet dnRS = dnDAO.listDeliveryNotesByBusinessIdAndDeliveryDate(deliveryFromDate, deliveryUntilDate, businessId);   //Gets all the delivery notes by business and the date ranges
                     while (dnRS.next()) {
                         int currentRow = startDataRow++;
-                        Row dataRow = sheet.createRow(currentRow);
-                        sheet.addMergedRegion(new CellRangeAddress(currentRow, currentRow, 2, 4));
-                        Cell dateCell = dataRow.createCell(1);
+                        Row dataRow = sheet.createRow(currentRow);                                                                          //Creates the row
+                        sheet.addMergedRegion(new CellRangeAddress(currentRow, currentRow, 2, 4));                                          //Merges the client name cells
+                        Cell dateCell = dataRow.createCell(1);                                                                              //Creates and sets the date cell
                         dateCell.setCellValue(dnRS.getString("delivery_date"));
                         dateCell.setCellStyle(dateClientStyle);
 
-                        ClientsDAO cDAO = new ClientsDAO();
-                        ResultSet cRS = cDAO.getClientName(dnRS.getInt("client_id"));
-                        Cell clientNameCell = dataRow.createCell(2);
+                        ClientsDAO cDAO = new ClientsDAO();                                                                                 //Gets a connection to the clients table
+                        ResultSet cRS = cDAO.getClientName(dnRS.getInt("client_id"));                                                       //Gets the client name
+                        Cell clientNameCell = dataRow.createCell(2);                                                                        //Creates and sets the client name cell
                         clientNameCell.setCellValue(cRS.getString("name"));
                         clientNameCell.setCellStyle(dateClientStyle);
 
-                        Cell amountCell = dataRow.createCell(5);
+                        Cell amountCell = dataRow.createCell(5);                                                                            //Creates and sets the amount cell
                         amountCell.setCellValue(dnRS.getDouble("amount"));
                         amountCell.setCellStyle(amountStyle);
 
-                        Cell percentageCell = dataRow.createCell(6);
+                        Cell percentageCell = dataRow.createCell(6);                                                                        //Creates and sets the percentage cell
                         String formula = String.format("F%d*" + (businessPercentage / 100), currentRow + 1);
                         percentageCell.setCellFormula(formula);
                         percentageCell.setCellStyle(amountStyle);
@@ -188,39 +188,38 @@ public class GenerateListingsController {
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
-                Row finalRow = sheet.createRow(startDataRow);
-                Cell totalLabelCell = finalRow.createCell(4);
+                Row finalRow = sheet.createRow(startDataRow);                                                               //Creates a row for the final data
+                Cell totalLabelCell = finalRow.createCell(4);                                                               //Creates and sets the total label cell
                 totalLabelCell.setCellValue("TOTAL");
                 totalLabelCell.setCellStyle(totalStyle);
 
-                Cell totalAmountCell = finalRow.createCell(5);
+                Cell totalAmountCell = finalRow.createCell(5);                                                              //Creates and sets the total amount cell
                 String finalAmountFormula = String.format("SUM(F%d:F%d)", startedLoopRow + 1, startDataRow);
                 totalAmountCell.setCellFormula(finalAmountFormula);
                 totalAmountCell.setCellStyle(totalStyle);
 
-                Cell totalPercentaceCell = finalRow.createCell(6);
+                Cell totalPercentaceCell = finalRow.createCell(6);                                                          //Creates and sets the total percentage cell
                 String finalPercentageFormula = String.format("SUM(G%d:G%d)", startedLoopRow + 1, startDataRow);
                 totalPercentaceCell.setCellFormula(finalPercentageFormula);
                 totalPercentaceCell.setCellStyle(totalStyle);
 
-                sheet.setColumnWidth(0, 3000);
+                sheet.setColumnWidth(0, 3000);                                                                              //Sets the colummn width of all used colummns
                 sheet.setColumnWidth(1, 3000);
                 sheet.setColumnWidth(2, 3000);
                 sheet.setColumnWidth(3, 3000);
                 sheet.setColumnWidth(4, 3000);
                 sheet.setColumnWidth(5, 3000);
                 sheet.setColumnWidth(6, 3000);
-
-                try (FileOutputStream outputStream = new FileOutputStream(listingFolderPath + "\\" + businessName + "-" + deliveryFromDate.replaceAll("/", ".") + "-" + deliveryUntilDate.replaceAll("/", ".") + ".xlsx")) {
-                    workbook.write(outputStream);
-                    System.out.println("Excel file created correctly on: " + listingFolderPath);
+                
+                try (FileOutputStream outputStream = new FileOutputStream(listingFolderPath + "\\" + businessName + "-" + deliveryFromDate.replaceAll("/", ".") + "-" + deliveryUntilDate.replaceAll("/", ".") + ".xlsx")) {        //Sets the file path and name
+                    workbook.write(outputStream);                                       //Writes the excel file
                 } catch (FileNotFoundException ex) {
                     ex.printStackTrace();
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 } finally {
                     try {
-                        workbook.close();
+                        workbook.close();                                               //Closes the workbook
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
@@ -230,7 +229,7 @@ public class GenerateListingsController {
         return al;
     }
 
-    private ActionListener getBackButtonActionListener() {
+    private ActionListener getBackButtonActionListener() {                                                  //Gives the back button an action
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -240,7 +239,7 @@ public class GenerateListingsController {
         return al;
     }
 
-    private ActionListener getSelectDeliveryFromDateButtonActionListener() {
+    private ActionListener getSelectDeliveryFromDateButtonActionListener() {                                //Gives the delivery from date button an action
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -254,7 +253,7 @@ public class GenerateListingsController {
         return al;
     }
 
-    private ActionListener getSelectDeliveryUntilDateButtonActionListener() {
+    private ActionListener getSelectDeliveryUntilDateButtonActionListener() {                               //Gives the delivery until date button an action
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -268,7 +267,7 @@ public class GenerateListingsController {
         return al;
     }
 
-    private void setBusinessComboBox() {
+    private void setBusinessComboBox() {                                                                    //Sets the business combo box
         DefaultComboBoxModel<String> businessModel = new DefaultComboBoxModel<>();
         try {
             BusinessDAO dao = new BusinessDAO();
@@ -285,17 +284,17 @@ public class GenerateListingsController {
         }
     }
 
-    public void setDeliveryFromDate(String str) {
+    public void setDeliveryFromDate(String str) {                                               //Method that the select delivery from date controller can access to set the date
         this.deliveryFromDate = str;
         this.view.setSelectDeliveryFromDateText(str);
     }
 
-    public void setDeliveryUntilDate(String str) {
+    public void setDeliveryUntilDate(String str) {                                              //Method that the select delivery until date controller can access to set the date
         this.deliveryUntilDate = str;
         this.view.setSelectDeliveryUntilDateText(str);
     }
 
-    private CellStyle titleStyle(Workbook wk) {
+    private CellStyle titleStyle(Workbook wk) {                                                 //Creates the title style
         CellStyle style = wk.createCellStyle();
         Font font = wk.createFont();
         font.setBold(true);
@@ -309,7 +308,7 @@ public class GenerateListingsController {
         return style;
     }
 
-    private CellStyle dateClientStyle(Workbook wk) {
+    private CellStyle dateClientStyle(Workbook wk) {                                            //Creates the date and client style
         CellStyle style = wk.createCellStyle();
         style.setBorderRight(BorderStyle.THIN);
         style.setBorderLeft(BorderStyle.THIN);
@@ -317,7 +316,7 @@ public class GenerateListingsController {
         return style;
     }
 
-    private CellStyle amountStyle(Workbook wk) {
+    private CellStyle amountStyle(Workbook wk) {                                                //Creates the amount style
         CellStyle style = wk.createCellStyle();
         style.setBorderRight(BorderStyle.THIN);
         style.setBorderLeft(BorderStyle.THIN);
@@ -326,7 +325,7 @@ public class GenerateListingsController {
         return style;
     }
 
-    private CellStyle totalStyle(Workbook wk) {
+    private CellStyle totalStyle(Workbook wk) {                                                 //Creates the total style
         CellStyle style = wk.createCellStyle();
         Font font = wk.createFont();
         font.setBold(true);
@@ -338,12 +337,12 @@ public class GenerateListingsController {
         return style;
     }
 
-    public void setIcon() {
+    public void setIcon() {                                                                     //sets the application Icon
         ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
         view.setIconImage(icon.getImage());
     }
 
-    private void innitComponents() {
+    private void innitComponents() {                                                            //Initializes the components
         setIcon();
         view.setTitle("Generate Listings");
         setBusinessComboBox();

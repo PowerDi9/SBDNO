@@ -19,7 +19,7 @@ import model.dao.TrucksDAO;
 import view.addDeliveryNoteView.AddDeliveryNoteFrame;
 import view.addDeliveryNoteView.selectDateDialog.SelectDateDialog;
 
-public class AddDeliveryNoteController {
+public class AddDeliveryNoteController {                                        //Controller for adding the delivery notes, to the DB.
 
     AddDeliveryNoteFrame view;
     boolean ignoreComboChange = false;
@@ -41,12 +41,12 @@ public class AddDeliveryNoteController {
         this.view.addAddDeliveryNoteButtonAL(this.getAddDeliveryNoteActionListener());
     }
 
-    private ActionListener getAddDeliveryNoteActionListener() {
+    private ActionListener getAddDeliveryNoteActionListener() {                 //Gives an action to the Back button
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                date = LocalDate.now().toString().replaceAll("-", "/");
-                if (businessId == 0) {
+                date = LocalDate.now().toString().replaceAll("-", "/");                                 //Gets the date and formates it
+                if (businessId == 0) {                                                                  //Checks if every variable is registered
                     JOptionPane.showMessageDialog(view, "Please select a business.");
                     return;
                 } else if (storeId == 0) {
@@ -74,7 +74,7 @@ public class AddDeliveryNoteController {
                     JOptionPane.showMessageDialog(view, "Please introduce a client phone number.");
                     return;
                 }
-                try {
+                try {                                                                                   //Checks for the validity of the amount variable
                     amount = Double.parseDouble(view.getAmountTextFieldText().replaceAll(",", "."));
                 } catch (NumberFormatException nfe) {
                     JOptionPane.showMessageDialog(null, "Please introduce a valid number.");
@@ -83,25 +83,24 @@ public class AddDeliveryNoteController {
                 String clientName = view.getClientNameTextFieldText();
                 String clientPhoneNumber = view.getClientPhoneNumberTextFieldText();
                 try {
-                    ClientsDAO cdao = new ClientsDAO();
-                    clientId = cdao.returnGeneratedKeyInsertClient(clientName, clientPhoneNumber);
+                    ClientsDAO cdao = new ClientsDAO();                                                 //Gets a connettion to the clients table
+                    clientId = cdao.returnGeneratedKeyInsertClient(clientName, clientPhoneNumber);      //Adds the client attached to the delivery note
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
                 try {
                     DeliveryNoteDAO dndao = new DeliveryNoteDAO();
-                    dndao.insertDeliveryNote(date, deliveryDate, amount, clientId, sellerId, businessId, storeId, truckId, pdfRoute);
+                    dndao.insertDeliveryNote(date, deliveryDate, amount, clientId, sellerId, businessId, storeId, truckId, pdfRoute);           //Adds the delivery note 
                 } catch (SQLException ex) {
                     System.getLogger(AddDeliveryNoteController.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
                 }
                 JOptionPane.showMessageDialog(view, "DeliveryNote added correctly");
-
             }
         };
         return al;
     }
 
-    private ActionListener getBackButtonActionListener() {
+    private ActionListener getBackButtonActionListener() {                      //Gives an action to the Back button
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -111,7 +110,7 @@ public class AddDeliveryNoteController {
         return al;
     }
 
-    private ActionListener getClearEntriesButtonActionListener() {
+    private ActionListener getClearEntriesButtonActionListener() {              //Gives an action to the Clear Entries button
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -121,31 +120,30 @@ public class AddDeliveryNoteController {
         return al;
     }
 
-    private ActionListener getSelectPDFBUttonActionListener() {
+    private ActionListener getSelectPDFBUttonActionListener() {                 //Gives an action to the Select PDF button
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFileChooser fc = new JFileChooser();
-                int selection = fc.showOpenDialog(view);
+                int selection = fc.showOpenDialog(view);                        //Opens the menu for getting the PDF path
                 String newPDFRute = null;
-                if (selection == JFileChooser.APPROVE_OPTION) {
-                    newPDFRute = fc.getSelectedFile().getAbsolutePath();
-                    if(!newPDFRute.endsWith(".pdf")){
-                        JOptionPane.showMessageDialog(view, "Please select a PDF file.");
-                        return;
+                if (selection == JFileChooser.APPROVE_OPTION) {                 //If the user selects a file
+                    newPDFRute = fc.getSelectedFile().getAbsolutePath();        //Gets the file path
+                    if (!newPDFRute.endsWith(".pdf")) {                                           //If it doesen't end with .pdf
+                        JOptionPane.showMessageDialog(view, "Please select a PDF file.");       //Asks for a pdf.
+                        return;                                                 //Exits the action.
                     }
-                    JOptionPane.showMessageDialog(view, "Selected PDF: " + newPDFRute);
-                    System.out.println("Selected PDF: " + newPDFRute);
+                    JOptionPane.showMessageDialog(view, "Selected PDF: " + newPDFRute);         //Shows the pdf path
                 } else {
-                    JOptionPane.showMessageDialog(view, "No PDF was selected");
+                    JOptionPane.showMessageDialog(view, "No PDF was selected");                 //If the user doesen't select a file shows the message
                 }
-                pdfRoute = newPDFRute;
+                pdfRoute = newPDFRute;                                          //Sets the pdf route
             }
         };
         return al;
     }
 
-    private ActionListener getSelectDateButtonActionListener() {
+    private ActionListener getSelectDateButtonActionListener() {                //Gives an action to the Select Delivery Date button
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -159,175 +157,178 @@ public class AddDeliveryNoteController {
         return al;
     }
 
-    public void setDeliveryDate(String str) {
+    public void setDeliveryDate(String str) {                                   //Method the the new Dialog can reach to pass the new delivery date
         this.deliveryDate = str;
         this.view.setSelectDateButtonText(str);
     }
 
-    private ActionListener getSelectBusinessComboBoxActionListener() {
+    private ActionListener getSelectBusinessComboBoxActionListener() {          //Gives an action to the Select Business Combo Box
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (ignoreComboChange) {
+                if (ignoreComboChange) {                                        //If the clear entries button is pressed does nothing
                     return;
                 }
-                if (view.getSelectBusinessComboBox().getSelectedItem() == null || view.getSelectBusinessComboBox().getSelectedIndex() == 0) {
+                if (view.getSelectBusinessComboBox().getSelectedItem() == null || view.getSelectBusinessComboBox().getSelectedIndex() == 0) {       //Asks the user to select a business if the selected is null
                     JOptionPane.showMessageDialog(view, "Please select a Business.");
                     return;
                 }
-                businessId = Integer.parseInt(view.getSelectBusinessComboBox().getSelectedItem().toString().split(",")[0]);
-                setStoresComboBoxByBussinesId(businessId);
-                view.getSelectStoreComboBox().setEnabled(true);
+                DefaultComboBoxModel<String> emptyModel = new DefaultComboBoxModel<>();                         //gets an empty combo box model for the sellers combo box
+                emptyModel.addElement(null);                                                                    //adds a null element to a empty model
+                businessId = Integer.parseInt(view.getSelectBusinessComboBox().getSelectedItem().toString().split(",")[0]);  //gets the selected business id
+                setStoresComboBoxByBussinesId(businessId);                      //sets the store combo box
+                view.getSelectStoreComboBox().setEnabled(true);                 //enables the selected Store Combo Box
+                view.getSelectSellerComboBox().setEnabled(false);               //disables the sellers combo box in case its enabled
+                view.getSelectSellerComboBox().setModel(emptyModel);            //emptys the seller combo box
             }
         };
         return al;
     }
 
-    private ActionListener getSelectStoreComboBoxActionListener() {
+    private ActionListener getSelectStoreComboBoxActionListener() {             //Gives an action to the Select Business Combo Box
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (ignoreComboChange) {
+                if (ignoreComboChange) {                                        //If the clear entries button is pressed does nothing
                     return;
                 }
-                if (view.getSelectStoreComboBox().getSelectedItem() == null || view.getSelectStoreComboBox().getSelectedIndex() == 0) {
+                if (view.getSelectStoreComboBox().getSelectedItem() == null || view.getSelectStoreComboBox().getSelectedIndex() == 0) {       //Asks the user to select a business if the selected is null
                     JOptionPane.showMessageDialog(view, "Please select a Store.");
                     return;
                 }
-                storeId = Integer.parseInt(view.getSelectStoreComboBox().getSelectedItem().toString().split(",")[0]);
-                setSellersComboBoxByStoreId(storeId);
-                view.getSelectSellerComboBox().setEnabled(true);
+                storeId = Integer.parseInt(view.getSelectStoreComboBox().getSelectedItem().toString().split(",")[0]);   //gets the selected store id
+                setSellersComboBoxByStoreId(storeId);                           //sets the sellers combo box
+                view.getSelectSellerComboBox().setEnabled(true);                //enables the sellers combo box
             }
         };
         return al;
     }
 
-    private ActionListener getSelectSellerComboBoxActionListener() {
+    private ActionListener getSelectSellerComboBoxActionListener() {            //Gives an action to the Select Sellers Combo Box
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (ignoreComboChange) {
+                if (ignoreComboChange) {                                        //If the clear entries button is pressed does nothing
                     return;
                 }
-                if (view.getSelectSellerComboBox().getSelectedItem() == null || view.getSelectSellerComboBox().getSelectedIndex() == 0) {
+                if (view.getSelectSellerComboBox().getSelectedItem() == null || view.getSelectSellerComboBox().getSelectedIndex() == 0) {       //Asks the user to select a seller if the selected is null
                     JOptionPane.showMessageDialog(view, "Please select a seller.");
                     return;
                 }
-                sellerId = Integer.parseInt(view.getSelectSellerComboBox().getSelectedItem().toString().split(",")[0]);
+                sellerId = Integer.parseInt(view.getSelectSellerComboBox().getSelectedItem().toString().split(",")[0]);     //gets the selected seller id
             }
         };
         return al;
     }
 
-    private ActionListener getSelectTruckComboBoxActionListener() {
+    private ActionListener getSelectTruckComboBoxActionListener() {             //Gives an action to the Select Truck Combo Box
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (ignoreComboChange) {
+                if (ignoreComboChange) {                                        //If the clear entries button is pressed does nothing
                     return;
                 }
-                if (view.getSelectTruckComboBox().getSelectedItem() == null || view.getSelectTruckComboBox().getSelectedIndex() == 0) {
+                if (view.getSelectTruckComboBox().getSelectedItem() == null || view.getSelectTruckComboBox().getSelectedIndex() == 0) {            //Asks the user to select a truck if the selected is null
                     JOptionPane.showMessageDialog(view, "Please select a truck.");
                     return;
                 }
-                truckId = Integer.parseInt(view.getSelectTruckComboBox().getSelectedItem().toString().split(",")[0]);
+                truckId = Integer.parseInt(view.getSelectTruckComboBox().getSelectedItem().toString().split(",")[0]);       //gets the selected truck id
             }
         };
         return al;
     }
 
-    private void setStoresComboBoxByBussinesId(int bussinesId) {
-        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
-        model.addElement(null);
+    private void setStoresComboBoxByBussinesId(int bussinesId) {                //Sets the stores combo box model by business id 
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();      //Generates a default model
+        model.addElement(null);                                                 //Makes the first object of the model null
         try {
-            StoresDAO dao = new StoresDAO();
-            ResultSet rs = dao.listStoresIdNameByBussinesId(bussinesId);
-            while (rs.next()) {
-                String storeId = String.valueOf(rs.getInt("store_id"));
-                String name = rs.getString("store_name");
-                String str = storeId + "," + name;
-                model.addElement(str);
+            StoresDAO dao = new StoresDAO();                                    //Gets a connettion to the stores table
+            ResultSet rs = dao.listStoresIdNameByBussinesId(bussinesId);        //Gets the stores Id and Name by business id
+            while (rs.next()) {                                                 //While theres a line continues
+                String storeId = String.valueOf(rs.getInt("store_id"));         //Gets the store id
+                String name = rs.getString("store_name");                       //Gets the store name
+                String str = storeId + "," + name;                              //Sets the string for the model
+                model.addElement(str);                                          //Adds the string to the model
             }
-            view.getSelectStoreComboBox().setModel(model);
+            view.getSelectStoreComboBox().setModel(model);                      //Sets the model
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    private void setSellersComboBoxByStoreId(int storeId) {
-        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
-        model.addElement(null);
+    private void setSellersComboBoxByStoreId(int storeId) {                     //Sets the sellers combo box model by stores id
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();      //Generates a default model
+        model.addElement(null);                                                 //Makes the first object of the model null
         try {
-            SellersDAO dao = new SellersDAO();
-            ResultSet rs = dao.listSellersIdNameByStoreId(storeId);
-            while (rs.next()) {
-                String sellerId = String.valueOf(rs.getInt("seller_id"));
-                String name = rs.getString("seller_name");
-                String str = sellerId + "," + name;
-                model.addElement(str);
+            SellersDAO dao = new SellersDAO();                                  //Gets a connettion to the sellers table
+            ResultSet rs = dao.listSellersIdNameByStoreId(storeId);             //Gets the seller Id and Name by store id
+            while (rs.next()) {                                                 //While theres a line continues
+                String sellerId = String.valueOf(rs.getInt("seller_id"));       //Gets the seller id
+                String name = rs.getString("seller_name");                      //Gets the store name
+                String str = sellerId + "," + name;                             //Sets the string for the model
+                model.addElement(str);                                          //Adds the string to the model
             }
-            view.getSelectSellerComboBox().setModel(model);
+            view.getSelectSellerComboBox().setModel(model);                     //Sets the model 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    private void setComboBoxes() {
-        DefaultComboBoxModel<String> businessModel = new DefaultComboBoxModel<>();
-        DefaultComboBoxModel<String> truckModel = new DefaultComboBoxModel<>();
-        DefaultComboBoxModel<String> emptyModel = new DefaultComboBoxModel<>();
-        emptyModel.addElement(null);
-        try {
-            BusinessDAO bdao = new BusinessDAO();
-            ResultSet brs = bdao.listBusinessesIdName();
-            businessModel.addElement(null);
-            while (brs.next()) {
-                String businessId = String.valueOf(brs.getInt("business_id"));
-                String name = brs.getString("name");
-                String str = businessId + "," + name;
-                businessModel.addElement(str);
+    private void setComboBoxes() {                                                      //Sets the busines and truck combo box
+        DefaultComboBoxModel<String> businessModel = new DefaultComboBoxModel<>();      //Generates a default model 
+        DefaultComboBoxModel<String> truckModel = new DefaultComboBoxModel<>();         //Generates a default model
+        DefaultComboBoxModel<String> emptyModel = new DefaultComboBoxModel<>();         //Generates a default model
+        emptyModel.addElement(null);                                                    //Adds the empty model a null
+        try {                                                                           
+            BusinessDAO bdao = new BusinessDAO();                                       //Gets a connetion to the business table
+            ResultSet brs = bdao.listBusinessesIdName();                                //Gets the business Id and Name
+            businessModel.addElement(null);                                             //Makes the first object of the model null
+            while (brs.next()) {                                                        //While theres a line continues
+                String businessId = String.valueOf(brs.getInt("business_id"));          //Gets the business id
+                String name = brs.getString("name");                                    //Gets the business name
+                String str = businessId + "," + name;                                   //Sets the string for the model
+                businessModel.addElement(str);                                          //Adds the string to the model
             }
-            TrucksDAO tdao = new TrucksDAO();
-            ResultSet trs = tdao.listTrucksIdName();
-            truckModel.addElement(null);
-            while (trs.next()) {
-                String truckId = String.valueOf(trs.getInt("truck_id"));
-                String name = trs.getString("name");
-                String str = truckId + "," + name;
-                truckModel.addElement(str);
+            TrucksDAO tdao = new TrucksDAO();                                           //Gets a connection to the trucks table
+            ResultSet trs = tdao.listTrucksIdName();                                    //Gets the trucks Id and Name
+            truckModel.addElement(null);                                                //Makes the first object of the model null
+            while (trs.next()) {                                                        //While theres a line continues
+                String truckId = String.valueOf(trs.getInt("truck_id"));                //Gets the truck id
+                String name = trs.getString("name");                                    //Gets the truck name
+                String str = truckId + "," + name;                                      //Sets the string for the model
+                truckModel.addElement(str);                                             //Adds the string to the model
             }
-            view.getSelectBusinessComboBox().setModel(businessModel);
-            view.getSelectTruckComboBox().setModel(truckModel);
-            view.getSelectBusinessComboBox().setSelectedIndex(0);
-            view.getSelectTruckComboBox().setSelectedIndex(0);
-            view.getSelectStoreComboBox().setModel(emptyModel);
-            view.getSelectStoreComboBox().setEnabled(false);
-            view.getSelectSellerComboBox().setModel(emptyModel);
-            view.getSelectSellerComboBox().setEnabled(false);
-
+            view.getSelectBusinessComboBox().setModel(businessModel);                   //Sets the business model
+            view.getSelectTruckComboBox().setModel(truckModel);                         //Sets the truck model
+            view.getSelectBusinessComboBox().setSelectedIndex(0);                       //Sets the business combo box index to the null.
+            view.getSelectTruckComboBox().setSelectedIndex(0);                          //Sets the truck combo box index to the null.
+            view.getSelectStoreComboBox().setModel(emptyModel);                         //Sets the store combo box model
+            view.getSelectStoreComboBox().setEnabled(false);                            //Disables the store combo box
+            view.getSelectSellerComboBox().setModel(emptyModel);                        //Sets the sellers combo box model
+            view.getSelectSellerComboBox().setEnabled(false);                           //Disables the sellers combo box
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    private void clearEntries() {
-        view.setAmountTextFieldText("");
-        view.setClientNameTextFieldText("");
-        view.setClientPhoneNumberTextFieldText("");
-        ignoreComboChange = true;
-        businessId = storeId = sellerId = truckId = 0;
-        deliveryDate = pdfRoute = null;
-        view.setSelectDateButtonText("Select Date");
-        setComboBoxes();
-        ignoreComboChange = false;
-    }
-    
-    public void setIcon(){
-         ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
-            view.setIconImage(icon.getImage());
+    private void clearEntries() {                                               //Clears all the entries in the view
+        view.setAmountTextFieldText("");                                        //Sets the amount text field to blank
+        view.setClientNameTextFieldText("");                                    //Sets the client name text field to blank
+        view.setClientPhoneNumberTextFieldText("");                             //Sets the phone number text field to blank
+        ignoreComboChange = true;                                               //Makes the combo boxes to ignore this changes
+        businessId = storeId = sellerId = truckId = 0;                          //Sets the ids to 0
+        deliveryDate = pdfRoute = null;                                         //Sets the delivery date and pdf route to null
+        view.setSelectDateButtonText("Select Date");                            //Sets the select date button text to the default
+        setComboBoxes();                                                        //Resets the combo boxes
+        ignoreComboChange = false;                                              //Makes the combo boxes to stop ignoring changes
     }
 
-    private void innitComponents() {
+    public void setIcon() {                                                     //Sets the App Icon
+        ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
+        view.setIconImage(icon.getImage());
+    }
+
+    private void innitComponents() {                                            //Initializes the icon, db, sets a title and sets the frame default close operation to a dispose.
         this.setComboBoxes();
         this.view.setDefaultCloseOperation();
         this.view.setTitle("Add Delivery Note");
