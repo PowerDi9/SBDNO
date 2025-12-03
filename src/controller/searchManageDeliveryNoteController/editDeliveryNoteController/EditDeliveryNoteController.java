@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
@@ -22,7 +23,7 @@ import view.addDeliveryNoteView.selectDateDialog.SelectDateDialog;
 import view.searchManageDeliveryNoteView.SearchManageDeliveryNoteFrame;
 import view.searchManageDeliveryNoteView.editDeliveryNoteView.EditDeliveryNoteFrame;
 
-public class EditDeliveryNoteController {
+public class EditDeliveryNoteController {                                       //Controller for the edit delivery note dialog
 
     EditDeliveryNoteFrame view;
     SearchManageDeliveryNoteFrame view2;
@@ -30,8 +31,8 @@ public class EditDeliveryNoteController {
     String deliveryId, deliveryDate, pdfRoute, date, businessId, storeId, sellerId, truckId, amount, clientId = null;
     String newPDFRoute, newDeliveryDate, newBusinessId, newStoreId, newSellerId, newTruckId;
     Double newAmount;
-    
-    public EditDeliveryNoteController(EditDeliveryNoteFrame view,SearchManageDeliveryNoteFrame view2, String deliveryId, String introductionDate, String deliveryDate, String clientId, String businessId, String storeId, String sellerId, String truckId, String amount, String pdfPath) {
+
+    public EditDeliveryNoteController(EditDeliveryNoteFrame view, SearchManageDeliveryNoteFrame view2, String deliveryId, String introductionDate, String deliveryDate, String clientId, String businessId, String storeId, String sellerId, String truckId, String amount, String pdfPath) {
         this.view = view;
         this.view2 = view2;
         this.deliveryId = deliveryId;
@@ -56,17 +57,17 @@ public class EditDeliveryNoteController {
         this.view.addConfirmChangesButtonAL(this.getConfirmChangesActionListener());
     }
 
-    private ActionListener getConfirmChangesActionListener() {
+    private ActionListener getConfirmChangesActionListener() {                  //Gives the confirm changes action a 
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Edits the delivery note with the new provided.
                 newBusinessId = view.getSelectBusinessComboBox().getSelectedItem().toString().split(",")[0];
                 newStoreId = view.getSelectStoreComboBox().getSelectedItem().toString().split(",")[0];
                 newSellerId = view.getSelectSellerComboBox().getSelectedItem().toString().split(",")[0];
                 newTruckId = view.getSelectTruckComboBox().getSelectedItem().toString().split(",")[0];
-                if(newDeliveryDate == null){
+                if (newDeliveryDate == null) {
                     newDeliveryDate = deliveryDate;
-                } else if(newPDFRoute == null){
+                } else if (newPDFRoute == null) {
                     newPDFRoute = pdfRoute;
                 }
                 if (Integer.parseInt(newBusinessId) == 0 || newBusinessId == null) {
@@ -119,7 +120,7 @@ public class EditDeliveryNoteController {
         return al;
     }
 
-    private ActionListener getBackButtonActionListener() {
+    private ActionListener getBackButtonActionListener() {                      //Gives the back button an action
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -128,21 +129,21 @@ public class EditDeliveryNoteController {
         };
         return al;
     }
-
-    private ActionListener getResetEntriesButtonActionListener() {
+    
+    private ActionListener getResetEntriesButtonActionListener() {              //Gives the reset entries button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Resets the entries
                 resetEntries();
             }
         };
         return al;
     }
 
-    private ActionListener getSelectPDFBUttonActionListener() {
+    private ActionListener getSelectPDFBUttonActionListener() {                 //Gives the select PDF button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Takes the PDF path the user gives and stores it in the variable
                 JFileChooser fc = new JFileChooser();
                 int selection = fc.showOpenDialog(view);
                 String nPDFRute = null;
@@ -159,16 +160,16 @@ public class EditDeliveryNoteController {
                 }
                 view.setSelectedPDFPathLabelText(nPDFRute);
                 newPDFRoute = nPDFRute;
-                
+
             }
         };
         return al;
     }
 
-    private ActionListener getSelectDateButtonActionListener() {
+    private ActionListener getSelectDateButtonActionListener() {                //Gives the select date button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Takes the date the user gives and stores it in the variable
                 EditDeliveryNoteController actualController = EditDeliveryNoteController.this;
                 SelectDateDialog sdd = new SelectDateDialog(view, true);
                 SelectDateController sdc = new SelectDateController(sdd, actualController);
@@ -179,15 +180,15 @@ public class EditDeliveryNoteController {
         return al;
     }
 
-    public void setDeliveryDate(String str) {
+    public void setDeliveryDate(String str) {                                   //Mathod for setting the date from 
         this.newDeliveryDate = str;
         this.view.setSelectDateButtonText(str);
     }
 
-    private ActionListener getSelectBusinessComboBoxActionListener() {
+    private ActionListener getSelectBusinessComboBoxActionListener() {          //Gives the select business combo box an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //When selecting an item gets the id and stores it
                 if (ignoreComboChange) {
                     return;
                 }
@@ -195,18 +196,22 @@ public class EditDeliveryNoteController {
                     JOptionPane.showMessageDialog(view, "Please select a Business.");
                     return;
                 }
+                DefaultComboBoxModel<String> emptyModel = new DefaultComboBoxModel<>();
+                emptyModel.addElement(null);
                 newBusinessId = view.getSelectBusinessComboBox().getSelectedItem().toString().split(",")[0];
                 setStoresComboBoxByBussinesId(Integer.parseInt(newBusinessId));
+                view.getSelectStoreComboBox().setEnabled(true);
+                view.getSelectSellerComboBox().setModel(emptyModel);
                 view.getSelectSellerComboBox().setEnabled(false);
             }
         };
         return al;
     }
 
-    private ActionListener getSelectStoreComboBoxActionListener() {
+    private ActionListener getSelectStoreComboBoxActionListener() {             //Gives the select store combo box an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //When selecting an item gets the id and stores it
                 if (ignoreComboChange) {
                     return;
                 }
@@ -222,10 +227,10 @@ public class EditDeliveryNoteController {
         return al;
     }
 
-    private ActionListener getSelectSellerComboBoxActionListener() {
+    private ActionListener getSelectSellerComboBoxActionListener() {            //Gives the select seller combo box an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //When selecting an item gets the id and stores it
                 if (ignoreComboChange) {
                     return;
                 }
@@ -239,10 +244,10 @@ public class EditDeliveryNoteController {
         return al;
     }
 
-    private ActionListener getSelectTruckComboBoxActionListener() {
+    private ActionListener getSelectTruckComboBoxActionListener() {             //Gives the select truck combo box an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //When selecting an item gets the id and stores it
                 if (ignoreComboChange) {
                     return;
                 }
@@ -255,8 +260,8 @@ public class EditDeliveryNoteController {
         };
         return al;
     }
-    
-    private void setStoresComboBoxByBussinesId(int bussinesId) {
+
+    private void setStoresComboBoxByBussinesId(int bussinesId) {                //Sets the store combo box by business id
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
         try {
             StoresDAO dao = new StoresDAO();
@@ -273,7 +278,7 @@ public class EditDeliveryNoteController {
         }
     }
 
-    private void setSellersComboBoxByStoreId(int storeId) {
+    private void setSellersComboBoxByStoreId(int storeId) {                     //Sets the seller combo box by store id
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
         try {
             SellersDAO dao = new SellersDAO();
@@ -290,7 +295,7 @@ public class EditDeliveryNoteController {
         }
     }
 
-    private void setTextFields() {
+    private void setTextFields() {                                              //Sets the text field
         this.view.setAmountTextFieldText(amount);
         try {
             ClientsDAO dao = new ClientsDAO();
@@ -299,12 +304,12 @@ public class EditDeliveryNoteController {
                 this.view.setClientNameTextFieldText(rs.getString("name"));
                 this.view.setClientPhoneNumberTextFieldText(rs.getString("phone"));
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    private void setComboBoxes() {
+    private void setComboBoxes() {                                              //Sets the combo boxes
         DefaultComboBoxModel<String> businessModel = new DefaultComboBoxModel<>();
         DefaultComboBoxModel<String> truckModel = new DefaultComboBoxModel<>();
         DefaultComboBoxModel<String> storeModel = new DefaultComboBoxModel<>();
@@ -375,18 +380,16 @@ public class EditDeliveryNoteController {
             e.printStackTrace();
         }
     }
-    
-    
 
-    private void resetEntries() {
+    private void resetEntries() {                                               //Resets the entries
         ignoreComboChange = true;
         this.setComboBoxes();
         this.setTextFields();
         this.view.setSelectDateButtonText(deliveryDate);
         ignoreComboChange = false;
     }
-    
-    private void updateSearchManageDeliveryNotesModel() {
+
+    private void updateSearchManageDeliveryNotesModel() {                       //Updates the search manage delivery notes table
         view2.clearDeliveryNotes();
         try {
             DeliveryNoteDAO deliveryNoteDao = new DeliveryNoteDAO();
@@ -401,39 +404,39 @@ public class EditDeliveryNoteController {
                 Vector row = new Vector();
                 int cId = rs.getInt("client_id");
                 ResultSet clientRs = clientsDao.getClientNamePhone(cId);
-                while(clientRs.next()){
+                while (clientRs.next()) {
                     cName = clientRs.getString("name");
                     cPhone = clientRs.getString("phone");
                 }
                 int bId = rs.getInt("business_id");
                 ResultSet businessRs = businessDao.getBusinessName(bId);
-                while(businessRs.next()){
+                while (businessRs.next()) {
                     bName = businessRs.getString("name");
                 }
                 int sId = rs.getInt("store_id");
                 ResultSet storesRs = storesDao.getStoreName(sId);
-                while(storesRs.next()){
+                while (storesRs.next()) {
                     sName = storesRs.getString("name");
                 }
                 int seId = rs.getInt("seller_id");
                 ResultSet sellersRs = sellersDao.getSellerName(seId);
-                while(sellersRs.next()){
+                while (sellersRs.next()) {
                     seName = sellersRs.getString("name");
                 }
                 int tId = rs.getInt("truck_id");
                 ResultSet trucksRs = trucksDao.getTruckName(tId);
-                while(trucksRs.next()){
+                while (trucksRs.next()) {
                     tName = trucksRs.getString("name");
                 }
                 row.add(rs.getInt("delivery_note_id"));
                 row.add(rs.getString("date"));
                 row.add(rs.getString("delivery_date"));
-                row.add(cId+","+cName);
+                row.add(cId + "," + cName);
                 row.add(cPhone);
-                row.add(bId+","+bName);
-                row.add(sId+","+sName);
-                row.add(seId+","+seName);
-                row.add(tId+","+tName);
+                row.add(bId + "," + bName);
+                row.add(sId + "," + sName);
+                row.add(seId + "," + seName);
+                row.add(tId + "," + tName);
                 row.add(rs.getDouble("amount"));
                 row.add(rs.getString("pdf_path"));
                 view2.addDeliveryNote(row);
@@ -448,7 +451,13 @@ public class EditDeliveryNoteController {
         }
     }
 
-    private void innitComponents() {
+    public void setIcon() {                                                     //Sets the application icon
+        ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
+        view.setIconImage(icon.getImage());
+    }
+
+    private void innitComponents() {                                            //Initializes the components
+        this.setIcon();
         this.setComboBoxes();
         this.setTextFields();
         this.view.setSelectDateButtonText(deliveryDate);

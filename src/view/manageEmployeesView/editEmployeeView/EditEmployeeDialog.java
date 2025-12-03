@@ -33,19 +33,19 @@ public class EditEmployeeDialog extends javax.swing.JDialog {
     private void initComponents() {
 
         employeeNameLabel = new javax.swing.JLabel();
-        employeeStateLabel = new javax.swing.JLabel();
+        employeeStatusLabel = new javax.swing.JLabel();
         acceptButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
         employeeNameTextField = new javax.swing.JTextField();
-        employeeStateComboBox = new javax.swing.JComboBox<>();
+        employeeStatusComboBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         employeeNameLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         employeeNameLabel.setText("Employee Name:");
 
-        employeeStateLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        employeeStateLabel.setText("Employee State:");
+        employeeStatusLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        employeeStatusLabel.setText("Employee State:");
 
         acceptButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         acceptButton.setText("Accept");
@@ -55,7 +55,7 @@ public class EditEmployeeDialog extends javax.swing.JDialog {
 
         employeeNameTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        employeeStateComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        employeeStatusComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -69,9 +69,9 @@ public class EditEmployeeDialog extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(acceptButton))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(employeeStateLabel)
+                        .addComponent(employeeStatusLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
-                        .addComponent(employeeStateComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(employeeStatusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(employeeNameLabel)
                         .addGap(18, 18, 18)
@@ -87,8 +87,8 @@ public class EditEmployeeDialog extends javax.swing.JDialog {
                     .addComponent(employeeNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(employeeStateLabel)
-                    .addComponent(employeeStateComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(employeeStatusLabel)
+                    .addComponent(employeeStatusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(acceptButton)
@@ -103,8 +103,8 @@ public class EditEmployeeDialog extends javax.swing.JDialog {
         return this.employeeNameTextField.getText();
     }
     
-    public JComboBox getEmployeeStateComboBox(){
-        return this.employeeStateComboBox;
+    public JComboBox getEmployeeStatusComboBox(){
+        return this.employeeStatusComboBox;
     }
     
     public void setEmployeeNameTextFieldText(String text){
@@ -124,7 +124,7 @@ public class EditEmployeeDialog extends javax.swing.JDialog {
     private javax.swing.JButton cancelButton;
     private javax.swing.JLabel employeeNameLabel;
     private javax.swing.JTextField employeeNameTextField;
-    private javax.swing.JComboBox<String> employeeStateComboBox;
-    private javax.swing.JLabel employeeStateLabel;
+    private javax.swing.JComboBox<String> employeeStatusComboBox;
+    private javax.swing.JLabel employeeStatusLabel;
     // End of variables declaration//GEN-END:variables
 }

@@ -11,6 +11,7 @@ import model.dao.DeliveryNoteDAO;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.Vector;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -26,7 +27,7 @@ import view.searchManageDeliveryNoteView.SearchManageDeliveryNoteFrame;
 import view.searchManageDeliveryNoteView.editDeliveryNoteView.EditDeliveryNoteFrame;
 import view.searchManageDeliveryNoteView.filterDeliveryNotesView.FilterDeliveryNotesDialog;
 
-public class SearchManageDeliveryNoteController {
+public class SearchManageDeliveryNoteController {                               //Controller for the search / manage delivery notes view
 
     SearchManageDeliveryNoteFrame view;
     String deliveryId, introductionDate, deliveryDate, clientId, clientPhone, clientName, businessId, businessName, storeId, storeName, sellerId, sellerName, truckId, truckName, amount, pdfPath = null;
@@ -42,10 +43,10 @@ public class SearchManageDeliveryNoteController {
         this.innitcomponents();
     }
 
-    private MouseListener getSearchManageDeliveryNotesTableMouseListener() {
+    private MouseListener getSearchManageDeliveryNotesTableMouseListener() {    //Gives the search manage delivery notes table a mouse action
         MouseAdapter ma = new MouseAdapter() {
             @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {           //Gets the selected delivery note information and sets it on the variables
                 int row = view.getSearchManageDeliveryNoteTable().rowAtPoint(evt.getPoint());
                 deliveryId = view.getSearchManageDeliveryNoteTableIDAt(row, 0);
                 introductionDate = view.getSearchManageDeliveryNoteTableIDAt(row, 1);
@@ -68,7 +69,7 @@ public class SearchManageDeliveryNoteController {
         return ma;
     }
 
-    private ActionListener getBackButtonActionListener() {
+    private ActionListener getBackButtonActionListener() {                      //Gives the back button an action
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -78,10 +79,10 @@ public class SearchManageDeliveryNoteController {
         return al;
     }
 
-    private ActionListener getViewPDFButtonActionListener() {
+    private ActionListener getViewPDFButtonActionListener() {                   //Gives the view PDF button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Gets the selected delivery note pdf route and visualizes it on a frame
                 if (pdfPath == null) {
                     JOptionPane.showMessageDialog(view, "Please select a delivery note to view its PDF");
                 }
@@ -104,10 +105,10 @@ public class SearchManageDeliveryNoteController {
         return al;
     }
 
-    private ActionListener getDeleteDeliveryNoteButtonActionListener() {
+    private ActionListener getDeleteDeliveryNoteButtonActionListener() {        //Gives the delete delivery note button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Deletes the selected delivery note from the delivery_notes table
                 try {
                     if (deliveryId == null) {
                         JOptionPane.showMessageDialog(view, "Please select a delivery note to delete.");
@@ -126,10 +127,10 @@ public class SearchManageDeliveryNoteController {
         return al;
     }
 
-    private ActionListener getEditDeliveryNoteActionListener() {
+    private ActionListener getEditDeliveryNoteActionListener() {                //Gives the edit delivery note button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Launches the edit delivery note dialog with the provided information
                 if (deliveryId == null) {
                     JOptionPane.showMessageDialog(view, "Please select a delivery note to edit.");
                     return;
@@ -142,12 +143,12 @@ public class SearchManageDeliveryNoteController {
         };
         return al;
     }
-    
-    private ActionListener getFilterDeliveryNotesButtonActionListener() {
+
+    private ActionListener getFilterDeliveryNotesButtonActionListener() {       //Gives the filter delivery notes button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                FilterDeliveryNotesDialog fdnd= new FilterDeliveryNotesDialog(view, true);
+            public void actionPerformed(ActionEvent e) {                        //Launches the filter delivery note dialog
+                FilterDeliveryNotesDialog fdnd = new FilterDeliveryNotesDialog(view, true);
                 FilterDeliveryNotesController fdnc = new FilterDeliveryNotesController(fdnd, view);
                 fdnd.setLocationRelativeTo(view);
                 fdnd.setVisible(true);
@@ -156,7 +157,7 @@ public class SearchManageDeliveryNoteController {
         return al;
     }
 
-    private void updateSearchManageDeliveryNotesModel() {
+    private void updateSearchManageDeliveryNotesModel() {                       //Updates the search manage delivery notes table
         view.clearDeliveryNotes();
         try {
             DeliveryNoteDAO deliveryNoteDao = new DeliveryNoteDAO();
@@ -218,7 +219,13 @@ public class SearchManageDeliveryNoteController {
         }
     }
 
-    private void innitcomponents() {
+    public void setIcon() {                                                     //Sets the application icon
+        ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
+        view.setIconImage(icon.getImage());
+    }
+
+    private void innitcomponents() {                                            //Initializes the components
+        this.setIcon();
         view.setTitle("Search / Manage Delivery Notes");
         this.updateSearchManageDeliveryNotesModel();
         view.setDefaultCloseOperation();

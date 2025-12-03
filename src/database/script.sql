@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS sellers (
 CREATE TABLE IF NOT EXISTS employees (
     employee_id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
-    state TEXT
+    status TEXT
 );
 
 -- TRUCKS TABLE

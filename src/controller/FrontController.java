@@ -16,6 +16,7 @@ import database.DBConnection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import javax.swing.ImageIcon;
 import view.addDeliveryNoteView.AddDeliveryNoteFrame;
 import view.configurationView.ConfigurationFrame;
 import view.generateDailyReportView.GenerateDailyReportFrame;
@@ -28,7 +29,7 @@ import view.manageStoresView.ManageStoresFrame;
 import view.manageTrucksView.ManageTrucksFrame;
 import view.searchManageDeliveryNoteView.SearchManageDeliveryNoteFrame;
 
-public class FrontController {
+public class FrontController {          //Front controller of the application, handles launching the rest of the views
     
     private MainJFrame view;
     private DBConnection dbc;
@@ -51,7 +52,7 @@ public class FrontController {
         this.initComponents();
     }
     
-    private ActionListener getQuitMenuItemActionListener() {
+    private ActionListener getQuitMenuItemActionListener() {            //Gives an action to the Quit menu item
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -62,7 +63,7 @@ public class FrontController {
         return al;
     }
     
-    private ActionListener getManageBusinessesMenuItemActionListener() {
+    private ActionListener getManageBusinessesMenuItemActionListener() {            //Gives an action to the Manage Businesses menu item, launching the view
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -75,7 +76,7 @@ public class FrontController {
         return al;
     }
     
-    private ActionListener getManageStoresMenuItemActionListener() {
+    private ActionListener getManageStoresMenuItemActionListener() {            //Gives an action to the Maaage Stores menu item, launching the view
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -88,7 +89,7 @@ public class FrontController {
         return al;
     }
     
-    private ActionListener getManageClientsMenuItemActionListener() {
+    private ActionListener getManageClientsMenuItemActionListener() {            //Gives an action to the Manage Clients menu item, launching the view
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -101,7 +102,7 @@ public class FrontController {
         return al;
     }
     
-    private ActionListener getManageEmployeesMenuItemActionListener() {
+    private ActionListener getManageEmployeesMenuItemActionListener() {            //Gives an action to the Manage Employees menu item, launching the view
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -114,7 +115,7 @@ public class FrontController {
         return al;
     }
     
-    private ActionListener getManageTrucksMenuItemActionListener() {
+    private ActionListener getManageTrucksMenuItemActionListener() {            //Gives an action to the Manage Trucks menu item, launching the view
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -127,7 +128,7 @@ public class FrontController {
         return al;
     }
     
-    private ActionListener getManageSellersMenuItemActionListener() {
+    private ActionListener getManageSellersMenuItemActionListener() {            //Gives an action to the Manage Seller menu item, launching the view
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -140,7 +141,7 @@ public class FrontController {
         return al;
     }
     
-    private ActionListener getAddDeliveryNoteMenuItemActionListener(){
+    private ActionListener getAddDeliveryNoteMenuItemActionListener(){            //Gives an action to the Add Delivery Note menu item, launching the view
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -153,7 +154,7 @@ public class FrontController {
         return al;
     }
     
-    private ActionListener getSearchManageDeliveryNotesMenuItemActionListener(){
+    private ActionListener getSearchManageDeliveryNotesMenuItemActionListener(){            //Gives an action to the Search / Manage Delivery Notes menu item, launching the view
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -166,7 +167,7 @@ public class FrontController {
         return al;
     }
     
-    private ActionListener getConfigurationMenuItemActionListener(){
+    private ActionListener getConfigurationMenuItemActionListener(){            //Gives an action to the Configuration menu item, launching the view
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -179,7 +180,7 @@ public class FrontController {
         return al;
     }
     
-    public ActionListener getGenerateListingActionListener(){
+    public ActionListener getGenerateListingActionListener(){            //Gives an action to the Generate Listings menu item, launching the view
         ActionListener al = new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -192,7 +193,7 @@ public class FrontController {
         return al;
     }
     
-    public ActionListener getGenerateDailyReportActionListener(){
+    public ActionListener getGenerateDailyReportActionListener(){            //Gives an action to the Generate Daily Report menu item, launching the view
         ActionListener al = new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -205,9 +206,16 @@ public class FrontController {
         return al;
     }
     
-    public void initComponents() throws SQLException{
+    public void setIcon(){                                                   //Sets the App Icon
+         ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
+            view.setIconImage(icon.getImage());
+    }
+    
+    public void initComponents() throws SQLException{            //Initializes the icon, db and sets a title
         dbc = new DBConnection();
-        dbc.initDB();
+        dbc.initDB();                                            //This line is really important, initializes the db, enabling the Singleton architecture.
+        this.setIcon();
+        this.view.setTitle("SBDNO       Small Business Delivery Note Organizer");
     }
     
 }

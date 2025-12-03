@@ -8,12 +8,13 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import view.manageEmployeesView.ManageEmployeesFrame;
 import view.manageEmployeesView.editEmployeeView.EditEmployeeDialog;
 
-public class EditEmployeeController {
+public class EditEmployeeController {                                           //Controller for the edit employee dialog
 
     EditEmployeeDialog view;
     ManageEmployeesFrame view2 = null;
@@ -32,13 +33,13 @@ public class EditEmployeeController {
         this.initComponents();
     }
 
-    public ActionListener getAcceptButtonActionListener() {
+    private ActionListener getAcceptButtonActionListener() {                     //Gives the accept button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Updates the selected employee information in the DB
                 try {
                     EmployeesDAO dao = new EmployeesDAO();
-                    dao.editEmployee(id, view.getEmployeeNameTextFieldText(), view.getEmployeeStateComboBox().getSelectedItem().toString());
+                    dao.editEmployee(id, view.getEmployeeNameTextFieldText(), view.getEmployeeStatusComboBox().getSelectedItem().toString());
                     updateEditEmployeesModel();
                     System.out.println("Edited Correctly");
                     view.dispose();
@@ -51,7 +52,7 @@ public class EditEmployeeController {
         return al;
     }
 
-    public ActionListener getCancelButtonActionListener() {
+    private ActionListener getCancelButtonActionListener() {                     //Gives the cancel button an action
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -61,7 +62,7 @@ public class EditEmployeeController {
         return al;
     }
 
-    public void updateEditEmployeesModel() {
+    private void updateEditEmployeesModel() {                                    //Updates the edit employees table
         view2.clearEmployees();
         try {
             EmployeesDAO dao = new EmployeesDAO();
@@ -70,7 +71,7 @@ public class EditEmployeeController {
                 Vector row = new Vector();
                 row.add(rs.getInt("employee_id"));
                 row.add(rs.getString("name"));
-                row.add(rs.getString("state"));
+                row.add(rs.getString("status"));
                 view2.addEmployee(row);
             }
         } catch (SQLException e) {
@@ -84,7 +85,7 @@ public class EditEmployeeController {
         }
     }
 
-    private void setSelectEmployeeComboBoxModel() {
+    private void setSelectEmployeeStatusComboBoxModel() {                       //Sets the select employee status combo box
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
         int index = 0;
         int con = 0;
@@ -95,13 +96,19 @@ public class EditEmployeeController {
             }
             con++;
         }
-        view.getEmployeeStateComboBox().setModel(model);
-        view.getEmployeeStateComboBox().setSelectedIndex(index);
+        view.getEmployeeStatusComboBox().setModel(model);
+        view.getEmployeeStatusComboBox().setSelectedIndex(index);
     }
 
-    public void initComponents() {
+    private void setIcon() {                                                    //Sets the application Icon
+        ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
+        view.setIconImage(icon.getImage());
+    }
+
+    private void initComponents() {                                             //Initializes the components
+        this.setIcon();
         view.setEmployeeNameTextFieldText(name);
-        this.setSelectEmployeeComboBoxModel();
+        this.setSelectEmployeeStatusComboBoxModel();
         view.setTitle("Edit Employee");
     }
 }

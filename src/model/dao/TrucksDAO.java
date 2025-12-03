@@ -13,7 +13,7 @@ public class TrucksDAO {
         this.conn = DBConnection.getConnection();
     }
 
-    public boolean truckExists(String truckName) throws SQLException {
+    public boolean truckExists(String truckName) throws SQLException {          //Gets the existance of a truck
         String sql = "SELECT 1 FROM trucks WHERE LOWER(name) = LOWER(?) LIMIT 1";
         try (PreparedStatement ps = this.conn.prepareStatement(sql)) {
             ps.setString(1, truckName);
@@ -22,7 +22,7 @@ public class TrucksDAO {
         }
     }
 
-    public boolean insertTruck(String truckName, String description) throws SQLException {
+    public boolean insertTruck(String truckName, String description) throws SQLException {  //inserts a truck
         String sql = "INSERT INTO trucks(name, description) VALUES (?, ?)";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, truckName);
@@ -31,7 +31,7 @@ public class TrucksDAO {
         }
     }
 
-    public ResultSet listTrucks() {
+    public ResultSet listTrucks() {                                             //Lists all trucks
         String query = "SELECT * FROM trucks";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
@@ -42,7 +42,7 @@ public class TrucksDAO {
         return null;
     }
     
-    public ResultSet listTrucksIdName() {
+    public ResultSet listTrucksIdName() {                                       //Lists truck name and id
         String query = "SELECT truck_id, name FROM trucks";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
@@ -53,7 +53,7 @@ public class TrucksDAO {
         return null;
     }
     
-    public ResultSet getTruckName(int truckId) {
+    public ResultSet getTruckName(int truckId) {                                //Gets a truck name
         String query = "SELECT name FROM trucks WHERE truck_id = ?";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
@@ -65,7 +65,7 @@ public class TrucksDAO {
         return null;
     }
     
-    public boolean deleteTrucks(String str) throws SQLException {
+    public boolean deleteTrucks(String str) throws SQLException {               //Deletes a truck
         int id = Integer.parseInt(str);
         String sql = "DELETE FROM trucks WHERE truck_id = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -78,7 +78,7 @@ public class TrucksDAO {
         return false;
     }
 
-    public boolean editTruck(String newId, String name, String description) throws SQLException{
+    public boolean editTruck(String newId, String name, String description) throws SQLException{        //Edits the desired truck
         int id = Integer.parseInt(newId);
         String sql = "UPDATE trucks SET name = ?, description = ? WHERE truck_id = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {

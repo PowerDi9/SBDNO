@@ -5,17 +5,17 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
+import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import model.dao.ClientsDAO;
 import view.manageClientsView.ManageClientsFrame;
 import view.manageClientsView.searchClientsDialog.SearchClientsDialog;
 
-public class SearchClientsController {
+public class SearchClientsController {                                          //Controller for the search clients view
 
     SearchClientsDialog view = null;
     ManageClientsFrame view2 = null;
-
 
     public SearchClientsController(SearchClientsDialog view, ManageClientsFrame view2) {
         this.view = view;
@@ -25,10 +25,10 @@ public class SearchClientsController {
         this.initComponents();
     }
 
-    public ActionListener getAcceptButtonActionListener() {
+    public ActionListener getAcceptButtonActionListener() {                     //Gives the accept button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Searches on the clients table for entries with similarities with the data provided
                 try {
 
                     ClientsDAO dao = new ClientsDAO();
@@ -57,7 +57,7 @@ public class SearchClientsController {
         return al;
     }
 
-    public ActionListener getCancelButtonActionListener() {
+    public ActionListener getCancelButtonActionListener() {                     //Gives the cancel button an action
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -67,7 +67,13 @@ public class SearchClientsController {
         return al;
     }
 
-    public void initComponents() {
-        view.setTitle("Search Client");
+    public void setIcon() {                                                     //Sets the application icon
+        ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
+        view.setIconImage(icon.getImage());
+    }
+
+    public void initComponents() {                                              //Initializes the components
+        this.setIcon();
+        view.setTitle("Search Clients");
     }
 }

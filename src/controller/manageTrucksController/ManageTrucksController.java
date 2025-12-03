@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import model.dao.EmployeesDAO;
@@ -18,7 +19,7 @@ import model.dao.TruckEmployeeIntermediateDAO;
 import view.manageTrucksView.ManageTrucksFrame;
 import view.manageTrucksView.editTruckView.EditTruckDialog;
 
-public class ManageTrucksController {
+public class ManageTrucksController {                                           //Controller for the manage trucks view
 
     ManageTrucksFrame view;
     String truckId, employeeId, truckName, description = null;
@@ -42,10 +43,10 @@ public class ManageTrucksController {
         this.innitcomponents();
     }
 
-    private MouseListener getEditTrucksTableMouseListener() {
+    private MouseListener getEditTrucksTableMouseListener() {                   //Gives the edit trucks table a mouse action
         MouseAdapter ma = new MouseAdapter() {
             @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {           //Gets the information of the selected truck and stores it on the variables
                 int row = view.getEditTrucksTable().rowAtPoint(evt.getPoint());
                 truckId = view.getEditTrucksTableIDAt(row, 0);
                 truckName = view.getEditTrucksTableIDAt(row, 1);
@@ -55,10 +56,10 @@ public class ManageTrucksController {
         return ma;
     }
 
-    private MouseListener getManageAssignedEmployeesTableMouseListener() {
+    private MouseListener getManageAssignedEmployeesTableMouseListener() {      //Gives the manage ssigned emplees table a mouse action
         MouseAdapter ma = new MouseAdapter() {
             @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {           //Gets the information of the selected employee and stores it on the variables
                 int row = view.getManageAssignedEmployeesTableTable().rowAtPoint(evt.getPoint());
                 employeeId = view.getManageAssignedEmployeesTableIDAt(row, 0);
                 description = view.getManageAssignedEmployeesTableIDAt(row, 2);
@@ -67,7 +68,7 @@ public class ManageTrucksController {
         return ma;
     }
 
-    private ActionListener getBackButtonActionListener() {
+    private ActionListener getBackButtonActionListener() {                      //Gives the back buttons an action
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -77,7 +78,7 @@ public class ManageTrucksController {
         return al;
     }
 
-    private ActionListener getClearTextButtonActionListener() {
+    private ActionListener getClearTextButtonActionListener() {                 //Gives the clear text button an action
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -88,10 +89,10 @@ public class ManageTrucksController {
         return al;
     }
 
-    private ActionListener getDeleteTruckButtonActionListener() {
+    private ActionListener getDeleteTruckButtonActionListener() {               //Gives the delete truck button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Deletes the truck selected on the edit truck table
                 try {
                     if (truckId == null) {
                         JOptionPane.showMessageDialog(view, "Please select a Truck to delete.");
@@ -110,13 +111,13 @@ public class ManageTrucksController {
         return al;
     }
 
-    private ActionListener getUnassignEmployeeButtonActionListener() {
+    private ActionListener getUnassignEmployeeButtonActionListener() {          //Gives the unassign employee button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Unnasigns the selected employee to the selected truck
                 try {
                     TruckEmployeeIntermediateDAO dao = new TruckEmployeeIntermediateDAO();
-                    if(employeeId == null){
+                    if (employeeId == null) {
                         JOptionPane.showMessageDialog(view, "Please select an employee to unassign.");
                         return;
                     }
@@ -133,10 +134,10 @@ public class ManageTrucksController {
         return al;
     }
 
-    private ActionListener getAddTruckButtonActionListener() {
+    private ActionListener getAddTruckButtonActionListener() {                  //Gives the add truck button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Adds the truck to the truck table with the provided information
                 String truckName = view.getTruckNameTextFieldText();
                 String truckDescription = view.getTruckDescriptionTextAreaText();
                 try {
@@ -157,10 +158,10 @@ public class ManageTrucksController {
         return al;
     }
 
-    private ActionListener getAssignEmployeeButtonActionListener() {
+    private ActionListener getAssignEmployeeButtonActionListener() {            //Gives the assign employee button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Assigns the selected employee to the selected truck
                 int truckid = Integer.parseInt(view.getSelectTruckComboBox().getSelectedItem().toString().split(",")[0]);
                 int employeid = Integer.parseInt(view.getSelectEmployeeComboBox().getSelectedItem().toString().split(",")[0]);
                 try {
@@ -176,10 +177,10 @@ public class ManageTrucksController {
         return al;
     }
 
-    private ActionListener getShowAssignedEmployeesActionListener() {
+    private ActionListener getShowAssignedEmployeesActionListener() {           //Gives the show assigned employees button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Shows the assigned employees to the selected truck in the assigned employees table
                 int truckid = Integer.parseInt(view.getMAESelectTruckComboBox().getSelectedItem().toString().split(",")[0]);
                 maeTruckId = truckid;
                 updateAssignedEmployeesModel(truckid);
@@ -188,10 +189,10 @@ public class ManageTrucksController {
         return al;
     }
 
-    private ActionListener getEditTruckActionListener() {
+    private ActionListener getEditTruckActionListener() {                       //Gives the edit truck button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Lauches the edit truck dialog with the provided information
                 if (truckId == null) {
                     JOptionPane.showMessageDialog(view, "Please select a Business to edit.");
                     return;
@@ -204,30 +205,30 @@ public class ManageTrucksController {
         };
         return al;
     }
-    
-    private void updateAssignedEmployeesModel(int truckid){
+
+    private void updateAssignedEmployeesModel(int truckid) {                    //updates the assigned employees table
         view.clearAssignedEmployees();
-                try {
-                    TruckEmployeeIntermediateDAO dao = new TruckEmployeeIntermediateDAO();
-                    ResultSet rs = dao.getEmployeesByTruck(truckid);
-                    while (rs.next()) {
-                        Vector row = new Vector();
-                        row.add(rs.getInt("employee_id"));
-                        row.add(rs.getString("name"));
-                        row.add(rs.getString("state"));
-                        view.addAssignedEmployee(row);
-                    }
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
-                DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-                centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-                for (int i = 0; i < view.getManageAssignedEmployeesTableTable().getColumnCount(); i++) {
-                    view.getManageAssignedEmployeesTableTable().getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
-                }
+        try {
+            TruckEmployeeIntermediateDAO dao = new TruckEmployeeIntermediateDAO();
+            ResultSet rs = dao.getEmployeesByTruck(truckid);
+            while (rs.next()) {
+                Vector row = new Vector();
+                row.add(rs.getInt("employee_id"));
+                row.add(rs.getString("name"));
+                row.add(rs.getString("state"));
+                view.addAssignedEmployee(row);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+        for (int i = 0; i < view.getManageAssignedEmployeesTableTable().getColumnCount(); i++) {
+            view.getManageAssignedEmployeesTableTable().getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+        }
     }
 
-    private void updateEditTrucksModel() {
+    private void updateEditTrucksModel() {                                      //Updates the edit truck table
         view.clearTrucks();
         try {
             TrucksDAO dao = new TrucksDAO();
@@ -250,7 +251,7 @@ public class ManageTrucksController {
         }
     }
 
-    private void setSelectTruckComboBoxModel() {
+    private void setSelectTruckComboBoxModel() {                                //Sets the select Truck combo box
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
         try {
             TrucksDAO dao = new TrucksDAO();
@@ -268,7 +269,7 @@ public class ManageTrucksController {
         }
     }
 
-    private void setSelectEmployeeComboBoxModel() {
+    private void setSelectEmployeeComboBoxModel() {                             //Sets the selct employee combo box
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
         try {
             EmployeesDAO dao = new EmployeesDAO();
@@ -285,7 +286,13 @@ public class ManageTrucksController {
         }
     }
 
-    private void innitcomponents() {
+    public void setIcon() {                                                     //Sets the application icon
+        ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
+        view.setIconImage(icon.getImage());
+    }
+
+    private void innitcomponents() {                                            //Initializes the components
+        this.setIcon();
         view.setTitle("Manage Trucks");
         this.updateEditTrucksModel();
         view.setSetDefaultCloseOperation();

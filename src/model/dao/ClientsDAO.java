@@ -16,7 +16,7 @@ public class ClientsDAO {
         this.conn = DBConnection.getConnection();
     }
 
-    public boolean clientExists(String clientName) throws SQLException {
+    public boolean clientExists(String clientName) throws SQLException {        //Gets the existance of a client
         String sql = "SELECT 1 FROM clients WHERE LOWER(name) = LOWER(?) LIMIT 1";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, clientName);
@@ -25,7 +25,7 @@ public class ClientsDAO {
         }
     }
 
-    public boolean insertClient(String clientName, String phoneNumber) throws SQLException {
+    public boolean insertClient(String clientName, String phoneNumber) throws SQLException {        //Inserts the client
         String sql = "INSERT INTO clients(name, phone) VALUES (?, ?)";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, clientName);
@@ -34,7 +34,7 @@ public class ClientsDAO {
         }
     }
     
-    public int returnGeneratedKeyInsertClient(String clientName, String phoneNumber) throws SQLException {
+    public int returnGeneratedKeyInsertClient(String clientName, String phoneNumber) throws SQLException {      //returns the id while inserting the client
         String sql = "INSERT INTO clients(name, phone) VALUES (?, ?)";
         try (PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, clientName);
@@ -47,7 +47,7 @@ public class ClientsDAO {
         }
     }
     
-    public ResultSet getClientNamePhone(int clientId) {
+    public ResultSet getClientNamePhone(int clientId) {                         //Gets the client name and phone by the id
         String query = "SELECT name, phone FROM clients WHERE client_id = ?";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
@@ -59,7 +59,7 @@ public class ClientsDAO {
         return null;
     }
     
-    public ResultSet getClientName(int clientId) {
+    public ResultSet getClientName(int clientId) {                              //Gets the client name by id 
         String query = "SELECT name FROM clients WHERE client_id = ?";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
@@ -71,7 +71,7 @@ public class ClientsDAO {
         return null;
     }
 
-    public ResultSet listClients() {
+    public ResultSet listClients() {                                            //Lists all clients 
         String query = "SELECT * FROM clients";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
@@ -82,7 +82,7 @@ public class ClientsDAO {
         return null;
     }
 
-    public ResultSet searchClients(String name, String phone) {
+    public ResultSet searchClients(String name, String phone) {                 //Searches for a client by name and phone number
         String query = "SELECT * FROM clients WHERE 1=1";
         ArrayList<Object> parameters = new ArrayList<>();
         try {
@@ -104,7 +104,7 @@ public class ClientsDAO {
         return null;
     }
 
-    public boolean deleteClient(String str) throws SQLException {
+    public boolean deleteClient(String str) throws SQLException {               //Deletes a client
         int id = Integer.parseInt(str);
         String sql = "DELETE FROM clients WHERE client_id = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -117,7 +117,7 @@ public class ClientsDAO {
         return false;
     }
 
-    public boolean editClient(String newId, String name, String phoneNumber) throws SQLException {
+    public boolean editClient(String newId, String name, String phoneNumber) throws SQLException {      //Edits a client
         int id = Integer.parseInt(newId);
         String sql = "UPDATE clients SET name = ?, phone = ? WHERE client_id = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {

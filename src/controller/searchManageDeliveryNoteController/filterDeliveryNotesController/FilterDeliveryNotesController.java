@@ -14,13 +14,14 @@ import model.dao.TrucksDAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
+import javax.swing.ImageIcon;
 import model.dao.ClientsDAO;
 import model.dao.DeliveryNoteDAO;
 import view.addDeliveryNoteView.selectDateDialog.SelectDateDialog;
 import view.searchManageDeliveryNoteView.SearchManageDeliveryNoteFrame;
 import view.searchManageDeliveryNoteView.filterDeliveryNotesView.FilterDeliveryNotesDialog;
 
-public class FilterDeliveryNotesController {
+public class FilterDeliveryNotesController {                                    //Controller for the filter delivery notes view
 
     FilterDeliveryNotesDialog view;
     SearchManageDeliveryNoteFrame view2;
@@ -43,10 +44,10 @@ public class FilterDeliveryNotesController {
         this.view.addFilterDeliveryNotesButtonAL(this.getFilterDeliveryNotesButtonActionListener());
     }
 
-    private ActionListener getFilterDeliveryNotesButtonActionListener() {
+    private ActionListener getFilterDeliveryNotesButtonActionListener() {       //Gives the filter delivery notes button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Gets the data from the user and filters the delivery notes accordingly
                 if (view.getSelectBusinessComboBox().getSelectedItem() != null && view.getSelectBusinessComboBox().getSelectedIndex() > 0) {
                     businessId = Integer.parseInt(view.getSelectBusinessComboBox().getSelectedItem().toString().split(",")[0]);
                 }
@@ -127,7 +128,7 @@ public class FilterDeliveryNotesController {
         return al;
     }
 
-    private ActionListener getBackButtonActionListener() {
+    private ActionListener getBackButtonActionListener() {                      //Gives the back button an action
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -137,20 +138,20 @@ public class FilterDeliveryNotesController {
         return al;
     }
 
-    private ActionListener getClearEntriesButtonActionListener() {
+    private ActionListener getClearEntriesButtonActionListener() {              //Gives the clear entries button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Clears the entries
                 clearEntries();
             }
         };
         return al;
     }
 
-    private ActionListener getSelectAdditionFromDateButtonActionListener() {
+    private ActionListener getSelectAdditionFromDateButtonActionListener() {    //Gives the select addition from date button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Gets the select addition from date and stores it
                 FilterDeliveryNotesController ctrl = FilterDeliveryNotesController.this;
                 SelectDateDialog sdd = new SelectDateDialog(view, true);
                 SelectAdditionFromDateController safdc = new SelectAdditionFromDateController(sdd, ctrl);
@@ -161,10 +162,10 @@ public class FilterDeliveryNotesController {
         return al;
     }
 
-    private ActionListener getSelectAdditionUntilDateButtonActionListener() {
+    private ActionListener getSelectAdditionUntilDateButtonActionListener() {   //Gives the select addition until date button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Gets the select addition until date and stores it
                 FilterDeliveryNotesController ctrl = FilterDeliveryNotesController.this;
                 SelectDateDialog sdd = new SelectDateDialog(view, true);
                 SelectAdditionUntilDateController saudc = new SelectAdditionUntilDateController(sdd, ctrl);
@@ -175,10 +176,10 @@ public class FilterDeliveryNotesController {
         return al;
     }
 
-    private ActionListener getSelectDeliveryFromDateButtonActionListener() {
+    private ActionListener getSelectDeliveryFromDateButtonActionListener() {    //Gives the select delivery from date button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Gets the select delivery from date and stores it
                 FilterDeliveryNotesController ctrl = FilterDeliveryNotesController.this;
                 SelectDateDialog sdd = new SelectDateDialog(view, true);
                 SelectDeliveryFromDateController saudc = new SelectDeliveryFromDateController(sdd, ctrl);
@@ -189,10 +190,10 @@ public class FilterDeliveryNotesController {
         return al;
     }
 
-    private ActionListener getSelectDeliveryUntilDateButtonActionListener() {
+    private ActionListener getSelectDeliveryUntilDateButtonActionListener() {   //Gives the select delivery until date button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Gets the select delivery until date and stores it
                 FilterDeliveryNotesController ctrl = FilterDeliveryNotesController.this;
                 SelectDateDialog sdd = new SelectDateDialog(view, true);
                 SelectDeliveryUntilDateController saudc = new SelectDeliveryUntilDateController(sdd, ctrl);
@@ -203,10 +204,10 @@ public class FilterDeliveryNotesController {
         return al;
     }
 
-    private ActionListener getSelectBusinessComboBoxActionListener() {
+    private ActionListener getSelectBusinessComboBoxActionListener() {          //Gives the business combo box an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Gets the business when the user selects an item
                 DefaultComboBoxModel<String> emptyModel = new DefaultComboBoxModel<>();
                 emptyModel.addElement(null);
                 if (view.getSelectBusinessComboBox().getSelectedItem() == null) {
@@ -225,10 +226,10 @@ public class FilterDeliveryNotesController {
         return al;
     }
 
-    private ActionListener getSelectStoreComboBoxActionListener() {
+    private ActionListener getSelectStoreComboBoxActionListener() {             //Gives the select store combo box an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Gets the store when user selects an item
                 DefaultComboBoxModel<String> emptyModel = new DefaultComboBoxModel<>();
                 emptyModel.addElement(null);
                 if (view.getSelectStoreComboBox().getSelectedItem() == null) {
@@ -243,27 +244,27 @@ public class FilterDeliveryNotesController {
         return al;
     }
 
-    public void setAdditionFromDate(String str) {
+    public void setAdditionFromDate(String str) {                               //Sets the addition from date
         this.additionFromDate = str;
         this.view.setSelectAdditionFromDateText(str);
     }
 
-    public void setAdditionUntilDate(String str) {
+    public void setAdditionUntilDate(String str) {                              //Sets the addition until date
         this.additionUntilDate = str;
         this.view.setSelectAdditionUntilDateText(str);
     }
 
-    public void setDeliveryFromDate(String str) {
+    public void setDeliveryFromDate(String str) {                               //Sets the delivery from date
         this.deliveryFromDate = str;
         this.view.setSelectDeliveryFromDateText(str);
     }
 
-    public void setDeliveryUntilDate(String str) {
+    public void setDeliveryUntilDate(String str) {                              //Sets the delivery until date
         this.deliveryUntilDate = str;
         this.view.setSelectDeliveryUntilDateText(str);
     }
 
-    private void setStoresComboBoxByBussinesId(int bussinesId) {
+    private void setStoresComboBoxByBussinesId(int bussinesId) {                //Sets the store combo box by business id
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
         model.addElement(null);
         try {
@@ -281,7 +282,7 @@ public class FilterDeliveryNotesController {
         }
     }
 
-    private void setSellersComboBoxByStoreId(int storeId) {
+    private void setSellersComboBoxByStoreId(int storeId) {                     //Sets the sellers combo box by store id
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
         model.addElement(null);
         try {
@@ -299,7 +300,7 @@ public class FilterDeliveryNotesController {
         }
     }
 
-    private void setComboBoxes() {
+    private void setComboBoxes() {                                              //Sets the combo boxes
         DefaultComboBoxModel<String> businessModel = new DefaultComboBoxModel<>();
         DefaultComboBoxModel<String> truckModel = new DefaultComboBoxModel<>();
         DefaultComboBoxModel<String> emptyModel = new DefaultComboBoxModel<>();
@@ -337,7 +338,7 @@ public class FilterDeliveryNotesController {
         }
     }
 
-    private void clearEntries() {
+    private void clearEntries() {                                               //Clears the entries of all the fields
         view.setMaxAmountTextFieldText("");
         view.setMinAmountTextFieldText("");
         view.setClientNameTextFieldText("");
@@ -351,7 +352,13 @@ public class FilterDeliveryNotesController {
         setComboBoxes();
     }
 
-    private void innitComponents() {
+    public void setIcon() {                                                     //Sets the application combo
+        ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
+        view.setIconImage(icon.getImage());
+    }
+
+    private void innitComponents() {                                            //Initializes the components
+        this.setIcon();
         this.setComboBoxes();
         this.view.setTitle("Filter Delivery Notes");
     }

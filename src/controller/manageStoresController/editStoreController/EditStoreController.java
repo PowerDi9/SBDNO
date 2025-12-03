@@ -7,14 +7,15 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import model.dao.BusinessDAO;
 import view.manageStoresView.ManageStoresFrame;
 import view.manageStoresView.editStoreView.EditStoreDialog;
 
-public class EditStoreController {
-    
+public class EditStoreController {                                              //Controller for the edit store dialog
+
     EditStoreDialog view = null;
     ManageStoresFrame view2 = null;
     String storeId, businessId, storeName = null;
@@ -30,10 +31,10 @@ public class EditStoreController {
         this.initComponents();
     }
 
-    public ActionListener getAcceptButtonActionListener() {
+    private ActionListener getAcceptButtonActionListener() {                     //Gives the accept button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Updates the information of the selected store with the provided information
                 try {
                     businessId = view.getSelectBusinessComboBox().getSelectedItem().toString().split(",")[0];
                     StoresDAO dao = new StoresDAO();
@@ -49,8 +50,8 @@ public class EditStoreController {
         return al;
     }
 
-    public ActionListener getCancelButtonActionListener() {
-        ActionListener al = new ActionListener() {
+    private ActionListener getCancelButtonActionListener() {                     //Gives the cancel button an action
+        ActionListener al = new ActionListener() {  
             @Override
             public void actionPerformed(ActionEvent e) {
                 view.dispose();
@@ -59,7 +60,7 @@ public class EditStoreController {
         return al;
     }
 
-    public void updateEditStoresModel() {
+    private void updateEditStoresModel() {                                       //Updates the edit stores table
         view2.clearStores();
         try {
             StoresDAO dao = new StoresDAO();
@@ -82,8 +83,8 @@ public class EditStoreController {
             view2.getEditStoresTable().getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
         }
     }
-    
-    private void setSelectBusinessComboBoxModel() {
+
+    private void setSelectBusinessComboBoxModel() {                             //Sets the select business combo box 
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
         try {
             BusinessDAO dao = new BusinessDAO();
@@ -94,11 +95,11 @@ public class EditStoreController {
                 String businessId = String.valueOf(rs.getInt("business_id"));
                 String name = rs.getString("name");
                 String str = businessId + "," + name;
-                if(Integer.parseInt(this.businessId) == Integer.parseInt(businessId)){
+                if (Integer.parseInt(this.businessId) == Integer.parseInt(businessId)) {
                     index = con;
                 }
                 model.addElement(str);
-                con ++;
+                con++;
             }
             view.getSelectBusinessComboBox().setModel(model);
             view.getSelectBusinessComboBox().setSelectedIndex(index);
@@ -107,12 +108,15 @@ public class EditStoreController {
         }
     }
 
-    public void initComponents() {
+    private void setIcon() {                                                     //Sets the application Icon
+        ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
+        view.setIconImage(icon.getImage());
+    }
+
+    private void initComponents() {                                             //Initializes the components
+        this.setIcon();
         view.setStoreNameTextFieldText(storeName);
         view.setTitle("Edit Store");
         this.setSelectBusinessComboBoxModel();
     }
 }
-
-    
-

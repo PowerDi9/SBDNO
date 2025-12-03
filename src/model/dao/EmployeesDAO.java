@@ -14,16 +14,16 @@ public class EmployeesDAO {
         this.conn = DBConnection.getConnection();
     }
 
-    public boolean insertEmployee(String employeeName, String state) throws SQLException {
-        String sql = "INSERT INTO employees(name, state) VALUES (?, ?)";
+    public boolean insertEmployee(String employeeName, String status) throws SQLException {             //Inserts an employee
+        String sql = "INSERT INTO employees(name, status) VALUES (?, ?)";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, employeeName);
-            ps.setString(2, state);
+            ps.setString(2, status);
             return ps.executeUpdate() > 0;
         }
     }
 
-    public boolean deleteEmployee(String str) throws SQLException {
+    public boolean deleteEmployee(String str) throws SQLException {             //Deletes an employee
         int id = Integer.parseInt(str);
         String sql = "DELETE FROM employees WHERE employee_id = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -36,12 +36,12 @@ public class EmployeesDAO {
         return false;
     }
 
-    public boolean editEmployee(String employeeId, String employeeName, String state) throws SQLException {
+    public boolean editEmployee(String employeeId, String employeeName, String status) throws SQLException {        //Edits an employee
         int id = Integer.parseInt(employeeId);
-        String sql = "UPDATE employees SET name = ?, state = ? WHERE employee_id = ?";
+        String sql = "UPDATE employees SET name = ?, status = ? WHERE employee_id = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, employeeName);
-            ps.setString(2, state);
+            ps.setString(2, status);
             ps.setInt(3, id);
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -50,7 +50,7 @@ public class EmployeesDAO {
         }
     }
 
-    public ResultSet listEmployees() {
+    public ResultSet listEmployees() {                                          //Lists all employees
         String query = "SELECT * FROM employees ORDER BY employee_id;";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
@@ -61,7 +61,7 @@ public class EmployeesDAO {
         return null;
     }
 
-    public boolean employeeExists(String employeeName) throws SQLException {
+    public boolean employeeExists(String employeeName) throws SQLException {    //Gets the existance of an employee
         String sql = "SELECT 1 FROM employees WHERE LOWER(name) = LOWER(?) LIMIT 1";
         try (PreparedStatement ps = this.conn.prepareStatement(sql)) {
             ps.setString(1, employeeName);

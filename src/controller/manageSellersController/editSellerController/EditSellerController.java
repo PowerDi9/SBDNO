@@ -7,14 +7,15 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import model.dao.StoresDAO;
 import view.manageSellersView.ManageSellersFrame;
 import view.manageSellersView.editSellerView.EditSellerDialog;
 
-public class EditSellerController {
-    
+public class EditSellerController {                                             //Controller for the edit seller dialog
+
     EditSellerDialog view = null;
     ManageSellersFrame view2 = null;
     String sellerId, storeId, sellerName = null;
@@ -30,10 +31,10 @@ public class EditSellerController {
         this.initComponents();
     }
 
-    public ActionListener getAcceptButtonActionListener() {
+    public ActionListener getAcceptButtonActionListener() {                     //Gives the accept button an action
         ActionListener al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {                        //Updates the information in the sellers table with the provided data
                 try {
                     storeId = view.getSelectStoreComboBox().getSelectedItem().toString().split(",")[0];
                     SellersDAO dao = new SellersDAO();
@@ -49,7 +50,7 @@ public class EditSellerController {
         return al;
     }
 
-    public ActionListener getCancelButtonActionListener() {
+    public ActionListener getCancelButtonActionListener() {                     //Gives the cancel button an action
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -59,7 +60,7 @@ public class EditSellerController {
         return al;
     }
 
-    public void updateEditSellersModel() {
+    private void updateEditSellersModel() {                                      //Updates the edit sellers table
         view2.clearSellers();
         try {
             SellersDAO dao = new SellersDAO();
@@ -82,8 +83,8 @@ public class EditSellerController {
             view2.getEditSellersTable().getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
         }
     }
-    
-    private void setSelectStoreComboBoxModel() {
+
+    private void setSelectStoreComboBoxModel() {                                //Sets the select store combo box model
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
         try {
             StoresDAO dao = new StoresDAO();
@@ -94,11 +95,11 @@ public class EditSellerController {
                 String storeId = String.valueOf(rs.getInt("store_id"));
                 String name = rs.getString("name");
                 String str = storeId + "," + name;
-                if(Integer.parseInt(this.storeId) == Integer.parseInt(storeId)){
+                if (Integer.parseInt(this.storeId) == Integer.parseInt(storeId)) {
                     index = con;
                 }
                 model.addElement(str);
-                con ++;
+                con++;
             }
             view.getSelectStoreComboBox().setModel(model);
             view.getSelectStoreComboBox().setSelectedIndex(index);
@@ -107,7 +108,13 @@ public class EditSellerController {
         }
     }
 
-    public void initComponents() {
+    public void setIcon() {                                                     //Sets the application Icon
+        ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
+        view.setIconImage(icon.getImage());
+    }
+
+    public void initComponents() {                                              //Initializes the components
+        this.setIcon();
         view.setSellerNameTextFieldText(sellerName);
         view.setTitle("Edit Sellers");
         this.setSelectStoreComboBoxModel();

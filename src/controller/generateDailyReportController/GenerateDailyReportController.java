@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import model.dao.ClientsDAO;
 import model.dao.DeliveryNoteDAO;
@@ -37,7 +38,7 @@ import org.apache.poi.util.IOUtils;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import view.generateDailyReportView.GenerateDailyReportFrame;
 
-public class GenerateDailyReportController {
+public class GenerateDailyReportController {                                                                        //Controller for generate daily report view
 
     GenerateDailyReportFrame view;
     String currencyType, dailyReportFolderPath, personalBusinessHeaderPath = null;
@@ -52,7 +53,7 @@ public class GenerateDailyReportController {
         innitComponents();
     }
 
-    private ActionListener getCancelButtonActionListener() {
+    private ActionListener getCancelButtonActionListener() {                                                        //Gives the Cancel button an action
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -62,165 +63,164 @@ public class GenerateDailyReportController {
         return al;
     }
 
-    private ActionListener getGenerateDailyReportButtonActionListener() {
+    private ActionListener getGenerateDailyReportButtonActionListener() {                                                       //Generates a daily report
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-                date = view.getDeliveryDateJCalendar().getDate();
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");                                                      //Generates the simple date format I desire
+                date = view.getDeliveryDateJCalendar().getDate();                                                               //Gets the selected date and formats it
                 String simpleDate = sdf.format(date);
-                try (BufferedReader br = new BufferedReader(new FileReader("./data/user_data/config.txt"))) {
+                try (BufferedReader br = new BufferedReader(new FileReader("./data/user_data/config.txt"))) {                   //Tries to get the user configuration
                     ArrayList<String> datos = new ArrayList<>();
                     String linea;
                     while ((linea = br.readLine()) != null) {
                         datos.add(linea);
                     }
-                    currencyType = datos.get(0);
+                    currencyType = datos.get(0);                                                                                //Sets the user configuration on the variables
                     dailyReportFolderPath = datos.get(2);
                     personalBusinessHeaderPath = datos.get(3);
                     br.close();
                 } catch (IOException ioe) {
                     System.err.println("Error al leer datos: " + ioe.getMessage());
                 }
-                if (dailyReportFolderPath == null || dailyReportFolderPath.isEmpty()) {
+                if (dailyReportFolderPath == null || dailyReportFolderPath.isEmpty()) {                                         //Veryfies the daily report folder path
                     JOptionPane.showMessageDialog(view, "Please select a Daily Report Folder in 'SBDNO' -> 'Configuration'");
                     return;
                 }
-                if (personalBusinessHeaderPath == null || personalBusinessHeaderPath.isEmpty()) {
+                if (personalBusinessHeaderPath == null || personalBusinessHeaderPath.isEmpty()) {                               //Veryfies the personal busines header folder path
                     JOptionPane.showMessageDialog(view, "No Personal Business Header has been detected. The file will be generated without one.\nConsider selecting one on 'SBDNO' -> 'Configuration'");
                 }
-                if (date == null || simpleDate.isEmpty()) {
+                if (date == null || simpleDate.isEmpty()) {                                                                     //Veryfies the given date
                     JOptionPane.showMessageDialog(view, "Please select a delivery date");
                 }
 
-                Workbook workbook = new XSSFWorkbook();
-                Sheet sheet = workbook.createSheet("Sheet1");
-                CellStyle titleStyle = titleStyle(workbook);
+                Workbook workbook = new XSSFWorkbook();                                                                         //Creates a Workbook wher the Excel data is going
+                Sheet sheet = workbook.createSheet("Sheet1");                                                                   //Creates a sheet for the workbook
+                CellStyle titleStyle = titleStyle(workbook);                                                                    //Creates the cell styles that are going to be used
                 CellStyle clientPhoneStyle = clientPhoneStyle(workbook);
                 CellStyle amountStyle = amountStyle(workbook);
                 CellStyle totalStyle = totalStyle(workbook);
 
-                if (personalBusinessHeaderPath != null && !personalBusinessHeaderPath.isEmpty()) {
-                    try (InputStream is = new FileInputStream(personalBusinessHeaderPath)) {
+                if (personalBusinessHeaderPath != null && !personalBusinessHeaderPath.isEmpty()) {                              //If there's no header skips creating it
+                    try (InputStream is = new FileInputStream(personalBusinessHeaderPath)) {                                    //Gets the header path and creates it
                         byte[] bytes = IOUtils.toByteArray(is);
                         int pictureIdx = workbook.addPicture(bytes, Workbook.PICTURE_TYPE_PNG);
                         Drawing<?> drawing = sheet.createDrawingPatriarch();
                         CreationHelper helper = workbook.getCreationHelper();
                         ClientAnchor anchor = helper.createClientAnchor();
 
-                        anchor.setCol1(0);
+                        anchor.setCol1(0);                                                                                      //Sets the header boundaries
                         anchor.setRow1(0);
                         anchor.setCol2(5);
                         anchor.setRow2(9);
-                        Picture pict = drawing.createPicture(anchor, pictureIdx);
-                        is.close();
+                        Picture pict = drawing.createPicture(anchor, pictureIdx);                                               //Sets the picture
+                        is.close();                                                                                             //Closes the stream
                     } catch (IOException ex) {
                         System.err.println("Error al cargar la imagen: " + ex.getMessage());
                     }
                 }
-                sheet.addMergedRegion(new CellRangeAddress(9, 9, 3, 4));
+                sheet.addMergedRegion(new CellRangeAddress(9, 9, 3, 4));                                                        //Merges the cells of the Date Title
 
-                Row deliveredGoodsRow = sheet.createRow(9);
-                Cell deliveredGoodsCell = deliveredGoodsRow.createCell(3);
-                deliveredGoodsCell.setCellValue("DATE: " + simpleDate);
-                deliveredGoodsCell.setCellStyle(titleStyle);
+                Row dateRow = sheet.createRow(9);                                                                               //Creates the row of the Date Title
+                Cell dateCell = dateRow.createCell(3);                                                                          //Creates the cell of the Date Title
+                dateCell.setCellValue("DATE: " + simpleDate);                                                             
+                dateCell.setCellStyle(titleStyle);
 
-                Row emptyRow = sheet.createRow(10);
-                int rowTracker = 9;
-                int startDataRow = 0;
+                int rowTracker = 9;                                                                                             //int for tracking the current row
+                int startDataRow = 0;                                                                                           //int for tracking the start of the data
                 try {
-                    DeliveryNoteDAO dnDAO = new DeliveryNoteDAO();
-                    ResultSet dnRS = dnDAO.listDeliveryNotesByDeliveryDate(simpleDate);
-                    Integer truckIdTracker = null;
-                    Integer storeIdTracker = null;
-                    while (dnRS.next()) {
-                        if (truckIdTracker == null || truckIdTracker != dnRS.getInt("truck_id")) {
+                    DeliveryNoteDAO dnDAO = new DeliveryNoteDAO();                                                              //Gets a connetion to the Delivery Notes table
+                    ResultSet dnRS = dnDAO.listDeliveryNotesByDeliveryDate(simpleDate);                                         //Gets all delivery notes by a date
+                    Integer truckIdTracker = null;                                                                              //Tracks the id of the currrent truck
+                    Integer storeIdTracker = null;                                                                              //Tracks the id of the current store
+                    while (dnRS.next()) {                                                                                       //Lists the data of the current delivery note until there is no more
+                        if (truckIdTracker == null || truckIdTracker != dnRS.getInt("truck_id")) {                              //If the truck id changes sets the final amount for the preceding data row except for the first time
                             if (putFinalAmount) {
-                                setFinalAmount(rowTracker, startDataRow, sheet, totalStyle);
+                                setFinalAmount(rowTracker, startDataRow, sheet, totalStyle);                                    //Sets the final amount of the preceding data row
                                 putFinalAmount = false;
                                 rowTracker++;
                             }
-                            rowTracker = rowTracker + 2;
-                            Row truckRow = sheet.createRow(rowTracker);
-                            sheet.addMergedRegion(new CellRangeAddress(rowTracker, rowTracker, 1, 6));
-                            Cell truckCell = truckRow.createCell(1);
-                            TrucksDAO trDAO = new TrucksDAO();
-                            ResultSet trRS = trDAO.getTruckName(dnRS.getInt("truck_id"));
-                            truckCell.setCellValue(trRS.getString("name"));
-                            truckCell.setCellStyle(titleStyle);
-                            trRS.close();
-                            rowTracker++;
+                            rowTracker = rowTracker + 2;                                                                        //Leaves a 2 row space from the previous truck 
+                            Row truckRow = sheet.createRow(rowTracker);                                                         //Creates the row
+                            sheet.addMergedRegion(new CellRangeAddress(rowTracker, rowTracker, 1, 6));                          //Merges the cells where the title is going
+                            Cell truckCell = truckRow.createCell(1);                                                            //Creates the cell
+                            TrucksDAO trDAO = new TrucksDAO();                                                                  //Gets a connection to the Trucks table
+                            ResultSet trRS = trDAO.getTruckName(dnRS.getInt("truck_id"));                                       //Gets the truck name by id
+                            truckCell.setCellValue(trRS.getString("name"));                                                     //Sets the name
+                            truckCell.setCellStyle(titleStyle);                                                                 //Sets the cell style
+                            trRS.close();                                                                                       //Closes the result set
+                            rowTracker++;                                                                                       //Advances the row
                         }
-                        if (storeIdTracker == null || truckIdTracker != dnRS.getInt("truck_id") || storeIdTracker != dnRS.getInt("store_id")) {
+                        if (storeIdTracker == null || truckIdTracker != dnRS.getInt("truck_id") || storeIdTracker != dnRS.getInt("store_id")) {     //If the store id changes sets the final amount for the preceding data row
                             if (putFinalAmount) {
-                                setFinalAmount(rowTracker, startDataRow, sheet, totalStyle);
+                                setFinalAmount(rowTracker, startDataRow, sheet, totalStyle);                                    //Sets the final amount of the preceding data row
                                 rowTracker++;
                             }
-                            storeIdTracker = dnRS.getInt("store_id");
-                            truckIdTracker = dnRS.getInt("truck_id");
-                            rowTracker++;
-                            Row storeRow = sheet.createRow(rowTracker);
-                            sheet.addMergedRegion(new CellRangeAddress(rowTracker, rowTracker, 1, 2));
-                            Cell storeCell = storeRow.createCell(1);
-                            StoresDAO stDAO = new StoresDAO();
-                            ResultSet stRS = stDAO.getStoreName(storeIdTracker);
-                            storeCell.setCellValue(stRS.getString("name"));
-                            storeCell.setCellStyle(titleStyle);
-                            stRS.close();
-                            rowTracker++;
+                            storeIdTracker = dnRS.getInt("store_id");                                                           //Updates the store id tracker
+                            truckIdTracker = dnRS.getInt("truck_id");                                                           //Updates the truck id tracker
+                            rowTracker++;                                                                                       //Leaves a row space from the previous store
+                            Row storeRow = sheet.createRow(rowTracker);                                                         //Creates the row
+                            sheet.addMergedRegion(new CellRangeAddress(rowTracker, rowTracker, 1, 2));                          //Merges the cells for the store name
+                            Cell storeCell = storeRow.createCell(1);                                                            //Creates the cell
+                            StoresDAO stDAO = new StoresDAO();                                                                  //Gets a connection to the Stores table
+                            ResultSet stRS = stDAO.getStoreName(storeIdTracker);                                                //Gets the store name by id
+                            storeCell.setCellValue(stRS.getString("name"));                                                     //Sets the name
+                            storeCell.setCellStyle(titleStyle);                                                                 //Sets the cell style
+                            stRS.close();                                                                                       //Closes the result set
+                            rowTracker++;                                                                                       //Advances the row
 
-                            Row headersRow = sheet.createRow(rowTracker);
-                            sheet.addMergedRegion(new CellRangeAddress(rowTracker, rowTracker, 1, 3));
-                            sheet.addMergedRegion(new CellRangeAddress(rowTracker, rowTracker, 4, 5));
-                            Cell clientTitle = headersRow.createCell(1);
-                            clientTitle.setCellValue("Client Name");
-                            clientTitle.setCellStyle(titleStyle);
+                            Row headersRow = sheet.createRow(rowTracker);                                                       //Creates the headers row
+                            sheet.addMergedRegion(new CellRangeAddress(rowTracker, rowTracker, 1, 3));                          //Merges the cells for the client name title
+                            sheet.addMergedRegion(new CellRangeAddress(rowTracker, rowTracker, 4, 5));                          //Merges the cells for the client phone number title
+                            Cell clientTitle = headersRow.createCell(1);                                                        //Creates the client title cell
+                            clientTitle.setCellValue("Client Name");                                                            //Sets the name
+                            clientTitle.setCellStyle(titleStyle);                                                               //Sets the style
 
-                            Cell phoneNumberTitle = headersRow.createCell(4);
-                            phoneNumberTitle.setCellValue("Phone Number");
-                            phoneNumberTitle.setCellStyle(titleStyle);
+                            Cell phoneNumberTitle = headersRow.createCell(4);                                                   //Creates the phone number title cell
+                            phoneNumberTitle.setCellValue("Phone Number");                                                      //Sets the name
+                            phoneNumberTitle.setCellStyle(titleStyle);                                                          //Sets the style
 
-                            Cell amountTitle = headersRow.createCell(6);
-                            amountTitle.setCellValue("Amount");
-                            amountTitle.setCellStyle(titleStyle);
+                            Cell amountTitle = headersRow.createCell(6);                                                        //Creates the amount title cell
+                            amountTitle.setCellValue("Amount");                                                                 //Sets the name
+                            amountTitle.setCellStyle(titleStyle);                                                               //Sets the style
 
-                            rowTracker++;
-                            startDataRow = rowTracker;
-                            putFinalAmount = true;
+                            rowTracker++;                                                                                       //Advances the row
+                            startDataRow = rowTracker;                                                                          //Sets the start data row
+                            putFinalAmount = true;                                                                              //Makes the for setting the final amount true
                         }
 
-                        Row dataRow = sheet.createRow(rowTracker);
-                        sheet.addMergedRegion(new CellRangeAddress(rowTracker, rowTracker, 1, 3));
-                        sheet.addMergedRegion(new CellRangeAddress(rowTracker, rowTracker, 4, 5));
-                        Cell clientNameCell = dataRow.createCell(1);
-                        ClientsDAO cDAO = new ClientsDAO();
-                        ResultSet cRS = cDAO.getClientNamePhone(dnRS.getInt("client_id"));
-                        clientNameCell.setCellValue(cRS.getString("name"));
-                        clientNameCell.setCellStyle(clientPhoneStyle);
+                        Row dataRow = sheet.createRow(rowTracker);                                                              //Creates the data row 
+                        sheet.addMergedRegion(new CellRangeAddress(rowTracker, rowTracker, 1, 3));                              //Merges the cells of the client name
+                        sheet.addMergedRegion(new CellRangeAddress(rowTracker, rowTracker, 4, 5));                              //Merges the cells of the client phone number
+                        Cell clientNameCell = dataRow.createCell(1);                                                            //Creates the client name cell
+                        ClientsDAO cDAO = new ClientsDAO();                                                                     //Gets a connection to the clients table
+                        ResultSet cRS = cDAO.getClientNamePhone(dnRS.getInt("client_id"));                                      //Gets the clients name and phone number by id
+                        clientNameCell.setCellValue(cRS.getString("name"));                                                     //Sets the name
+                        clientNameCell.setCellStyle(clientPhoneStyle);                                                          //Sets the cell style
 
-                        Cell clientPhoneNumberCell = dataRow.createCell(4);
-                        clientPhoneNumberCell.setCellValue(cRS.getString("phone"));
-                        clientPhoneNumberCell.setCellStyle(clientPhoneStyle);
-                        cRS.close();
+                        Cell clientPhoneNumberCell = dataRow.createCell(4);                                                     //Creates the client phone number cell
+                        clientPhoneNumberCell.setCellValue(cRS.getString("phone"));                                             //Sets the phone number
+                        clientPhoneNumberCell.setCellStyle(clientPhoneStyle);                                                   //Sets the cell style
+                        cRS.close();                                                                                            //Closes the result set
 
-                        Cell amountCell = dataRow.createCell(6);
-                        amountCell.setCellValue(dnRS.getDouble("amount"));
-                        amountCell.setCellStyle(amountStyle);
-                        rowTracker++;
+                        Cell amountCell = dataRow.createCell(6);                                                                //Creates the cell for the amount
+                        amountCell.setCellValue(dnRS.getDouble("amount"));                                                      //Sets the amount
+                        amountCell.setCellStyle(amountStyle);                                                                   //Sets the cell style
+                        rowTracker++;                                                                                           //Advances the row
                     }
-                    rowTracker++;
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
-                setFinalAmount(rowTracker - 1, startDataRow, sheet, totalStyle);
-
-                Row finalRow = sheet.createRow(rowTracker+1);
+                setFinalAmount(rowTracker, startDataRow, sheet, totalStyle);                                                    //Sets the "final" final amount
+                rowTracker++;                                                                                                   
+                
+                Row finalRow = sheet.createRow(rowTracker + 1);                                                                 //Creates the final total cell
                 Cell totalLabelCell = finalRow.createCell(3);
                 totalLabelCell.setCellValue("TOTAL");
                 totalLabelCell.setCellStyle(totalStyle);
 
-                Cell finalTotalAmount = finalRow.createCell(4);
-                StringBuilder formula = new StringBuilder("SUM(");
+                Cell finalTotalAmount = finalRow.createCell(4);                                                                 //Creates the final amount cell
+                StringBuilder formula = new StringBuilder("SUM(");                                                              //Gets the formula for the final SUM
                 for (int i = 0; i < cells.size(); i++) {
                     formula.append("G").append(cells.get(i));
                     if (i < cells.size() - 1) {
@@ -228,11 +228,10 @@ public class GenerateDailyReportController {
                     }
                 }
                 formula.append(")");
-                finalTotalAmount.setCellFormula(formula.toString());
-                System.out.println(formula.toString());
-                finalTotalAmount.setCellStyle(totalStyle);
+                finalTotalAmount.setCellFormula(formula.toString());                                                            //Sets the formula
+                finalTotalAmount.setCellStyle(totalStyle);                                                                      //Sets the style
 
-                sheet.setColumnWidth(0, 3000);
+                sheet.setColumnWidth(0, 3000);                                                                                  //Acjusts all columns width
                 sheet.setColumnWidth(1, 3000);
                 sheet.setColumnWidth(2, 3000);
                 sheet.setColumnWidth(3, 3000);
@@ -240,9 +239,9 @@ public class GenerateDailyReportController {
                 sheet.setColumnWidth(5, 3000);
                 sheet.setColumnWidth(6, 3000);
 
-                try (FileOutputStream outputStream = new FileOutputStream(dailyReportFolderPath + "\\" + simpleDate.replaceAll("/", ".") + "_DailyReport.xlsx")) {
-                    workbook.write(outputStream);
-                    System.out.println("Excel file created correctly on: " + dailyReportFolderPath);
+                try (FileOutputStream os = new FileOutputStream(dailyReportFolderPath + "\\" + simpleDate.replaceAll("/", ".") + "_DailyReport.xlsx")) {      //Gets the designated folder and name
+                    workbook.write(os);                                                                                         //Writes it
+                    os.close();
                 } catch (FileNotFoundException ex) {
                     ex.printStackTrace();
                 } catch (IOException ex) {
@@ -260,7 +259,7 @@ public class GenerateDailyReportController {
         return al;
     }
 
-    private void setFinalAmount(int currentRow, int startDataRow, Sheet sheet, CellStyle totalStyle) {
+    private void setFinalAmount(int currentRow, int startDataRow, Sheet sheet, CellStyle totalStyle) {                          //Method for setting the final amount from the data rows
         Row finalAmountRow = sheet.createRow(currentRow);
         Cell totalLabelCell = finalAmountRow.createCell(5);
         totalLabelCell.setCellValue("Total: ");
@@ -273,7 +272,7 @@ public class GenerateDailyReportController {
         cells.add(currentRow + 1);
     }
 
-    private CellStyle titleStyle(Workbook wk) {
+    private CellStyle titleStyle(Workbook wk) {                                 //Makes the title style
         CellStyle style = wk.createCellStyle();
         Font font = wk.createFont();
         font.setBold(true);
@@ -287,7 +286,7 @@ public class GenerateDailyReportController {
         return style;
     }
 
-    private CellStyle clientPhoneStyle(Workbook wk) {
+    private CellStyle clientPhoneStyle(Workbook wk) {                           //Makes the Client and Phone style
         CellStyle style = wk.createCellStyle();
         style.setBorderRight(BorderStyle.THIN);
         style.setBorderLeft(BorderStyle.THIN);
@@ -295,7 +294,7 @@ public class GenerateDailyReportController {
         return style;
     }
 
-    private CellStyle amountStyle(Workbook wk) {
+    private CellStyle amountStyle(Workbook wk) {                                //Makes the Amount atyle
         CellStyle style = wk.createCellStyle();
         style.setBorderRight(BorderStyle.THIN);
         style.setBorderLeft(BorderStyle.THIN);
@@ -304,7 +303,7 @@ public class GenerateDailyReportController {
         return style;
     }
 
-    private CellStyle totalStyle(Workbook wk) {
+    private CellStyle totalStyle(Workbook wk) {                                 //Makes the Total style
         CellStyle style = wk.createCellStyle();
         Font font = wk.createFont();
         font.setBold(true);
@@ -316,8 +315,15 @@ public class GenerateDailyReportController {
         return style;
     }
 
-    private void innitComponents() {
+    public void setIcon() {                                                     //Sets the app Icon
+        ImageIcon icon = new ImageIcon("resources/SBDNO_icon.png");
+        view.setIconImage(icon.getImage());
+    }
+
+    private void innitComponents() {                                            //Initializes the components
+        setIcon();
         this.view.setDefaultCloseOperation();
+        this.view.setTitle("Generate Daily Report");
     }
 
 }
