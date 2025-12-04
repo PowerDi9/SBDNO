@@ -165,6 +165,21 @@ public class ConfigurationController {                                          
             System.err.println("Error al leer datos: " + e.getMessage());
         }
     }
+    
+    public void createFolders(){                                                            //Creates the folders if they don't exist
+        String listingFolderPath = "./data/default/configuration/ListingsFolder";
+        String dailyReportFolderPath = "./data/default/configuration/DailyReportFolder";
+        
+        File listingFolder = new File(listingFolderPath);
+        File dailyReportFolder = new File(dailyReportFolderPath);
+        
+        if (!listingFolder.exists()) {
+           listingFolder.mkdirs();
+        }
+        if (!dailyReportFolder.exists()){
+            dailyReportFolder.mkdirs();
+        }
+    }
 
     private void setDefaultConfiguration() {                                                //Sets the default configuration
         currencyType = "€";
@@ -184,8 +199,9 @@ public class ConfigurationController {                                          
         this.view.setIconImage(icon.getImage());
     }
 
-    private void innitComponents() {                                                        //Initializes the variables, sets the title, default close operation to dispose and sets the App Icon
+    private void innitComponents() {                                                        //Initializes the variables, creates the folders, sets the title, default close operation to dispose and sets the App Icon
         setVariables();
+        createFolders();
         view.setTitle("Configuration");
         view.setDefaultCloseOperation();
         setIcon();
