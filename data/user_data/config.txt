@@ -1,4 +1,0 @@
-€
-./data/default_configuration/ListingsFolder
-./data/default_configuration/DailyReportFolder
-./data/default_configuration/SBDNO_header.png
