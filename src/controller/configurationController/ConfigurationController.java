@@ -167,8 +167,8 @@ public class ConfigurationController {                                          
     }
     
     public void createFolders(){                                                            //Creates the folders if they don't exist
-        String listingFolderPath = "./data/default/configuration/ListingsFolder";
-        String dailyReportFolderPath = "./data/default/configuration/DailyReportFolder";
+        String listingFolderPath = "./data/default_configuration/ListingsFolder";
+        String dailyReportFolderPath = "./data/default_configuration/DailyReportFolder";
         
         File listingFolder = new File(listingFolderPath);
         File dailyReportFolder = new File(dailyReportFolderPath);
