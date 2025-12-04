@@ -18,7 +18,6 @@
  */
 package model.dao;
 
-import database.DBConnection;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.PreparedStatement;

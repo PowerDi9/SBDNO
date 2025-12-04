@@ -30,7 +30,7 @@ import controller.manageStoresController.ManageStoresController;
 import controller.manageTrucksController.ManageTrucksController;
 import controller.searchManageDeliveryNoteController.SearchManageDeliveryNoteController;
 import view.MainJFrame;
-import database.DBConnection;
+import model.dao.DBConnection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;

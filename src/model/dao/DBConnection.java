@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package database;
+package model.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -27,8 +27,8 @@ import java.nio.file.Paths;
 
 public class DBConnection {                             //Class for initializing the DB and getting the connection
 
-    private static final String DB_URL = "jdbc:sqlite:src/database/database.db";            //Sets the location of the DB
-    private static final String SCRIPT_PATH = "src/database/script.sql";                    //Sets the location of the creation script of the DB
+    private static final String DB_URL = "jdbc:sqlite:database/database.db";                //Sets the location of the DB
+    private static final String SCRIPT_PATH = "database/script.sql";                        //Sets the location of the creation script of the DB
     private static Connection conn = null;
 
     public static Connection getConnection() throws SQLException {                          //Singleton architecture for the DB connection
