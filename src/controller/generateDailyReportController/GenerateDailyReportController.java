@@ -257,7 +257,7 @@ public class GenerateDailyReportController {                                    
                 sheet.setColumnWidth(5, 3000);
                 sheet.setColumnWidth(6, 3000);
 
-                try (FileOutputStream os = new FileOutputStream(dailyReportFolderPath + "\\" + simpleDate.replaceAll("/", ".") + "_DailyReport.xlsx")) {      //Gets the designated folder and name
+                try (FileOutputStream os = new FileOutputStream(dailyReportFolderPath + "/" + simpleDate.replaceAll("/", ".") + "_DailyReport.xlsx")) {      //Gets the designated folder and name
                     workbook.write(os);                                                                                         //Writes it
                     os.close();
                 } catch (FileNotFoundException ex) {

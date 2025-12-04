@@ -229,7 +229,7 @@ public class GenerateListingsController {                                       
                 sheet.setColumnWidth(5, 3000);
                 sheet.setColumnWidth(6, 3000);
                 
-                try (FileOutputStream outputStream = new FileOutputStream(listingFolderPath + "\\" + businessName + "-" + deliveryFromDate.replaceAll("/", ".") + "-" + deliveryUntilDate.replaceAll("/", ".") + ".xlsx")) {        //Sets the file path and name
+                try (FileOutputStream outputStream = new FileOutputStream(listingFolderPath + "/" + businessName + "-" + deliveryFromDate.replaceAll("/", ".") + "-" + deliveryUntilDate.replaceAll("/", ".") + ".xlsx")) {        //Sets the file path and name
                     workbook.write(outputStream);                                       //Writes the excel file
                 } catch (FileNotFoundException ex) {
                     ex.printStackTrace();
